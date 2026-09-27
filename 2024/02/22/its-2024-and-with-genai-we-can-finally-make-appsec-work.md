@@ -1,6 +1,6 @@
 <!-- generated from content/2024/02/22/its-2024-and-with-genai-we-can-finally-make-appsec-work.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2024/02/22/its-2024-and-with-genai-we-can-finally-make-appsec-work.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2024/02/22/its-2024-and-with-genai-we-can-finally-make-appsec-work.html*
 
 # It’s 2024 and, with GenAI, we can finally make AppSec work
 

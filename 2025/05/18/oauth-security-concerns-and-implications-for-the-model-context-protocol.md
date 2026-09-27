@@ -1,6 +1,6 @@
 <!-- generated from content/2025/05/18/oauth-security-concerns-and-implications-for-the-model-context-protocol.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/05/18/oauth-security-concerns-and-implications-for-the-model-context-protocol.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/05/18/oauth-security-concerns-and-implications-for-the-model-context-protocol.html*
 
 # OAuth Security Concerns and Implications for the Model Context Protocol (MCP)
 

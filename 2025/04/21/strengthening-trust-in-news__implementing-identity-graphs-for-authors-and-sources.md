@@ -1,6 +1,6 @@
 <!-- generated from content/2025/04/21/strengthening-trust-in-news__implementing-identity-graphs-for-authors-and-sources.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/04/21/strengthening-trust-in-news__implementing-identity-graphs-for-authors-and-sources.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/04/21/strengthening-trust-in-news__implementing-identity-graphs-for-authors-and-sources.html*
 
 # Strengthening Trust in News: Implementing Identity Graphs for Authors and Sources
 

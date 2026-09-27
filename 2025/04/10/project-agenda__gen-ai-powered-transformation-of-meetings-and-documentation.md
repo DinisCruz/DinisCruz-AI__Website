@@ -1,6 +1,6 @@
 <!-- generated from content/2025/04/10/project-agenda__gen-ai-powered-transformation-of-meetings-and-documentation.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/04/10/project-agenda__gen-ai-powered-transformation-of-meetings-and-documentation.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/04/10/project-agenda__gen-ai-powered-transformation-of-meetings-and-documentation.html*
 
 # Project Agenda: GenAI-Powered Transformation of Meetings and Documentation
 

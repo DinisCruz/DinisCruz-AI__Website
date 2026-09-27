@@ -1,6 +1,6 @@
 <!-- generated from content/2025/05/29/semantic-knowledge-graphs-for-llm-driven-source-code-analysis.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/05/29/semantic-knowledge-graphs-for-llm-driven-source-code-analysis.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/05/29/semantic-knowledge-graphs-for-llm-driven-source-code-analysis.html*
 
 # Semantic Knowledge Graphs for LLM-Driven Source Code Analysis
 

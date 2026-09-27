@@ -133,3 +133,10 @@ def footer_html(rel, up):
             f'<a href="{up}admin/index.html">engineering</a> · '
             f'<a href="{up}{md}">this page as markdown</a></p>\n'
             f'  </div>\n{cols}\n</div></footer>')
+
+# The date the hand-written pages last changed. It is the sitemap <lastmod> for pages
+# that have no publication date of their own. Bump it with version.txt.
+SITE_UPDATED = "2026-09-27"
+OG_IMAGE = BASE + "og/default.png"
+# Allow full snippets and large image previews, in classic results and in AI features
+ROBOTS = "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"

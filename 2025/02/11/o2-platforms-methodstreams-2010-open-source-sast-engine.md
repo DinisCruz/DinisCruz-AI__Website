@@ -1,6 +1,6 @@
 <!-- generated from content/2025/02/11/o2-platforms-methodstreams-2010-open-source-sast-engine.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/02/11/o2-platforms-methodstreams-2010-open-source-sast-engine.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/02/11/o2-platforms-methodstreams-2010-open-source-sast-engine.html*
 
 # O2 Platform's MethodStreams (2010 Open Source SAST engine)
 

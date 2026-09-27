@@ -1,6 +1,6 @@
 <!-- generated from content/2025/06/18/no-code-development--ndc--a-paradigm-shift-beyond-vibe-coding.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/06/18/no-code-development--ndc--a-paradigm-shift-beyond-vibe-coding.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/06/18/no-code-development--ndc--a-paradigm-shift-beyond-vibe-coding.html*
 
 # No Code Development (NCD): A Paradigm Shift Beyond 'Vibe Coding'
 

@@ -1,6 +1,6 @@
 <!-- generated from content/2025/07/02/ephemeral-genai-siem-a-serverless-graph-driven-approach-to-security-event-management.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/07/02/ephemeral-genai-siem-a-serverless-graph-driven-approach-to-security-event-management.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/07/02/ephemeral-genai-siem-a-serverless-graph-driven-approach-to-security-event-management.html*
 
 # Ephemeral GenAI SIEM: A Serverless, Graph-Driven Approach to Security Event Management
 

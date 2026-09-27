@@ -1,6 +1,6 @@
 <!-- generated from content/2025/02/02/monetising-trust-and-knowledge-for-news-providers.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/02/02/monetising-trust-and-knowledge-for-news-providers.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/02/02/monetising-trust-and-knowledge-for-news-providers.html*
 
 # Monetising Trust and Knowledge: How News Providers can leverage Personalised Semantic Graphs
 

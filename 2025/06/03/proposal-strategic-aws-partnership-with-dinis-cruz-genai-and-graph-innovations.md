@@ -1,6 +1,6 @@
 <!-- generated from content/2025/06/03/proposal-strategic-aws-partnership-with-dinis-cruz-genai-and-graph-innovations.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/06/03/proposal-strategic-aws-partnership-with-dinis-cruz-genai-and-graph-innovations.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/06/03/proposal-strategic-aws-partnership-with-dinis-cruz-genai-and-graph-innovations.html*
 
 # Proposal: Strategic AWS Partnership with Dinis Cruz’s GenAI and Graph Innovations
 

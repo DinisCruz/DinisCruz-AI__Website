@@ -1,6 +1,6 @@
 <!-- generated from content/2025/05/04/project-genbnb__enhancing-airbnb-host-workflows-with-gen-ai.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/05/04/project-genbnb__enhancing-airbnb-host-workflows-with-gen-ai.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/05/04/project-genbnb__enhancing-airbnb-host-workflows-with-gen-ai.html*
 
 # Project GenBnB: Enhancing Airbnb Host Workflows with GenAI
 

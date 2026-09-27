@@ -1,3 +1,8 @@
+---
+description: "Talks and presentations by Dinis Cruz on GenAI, application security and semantic knowledge graphs, from OWASP AppSec EU Lisbon 2024 to The Grafter meetup."
+tags: [presentations, talks, owasp, genai]
+---
+
 # Presentations
 
 {{back_button('/index')}}

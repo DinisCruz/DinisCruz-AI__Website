@@ -1,6 +1,6 @@
 <!-- generated from content/2025/03/31/scaling-europe-regulatory-superpower.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/03/31/scaling-europe-regulatory-superpower.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/03/31/scaling-europe-regulatory-superpower.html*
 
 # Scaling Europe’s Regulatory Superpower: From Static Cybersecurity Standards to Semantic Graphs
 

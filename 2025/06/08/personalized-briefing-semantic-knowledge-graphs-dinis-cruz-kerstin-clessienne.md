@@ -1,6 +1,6 @@
 <!-- generated from content/2025/06/08/personalized-briefing-semantic-knowledge-graphs-dinis-cruz-kerstin-clessienne.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/06/08/personalized-briefing-semantic-knowledge-graphs-dinis-cruz-kerstin-clessienne.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/06/08/personalized-briefing-semantic-knowledge-graphs-dinis-cruz-kerstin-clessienne.html*
 
 # Personalized Briefing: Semantic Knowledge Graphs – Intersection of Dinis Cruz & Kerstin Clessienne's Work
 

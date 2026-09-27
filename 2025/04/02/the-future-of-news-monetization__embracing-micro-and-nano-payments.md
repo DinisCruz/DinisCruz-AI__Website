@@ -1,6 +1,6 @@
 <!-- generated from content/2025/04/02/the-future-of-news-monetization__embracing-micro-and-nano-payments.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/04/02/the-future-of-news-monetization__embracing-micro-and-nano-payments.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/04/02/the-future-of-news-monetization__embracing-micro-and-nano-payments.html*
 
 # The Future of News Monetization: Embracing Micro and Nano Payments
 

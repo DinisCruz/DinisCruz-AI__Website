@@ -1,6 +1,6 @@
 <!-- generated from content/research/organizational-transformation.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/research/organizational-transformation.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/research/organizational-transformation.html*
 
 # Organizational Transformation
 

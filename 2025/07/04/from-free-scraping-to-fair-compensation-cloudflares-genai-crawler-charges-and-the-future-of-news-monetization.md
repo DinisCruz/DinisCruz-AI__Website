@@ -1,6 +1,6 @@
 <!-- generated from content/2025/07/04/from-free-scraping-to-fair-compensation-cloudflares-genai-crawler-charges-and-the-future-of-news-monetization.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/07/04/from-free-scraping-to-fair-compensation-cloudflares-genai-crawler-charges-and-the-future-of-news-monetization.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/07/04/from-free-scraping-to-fair-compensation-cloudflares-genai-crawler-charges-and-the-future-of-news-monetization.html*
 
 # From Free Scraping to Fair Compensation: Cloudflare’s GenAI Crawler Charges and the Future of News Monetization
 

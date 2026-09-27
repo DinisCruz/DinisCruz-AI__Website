@@ -1,6 +1,6 @@
 <!-- generated from content/2025/02/10/second-stories__from-three-mile-island-to-cybersecurity.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/02/10/second-stories__from-three-mile-island-to-cybersecurity.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/02/10/second-stories__from-three-mile-island-to-cybersecurity.html*
 
 # Second Stories: From Three Mile Island to Cybersecurity
 

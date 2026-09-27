@@ -1,6 +1,6 @@
 <!-- generated from content/2024/06/28/deterministic-genai-outputs-with-provenance__owasp-appsec-lisbon__gslides.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2024/06/28/deterministic-genai-outputs-with-provenance__owasp-appsec-lisbon__gslides.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2024/06/28/deterministic-genai-outputs-with-provenance__owasp-appsec-lisbon__gslides.html*
 
 # Deterministic GenAI Outputs with Provenance  (OWASP EU AppSec Lisbon)
 

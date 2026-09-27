@@ -34,8 +34,8 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import html_to_md  # noqa: E402
-from site_config import (AUTHOR, BASE, GITHUB, HOST, LICENCE, LINKEDIN, ROOT,  # noqa: E402
-                         SAME_AS, TAGLINE, VERSION, footer_html, nav_html)
+from site_config import (AUTHOR, BASE, GITHUB, HOST, LICENCE, LINKEDIN, OG_IMAGE, ROBOTS,  # noqa: E402
+                         ROOT, SAME_AS, SITE_UPDATED, TAGLINE, VERSION, footer_html, nav_html)
 
 CONTENT = ROOT / "content"
 GENERATED_MARK = '<meta name="x-generated-from" content="'
@@ -109,6 +109,7 @@ class Doc:
         if isinstance(self.authors, str):
             self.authors = [self.authors]
         self.tags = [str(t) for t in (self.meta.get("tags") or [])]
+        self.hub = str(self.meta.get("back_link") or "").strip("/")
         self.title = str(self.meta.get("title") or "").strip()
         body = self.expand_macros(self.body)
         # the docs site put a "_by X, date_" line under every post; the page header
@@ -231,6 +232,8 @@ def render_markdown(doc):
     body = re.sub(r'<p class="dbtns">.*?</p>\s*', "", doc.md, count=1, flags=re.S)
     md = markdown.Markdown(extensions=MD_EXT, extension_configs=MD_CFG)
     out = md.convert(body)
+    # the page template owns the only <h1>; any H1 left in a migrated body becomes an H2
+    out = re.sub(r"<(/?)h1([ >])", r"<\1h2\2", out)
     toc = md.toc_tokens
     # mermaid fences -> <pre class="mermaid">
     has_mermaid = "language-mermaid" in out
@@ -312,19 +315,36 @@ def resolve_fuzzy(target, pages):
 HUBS = {}  # "research/graphs" -> title, filled once the research docs are loaded
 
 
+def crumb_parts(doc):
+    """The breadcrumb trail as (label, rel) pairs. It is rendered visibly AND as
+    BreadcrumbList structured data, so the two always match."""
+    parts = [("diniscruz.ai", "index.html")]
+    if doc.is_post:
+        parts.append(("writing", "writing/index.html"))
+        if doc.hub in HUBS:
+            parts.append((HUBS[doc.hub], doc.hub + ".html"))
+    elif doc.rel.startswith("research/") and doc.rel != "research/index.html":
+        parts.append(("research", "research/index.html"))
+    elif re.match(r"\d{4}/\d{2}/index.html", doc.rel):
+        parts.append(("writing", "writing/index.html"))
+    return parts
+
+
 def crumb_html(doc):
     up = up_for(doc.rel)
-    parts = [f'<a href="{up}index.html">diniscruz.ai</a>']
-    back = str(doc.meta.get("back_link") or "").strip("/")
-    if doc.is_post:
-        parts.append(f'<a href="{up}writing/index.html">writing</a>')
-        if back in HUBS:
-            parts.append(f'<a href="{up}{back}.html">{esc(HUBS[back].lower())}</a>')
-    elif doc.rel.startswith("research/") and doc.rel != "research/index.html":
-        parts.append(f'<a href="{up}research/index.html">research</a>')
-    elif re.match(r"\d{4}/\d{2}/index.html", doc.rel):
-        parts.append(f'<a href="{up}writing/index.html">writing</a>')
-    return '<div class="crumb">' + " / ".join(parts) + "</div>"
+    return '<div class="crumb">' + " / ".join(
+        f'<a href="{up}{r}">{esc(label)}</a>' for label, r in crumb_parts(doc)) + "</div>"
+
+
+def breadcrumb_ld(doc):
+    items = crumb_parts(doc) + [(doc.title, doc.rel)]
+    return {"@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": i + 1, "name": label if i else "diniscruz.ai",
+         "item": BASE if r == "index.html" else BASE + r} for i, (label, r) in enumerate(items)]}
+
+
+def canonical_url(rel):
+    return BASE if rel == "index.html" else BASE + rel
 
 
 def toc_html(toc):
@@ -338,7 +358,7 @@ def toc_html(toc):
 def head_html(rel, title, description, og_type="website", jsonld=None, extra="", generated_from=None,
               published=None):
     up = up_for(rel)
-    url = BASE + rel
+    url = canonical_url(rel)
     blocks = [
         "<!doctype html>",
         '<html lang="en">',
@@ -348,13 +368,20 @@ def head_html(rel, title, description, og_type="website", jsonld=None, extra="",
         f"<title>{esc(title)}</title>",
         f'<meta name="description" content="{esc(description)}">',
         f'<meta name="author" content="{AUTHOR}">',
+        f'<meta name="robots" content="{ROBOTS}">',
         f'<link rel="canonical" href="{url}">',
         f'<meta property="og:type" content="{og_type}">',
         '<meta property="og:site_name" content="diniscruz.ai">',
         f'<meta property="og:url" content="{url}">',
         f'<meta property="og:title" content="{esc(title)}">',
         f'<meta property="og:description" content="{esc(description)}">',
-        '<meta name="twitter:card" content="summary">',
+        f'<meta property="og:image" content="{OG_IMAGE}">',
+        '<meta property="og:image:width" content="1200">',
+        '<meta property="og:image:height" content="630">',
+        '<meta property="og:image:alt" content="Dinis Cruz — diniscruz.ai">',
+        '<meta property="og:locale" content="en_GB">',
+        '<meta name="twitter:card" content="summary_large_image">',
+        f'<meta name="twitter:image" content="{OG_IMAGE}">',
     ]
     if published:
         blocks.append(f'<meta property="article:published_time" content="{published.isoformat()}">')
@@ -367,6 +394,8 @@ def head_html(rel, title, description, og_type="website", jsonld=None, extra="",
         f'<link rel="icon" href="{up}assets/favicon.svg" type="image/svg+xml">',
         f'<link rel="stylesheet" href="{up}assets/site.css">',
     ]
+    if isinstance(jsonld, list):
+        jsonld = {"@context": "https://schema.org", "@graph": jsonld}
     if jsonld:
         blocks.append('<script type="application/ld+json">' + json.dumps(jsonld, ensure_ascii=False) + "</script>")
     if extra:
@@ -388,28 +417,66 @@ def author_ld(names):
     return out, extra
 
 
+RELATED = {}  # hub -> posts in that hub, newest first
+DOC_DATES = {}  # post rel -> date
+
+
+def related_html(doc):
+    peers = [d for d in RELATED.get(doc.hub, []) if d is not doc]
+    if not peers:
+        return ""
+    # nearest in time first: the reading list a reader of this piece most likely wants
+    peers = sorted(peers, key=lambda d: abs((d.date - doc.date).days))[:5]
+    up = up_for(doc.rel)
+    lis = "".join(f'<li><a href="{up}{d.rel}">{esc(d.title)}</a> <span class="dim small">'
+                  f'{d.date.strftime("%b %Y")}</span></li>' for d in peers)
+    return (f'<aside class="related"><h2>More on {esc(HUBS[doc.hub])}</h2><ul>{lis}</ul>'
+            f'<p class="small"><a href="{up}{doc.hub}.html">The full {esc(HUBS[doc.hub])} reading list →</a></p></aside>')
+
+
 def render_doc(doc, prev_doc=None, next_doc=None):
     rel, up = doc.rel, up_for(doc.rel)
     body, toc, has_mermaid = render_markdown(doc)
     title = doc.title or "Untitled"
     full_title = f"{title} — Dinis Cruz"
-    jsonld = None
+    jsonld = [breadcrumb_ld(doc)]
     meta_line = ""
+    if not doc.is_post:
+        linked = re.findall(r'href="((?:\.\./)*\d{4}/\d{2}/\d{2}/[^"#]+\.html)"', body)
+        seen = []
+        for h in linked:
+            r = norm((Path(rel).parent / h).as_posix())
+            if r not in seen:
+                seen.append(r)
+        dates = [DOC_DATES[r] for r in seen if r in DOC_DATES]
+        doc.linked_newest = max(dates) if dates else None
+        jsonld.append({"@type": "CollectionPage", "@id": BASE + rel, "name": title, "url": BASE + rel,
+                       "description": doc.description, "author": {"@id": PERSON_ID},
+                       "isPartOf": {"@id": BASE + "#website"},
+                       "mainEntity": {"@type": "ItemList", "numberOfItems": len(seen), "itemListElement": [
+                           {"@type": "ListItem", "position": i + 1, "url": BASE + r} for i, r in enumerate(seen)]}})
     if doc.is_post:
         authors, contributors = author_ld(doc.authors)
-        jsonld = {
-            "@context": "https://schema.org", "@type": "BlogPosting",
+        post = {
+            "@type": "BlogPosting", "@id": BASE + rel,
             "headline": title[:110], "name": title, "description": doc.description,
-            "datePublished": doc.date.isoformat(), "author": authors,
+            "datePublished": doc.date.isoformat(), "dateModified": doc.date.isoformat(),
+            "image": OG_IMAGE, "author": authors,
             "publisher": {"@type": "Person", "@id": PERSON_ID, "name": AUTHOR},
             "url": BASE + rel, "mainEntityOfPage": BASE + rel, "inLanguage": "en",
             "license": "https://creativecommons.org/licenses/by/4.0/", "wordCount": doc.words,
-            "isPartOf": {"@type": "WebSite", "name": "diniscruz.ai", "url": BASE},
+            "isPartOf": {"@id": BASE + "#website"},
         }
+        if doc.hub in HUBS:
+            post["articleSection"] = HUBS[doc.hub]
         if contributors:
-            jsonld["contributor"] = contributors
+            post["contributor"] = contributors
         if doc.tags:
-            jsonld["keywords"] = ", ".join(doc.tags)
+            post["keywords"] = ", ".join(doc.tags)
+        if doc.meta.get("pdf_file"):
+            post["encoding"] = {"@type": "MediaObject", "encodingFormat": "application/pdf",
+                                "contentUrl": f"{FILES_HOST}/github/pdf/{doc.date.strftime('%Y/%m/%d')}/{doc.meta['pdf_file']}"}
+        jsonld.append(post)
         minutes = max(1, round(doc.words / 230))
         by = " and ".join(esc(a) for a in doc.authors)
         meta_line = (f'<p class="docline">By <b>{by}</b> · <time datetime="{doc.date.isoformat()}">'
@@ -440,7 +507,7 @@ def render_doc(doc, prev_doc=None, next_doc=None):
         f"<h1>{esc(title)}</h1>",
         meta_line, buttons, tags, toc_html(toc),
         '<article class="prose">', body, "</article>",
-        lead_note, pagenav,
+        related_html(doc) if doc.is_post else "", lead_note, pagenav,
         "</main>",
     ] if x)
     page = "\n".join([head, "<body>", "", nav_html(rel, up), "", main, "", footer_html(rel, up), "", "</body>", "</html>", ""])
@@ -472,6 +539,28 @@ def apply_chrome(text, rel):
     text, n1 = re.subn(r'<nav class="site">.*?</nav>', lambda _: nav_html(rel, up), text, count=1, flags=re.S)
     text, n2 = re.subn(r'<footer class="site">.*?</footer>', lambda _: footer_html(rel, up), text, count=1, flags=re.S)
     return text, bool(n1 and n2)
+
+
+SEO_TAGS = re.compile(r'\n<meta (?:name="robots"|property="og:image[^"]*"|property="og:locale"|name="twitter:[^"]*")[^>]*>')
+
+
+def apply_head_seo(text, rel):
+    """The same robots, image and card tags on every hand-written page as on the
+    generated ones: strip whatever is there, write the current set after og:description."""
+    noindex = 'content="noindex' in text
+    text = SEO_TAGS.sub("", text)
+    tags = [] if noindex else [f'<meta name="robots" content="{ROBOTS}">']
+    tags += [f'<meta property="og:image" content="{OG_IMAGE}">',
+             '<meta property="og:image:width" content="1200">',
+             '<meta property="og:image:height" content="630">',
+             '<meta property="og:image:alt" content="Dinis Cruz — diniscruz.ai">',
+             '<meta property="og:locale" content="en_GB">',
+             '<meta name="twitter:card" content="summary_large_image">',
+             f'<meta name="twitter:image" content="{OG_IMAGE}">']
+    if noindex:
+        tags.insert(0, '<meta name="robots" content="noindex">')
+    return re.sub(r'(<meta property="og:description"[^>]*>)', lambda m: m[1] + "\n" + "\n".join(tags),
+                  text, count=1)
 
 
 def fill_block(text, name, content):
@@ -574,15 +663,44 @@ def rss(posts):
 """
 
 
-def sitemap(pages, docs_by_rel):
+def sitemap(pages, docs_by_rel, posts):
+    newest = posts[0].date.isoformat()
     urls = []
     for rel in pages:
         d = docs_by_rel.get(rel)
-        lastmod = f"<lastmod>{d.date.isoformat()}</lastmod>" if d and d.date else ""
-        loc = BASE if rel == "index.html" else BASE + rel
+        if d and d.is_post:
+            when = d.date.isoformat()
+        elif d and getattr(d, "linked_newest", None):
+            when = d.linked_newest.isoformat()
+        elif d and d.date:
+            when = d.date.isoformat()
+        elif rel in ("writing/index.html", "research/index.html", "research/research-document.html"):
+            when = newest
+        else:
+            when = max(SITE_UPDATED, newest)
+        lastmod = f"<lastmod>{when}</lastmod>"
+        loc = canonical_url(rel)
         urls.append(f"  <url><loc>{loc}</loc>{lastmod}</url>")
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(urls) + "\n</urlset>\n")
+
+
+ROBOTS_TXT = f"""# diniscruz.ai — every crawler is welcome, AI agents included.
+User-agent: *
+Allow: /
+
+# Search engines index the HTML pages. The markdown twin of each page (*.md) and
+# llms-full.txt repeat that HTML for agents that read markdown, so the search
+# crawlers skip them rather than index every page twice. They are still served
+# to everyone else, and listed in llms.txt.
+User-agent: Googlebot
+User-agent: Bingbot
+Disallow: /*.md$
+Disallow: /llms-full.txt
+Allow: /
+
+Sitemap: {BASE}sitemap.xml
+"""
 
 
 def is_stub(text):
@@ -631,9 +749,14 @@ def llms_txt(entries, posts):
         if re.match(r"\d{4}/\d{2}/\d{2}/", rel):
             continue
         lines.append(f"- [{title}]({BASE}{rel[:-5]}.md): {desc}")
+    lines += ["", "## Start here, by topic", ""]
+    for hub, title in sorted(HUBS.items()):
+        if hub in RELATED:
+            lines.append(f"- [{title}]({BASE}{hub}.md): {len(RELATED[hub])} pieces, newest "
+                         f"{RELATED[hub][0].date.isoformat()}.")
     lines += ["", f"## Writing ({len(posts)} pieces, newest first)", ""]
     for d in posts:
-        lines.append(f"- {d.date.isoformat()} [{d.title}]({BASE}{d.rel[:-5]}.md): {d.description}")
+        lines.append(f"- [{d.title}]({BASE}{d.rel[:-5]}.md): {d.date.isoformat()}. {d.description}")
     return "\n".join(lines) + "\n"
 
 
@@ -659,6 +782,10 @@ def main():
         if d.rel.startswith("research/"):
             HUBS[d.rel[:-5]] = d.title
     posts = sorted([d for d in docs if d.is_post], key=lambda d: (d.date, d.rel), reverse=True)
+    for d in posts:
+        DOC_DATES[d.rel] = d.date
+        if d.hub in HUBS:
+            RELATED.setdefault(d.hub, []).append(d)
     docs_by_rel = {d.rel: d for d in docs}
 
     # 1. content/ -> pages
@@ -687,7 +814,7 @@ def main():
         if GENERATED_MARK in text:
             continue
         if not is_stub(text):
-            new, ok = apply_chrome(text, rel)
+            new, ok = apply_chrome(apply_head_seo(text, rel), rel)
             if not ok:
                 print(f"  ! {rel}: missing nav or footer block", file=sys.stderr)
         else:
@@ -730,12 +857,11 @@ def main():
     for rel in pages:
         src = (ROOT / rel).read_text()
         entries.append((rel, html_to_md.page_title(src), html_to_md.page_description(src)))
-    write_if_changed(ROOT / "sitemap.xml", sitemap(pages, docs_by_rel), changed)
+    write_if_changed(ROOT / "sitemap.xml", sitemap(pages, docs_by_rel, posts), changed)
     feed = rss(posts)
     for name in ("feed.xml", "feed_rss_created.xml", "feed_rss_updated.xml"):
         write_if_changed(ROOT / name, feed, changed)
-    write_if_changed(ROOT / "robots.txt",
-                     f"User-agent: *\nAllow: /\n\nSitemap: {BASE}sitemap.xml\n", changed)
+    write_if_changed(ROOT / "robots.txt", ROBOTS_TXT, changed)
     write_if_changed(ROOT / "llms.txt", llms_txt(entries, posts), changed)
     write_if_changed(ROOT / "llms-full.txt", llms_full(entries, twins), changed)
 

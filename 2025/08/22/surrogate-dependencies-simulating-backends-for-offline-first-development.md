@@ -1,6 +1,6 @@
 <!-- generated from content/2025/08/22/surrogate-dependencies-simulating-backends-for-offline-first-development.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/08/22/surrogate-dependencies-simulating-backends-for-offline-first-development.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/08/22/surrogate-dependencies-simulating-backends-for-offline-first-development.html*
 
 # Surrogate Dependencies: Simulating Backends for Offline-First Development
 

@@ -1,4 +1,15 @@
+# diniscruz.ai — every crawler is welcome, AI agents included.
 User-agent: *
+Allow: /
+
+# Search engines index the HTML pages. The markdown twin of each page (*.md) and
+# llms-full.txt repeat that HTML for agents that read markdown, so the search
+# crawlers skip them rather than index every page twice. They are still served
+# to everyone else, and listed in llms.txt.
+User-agent: Googlebot
+User-agent: Bingbot
+Disallow: /*.md$
+Disallow: /llms-full.txt
 Allow: /
 
 Sitemap: https://diniscruz.ai/sitemap.xml

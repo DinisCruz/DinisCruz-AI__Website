@@ -1,6 +1,6 @@
 <!-- generated from content/2025/04/22/navigating-the-ai-revolution__a_university_students_guide_to_generative-ai-in-education.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/04/22/navigating-the-ai-revolution__a_university_students_guide_to_generative-ai-in-education.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/04/22/navigating-the-ai-revolution__a_university_students_guide_to_generative-ai-in-education.html*
 
 # Navigating the AI Revolution: A University Student’s Guide to Generative AI in Education
 

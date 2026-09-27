@@ -1,6 +1,6 @@
 <!-- generated from content/2025/09/01/next-generation-api-security-platform-semantic-graphs-genai-testing-ephemeral-environments-2025.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/09/01/next-generation-api-security-platform-semantic-graphs-genai-testing-ephemeral-environments-2025.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/09/01/next-generation-api-security-platform-semantic-graphs-genai-testing-ephemeral-environments-2025.html*
 
 # Next-Generation API Security Platform: Semantic Graphs, GenAI Testing & Ephemeral Environments for 2025
 

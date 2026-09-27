@@ -1,6 +1,6 @@
 <!-- generated from content/2025/06/15/personal-content-rights-protecting-individuals-in-the-age-of-deepfakes-and-ai-cloning.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/06/15/personal-content-rights-protecting-individuals-in-the-age-of-deepfakes-and-ai-cloning.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/06/15/personal-content-rights-protecting-individuals-in-the-age-of-deepfakes-and-ai-cloning.html*
 
 # Personal Content Rights: Protecting Individuals in the Age of Deepfakes and AI Cloning
 

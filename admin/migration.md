@@ -1,6 +1,6 @@
 <!-- generated from admin/migration.html by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/admin/migration.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/admin/migration.html*
 
 > Why the essays moved from docs.diniscruz.ai to diniscruz.ai, how every old URL maps to a new one at the same path, and the steps that retire the old host without losing search ranking.
 

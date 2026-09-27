@@ -1,6 +1,6 @@
 <!-- generated from content/2025/04/23/semantic_owasp__leveraging_genai_and_garphs_to_customise_and_scale_security_knowledge.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/04/23/semantic_owasp__leveraging_genai_and_garphs_to_customise_and_scale_security_knowledge.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/04/23/semantic_owasp__leveraging_genai_and_garphs_to_customise_and_scale_security_knowledge.html*
 
 # Semantic OWASP:  Leveraging GenAI and Graphs to Customise and Scale Security Knowledge
 

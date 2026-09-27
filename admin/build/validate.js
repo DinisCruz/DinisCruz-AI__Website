@@ -147,6 +147,31 @@ for (const f of files) {
   }
 }
 
+// --- 7. search essentials -------------------------------------------------
+// Every indexable page: a description, a title, one h1, preview-friendly robots,
+// a share image, and a <loc> in sitemap.xml equal to its canonical URL.
+const sitemapXml = fs.existsSync(path.join(ROOT, 'sitemap.xml'))
+  ? fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8') : '';
+if (!sitemapXml) errors.push('sitemap.xml is missing');
+const locs = new Set([...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]));
+for (const f of pageFiles) {
+  const rel = path.relative(ROOT, f).split(path.sep).join('/');
+  const t = fs.readFileSync(f, 'utf8');
+  if (/name="robots" content="noindex/.test(t)) continue;
+  const canon = (t.match(/<link rel="canonical" href="([^"]+)"/) || [])[1];
+  if (canon && !locs.has(canon)) errors.push(`${rel}: canonical ${canon} is not in sitemap.xml`);
+  const desc = (t.match(/<meta name="description" content="([^"]*)"/) || [])[1] || '';
+  if (desc.length < 50) errors.push(`${rel}: meta description missing or under 50 characters`);
+  if (!/<title>[^<]{10,}<\/title>/.test(t)) errors.push(`${rel}: title missing or too short`);
+  if ((t.match(/<h1[\s>]/g) || []).length !== 1) errors.push(`${rel}: expected exactly one <h1>`);
+  if (!/name="robots" content="index, follow, max-snippet:-1/.test(t)) errors.push(`${rel}: no robots preview directives`);
+  if (!/property="og:image"/.test(t)) errors.push(`${rel}: no og:image`);
+}
+for (const loc of locs) {
+  const rel = loc.replace(`https://${HOST}/`, '') || 'index.html';
+  if (!fs.existsSync(path.join(ROOT, rel))) errors.push(`sitemap.xml lists ${loc}, which has no file`);
+}
+
 // --- report ---------------------------------------------------------------
 if (errors.length) {
   console.error(`validate: ${errors.length} error(s)`);

@@ -1,6 +1,6 @@
 <!-- generated from content/2025/06/06/personalised-briefing-for-dan-raywood-on-the-future-of-news.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/06/06/personalised-briefing-for-dan-raywood-on-the-future-of-news.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/06/06/personalised-briefing-for-dan-raywood-on-the-future-of-news.html*
 
 # Personalised Briefing for Dan Raywood on the Future of News
 

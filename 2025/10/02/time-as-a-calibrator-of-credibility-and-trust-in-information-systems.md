@@ -1,6 +1,6 @@
 <!-- generated from content/2025/10/02/time-as-a-calibrator-of-credibility-and-trust-in-information-systems.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/10/02/time-as-a-calibrator-of-credibility-and-trust-in-information-systems.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/10/02/time-as-a-calibrator-of-credibility-and-trust-in-information-systems.html*
 
 # Time as a Calibrator of Credibility and Trust in Information Systems
 

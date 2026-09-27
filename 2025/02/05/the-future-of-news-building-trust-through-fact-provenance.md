@@ -1,6 +1,6 @@
 <!-- generated from content/2025/02/05/the-future-of-news-building-trust-through-fact-provenance.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/02/05/the-future-of-news-building-trust-through-fact-provenance.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/02/05/the-future-of-news-building-trust-through-fact-provenance.html*
 
 # The Future of News: Building Trust Through Fact Provenance
 

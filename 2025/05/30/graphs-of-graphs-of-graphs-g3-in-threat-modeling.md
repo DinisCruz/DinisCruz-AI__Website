@@ -1,6 +1,6 @@
 <!-- generated from content/2025/05/30/graphs-of-graphs-of-graphs-g3-in-threat-modeling.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/05/30/graphs-of-graphs-of-graphs-g3-in-threat-modeling.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/05/30/graphs-of-graphs-of-graphs-g3-in-threat-modeling.html*
 
 # Graphs of Graphs of Graphs (G3) in Threat Modeling
 

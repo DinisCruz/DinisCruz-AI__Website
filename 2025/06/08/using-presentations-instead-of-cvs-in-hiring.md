@@ -1,6 +1,6 @@
 <!-- generated from content/2025/06/08/using-presentations-instead-of-cvs-in-hiring.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/06/08/using-presentations-instead-of-cvs-in-hiring.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/06/08/using-presentations-instead-of-cvs-in-hiring.html*
 
 # Using Presentations Instead of CVs in Hiring
 

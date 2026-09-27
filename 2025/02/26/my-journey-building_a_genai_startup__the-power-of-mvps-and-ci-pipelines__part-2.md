@@ -1,6 +1,6 @@
 <!-- generated from content/2025/02/26/my-journey-building_a_genai_startup__the-power-of-mvps-and-ci-pipelines__part-2.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/02/26/my-journey-building_a_genai_startup__the-power-of-mvps-and-ci-pipelines__part-2.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/02/26/my-journey-building_a_genai_startup__the-power-of-mvps-and-ci-pipelines__part-2.html*
 
 # My Journey Building a GenAI Startup: The Power of MVPs and CI Pipelines - PART 2
 

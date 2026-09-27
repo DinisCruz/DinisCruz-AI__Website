@@ -1,6 +1,6 @@
 <!-- generated from content/2025/04/22/graph-powered-legal-knowledge__an-open-distributed-and-ai-assisted-roadmap.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/04/22/graph-powered-legal-knowledge__an-open-distributed-and-ai-assisted-roadmap.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/04/22/graph-powered-legal-knowledge__an-open-distributed-and-ai-assisted-roadmap.html*
 
 # Graph-Powered Legal Knowledge: An Open, Distributed, and GenAI-Assisted Roadmap
 

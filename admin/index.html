@@ -12,6 +12,14 @@
 <meta property="og:url" content="https://diniscruz.ai/admin/index.html">
 <meta property="og:title" content="How diniscruz.ai is built">
 <meta property="og:description" content="How diniscruz.ai is built and released: hand-written HTML plus pages generated from the markdown migrated from docs.diniscruz.ai, a markdown twin at every URL, llms.txt, and a validate-then-deploy pipeline to GitHub Pages.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta property="og:image" content="https://diniscruz.ai/og/default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dinis Cruz — diniscruz.ai">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://diniscruz.ai/og/default.png">
 <link rel="alternate" type="text/markdown" href="index.md" title="This page as markdown">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
@@ -21,7 +29,7 @@
 <nav class="site"><div class="row">
   <a class="brand" href="../index.html">diniscruz<span>.ai</span></a>
   <a class="parent" href="https://sgit.ai" title="sgit.ai — encrypted git for humans and AI agents, the project Dinis Cruz is building now">↗ building <b>sgit.ai</b></a>
-  <a class="ver" href="../admin/versions.html" title="Site release history">v0.1.0</a>
+  <a class="ver" href="../admin/versions.html" title="Site release history">v0.1.1</a>
   <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">Menu</button>
   <div class="nav-items">
     <div class="ni ni-has">
@@ -90,6 +98,17 @@
   <li><b><a href="../llms.txt">llms.txt</a></b>, which is self-sufficient: who I am and every page with its description. <b><a href="../llms-full.txt">llms-full.txt</a></b> holds every page in one file, for agents that cannot follow links.</li>
 </ul>
 
+<h2 id="seo">Search and AI features</h2>
+<p>Google's guidance for its AI features (AI Overviews and AI Mode) is that no special optimisation is needed beyond the fundamentals, so this site does the fundamentals and checks them on every build:</p>
+<ul>
+  <li><b>Crawlable, indexable text.</b> Every page is static HTML that works without JavaScript. Each has one <code>&lt;h1&gt;</code>, a real title and description, and a canonical URL that appears in <a href="../sitemap.xml">sitemap.xml</a>. <code>validate.js</code> fails the release if any of that is missing.</li>
+  <li><b>Snippet-eligible.</b> <code>max-snippet:-1, max-image-preview:large</code> on every page, so search results and AI answers can quote and preview it in full.</li>
+  <li><b>Structured data that matches the visible page.</b> <code>Person</code>, <code>WebSite</code>, <code>BlogPosting</code>, <code>BreadcrumbList</code> (generated from the same data as the visible breadcrumb) and <code>CollectionPage</code>.</li>
+  <li><b>Internal links.</b> Every essay links to its topic hub, its neighbours in time, and the five nearest pieces on the same topic.</li>
+  <li><b>No duplicates in the index.</b> The markdown twins and <code>llms-full.txt</code> repeat the HTML for agents. <a href="../robots.txt">robots.txt</a> keeps Googlebot and Bingbot off them, so each page is indexed once, as HTML. Other crawlers and agents can still fetch them.</li>
+</ul>
+<p><b>llms.txt</b> follows the <a href="https://llmstxt.org/">llmstxt.org</a> format. Google has said its search does not use llms.txt, so it is here for the other agents and LLM tools that do read it, not for ranking.</p>
+
 <h2 id="release">Release process</h2>
 <ol>
   <li>Bump <code>admin/build/version.txt</code> and add a row to <a href="versions.html">the release history</a>.</li>
@@ -111,7 +130,7 @@
     <div class="brandline">diniscruz<span>.ai</span></div>
     <p>The personal site of Dinis Cruz: essays and research on AI, cyber security, semantic knowledge graphs and the future of news, and the companies and open-source projects they feed into. All writing CC BY 4.0.</p>
     <p class="netline"><a href="https://sgit.ai"><b>↗ sgit.ai</b></a> — encrypted git for humans and AI agents · <a href="https://open-source.sgit.ai">↗ open-source.sgit.ai</a> — open source as a strategy · <a href="https://sgit.ai/network/index.html">↗ the sgit.ai network</a></p>
-    <p class="verline">site <a href="../admin/versions.html">v0.1.0</a> · <a href="../admin/index.html">engineering</a> · <a href="../admin/index.md">this page as markdown</a></p>
+    <p class="verline">site <a href="../admin/versions.html">v0.1.1</a> · <a href="../admin/index.html">engineering</a> · <a href="../admin/index.md">this page as markdown</a></p>
   </div>
   <div>
     <h4>Writing</h4>

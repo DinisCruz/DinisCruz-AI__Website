@@ -1,6 +1,6 @@
 <!-- generated from content/2025/05/30/scaling-supply-chain-security-using-threat-modeling-semantic-knowledge-graphs-and-maps.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/05/30/scaling-supply-chain-security-using-threat-modeling-semantic-knowledge-graphs-and-maps.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/05/30/scaling-supply-chain-security-using-threat-modeling-semantic-knowledge-graphs-and-maps.html*
 
 # Scaling Supply Chain Security using Threat Modeling Semantic Knowledge Graphs and Maps
 

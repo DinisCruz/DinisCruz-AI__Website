@@ -1,6 +1,6 @@
 <!-- generated from content/2025/06/18/empowering-the-graph-thinkers-in-the-age-of-generative-ai.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/06/18/empowering-the-graph-thinkers-in-the-age-of-generative-ai.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/06/18/empowering-the-graph-thinkers-in-the-age-of-generative-ai.html*
 
 # Empowering the Graph Thinkers in the Age of Generative AI
 

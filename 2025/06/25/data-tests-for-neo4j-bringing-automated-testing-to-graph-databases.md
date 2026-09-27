@@ -1,6 +1,6 @@
 <!-- generated from content/2025/06/25/data-tests-for-neo4j-bringing-automated-testing-to-graph-databases.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/06/25/data-tests-for-neo4j-bringing-automated-testing-to-graph-databases.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/06/25/data-tests-for-neo4j-bringing-automated-testing-to-graph-databases.html*
 
 # Data Tests for Neo4j: Bringing Automated Testing to Graph Databases
 

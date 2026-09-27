@@ -1,6 +1,6 @@
 <!-- generated from content/2025/03/24/journalists-challenges-with-digital-content-provenance-and-trust.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/03/24/journalists-challenges-with-digital-content-provenance-and-trust.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/03/24/journalists-challenges-with-digital-content-provenance-and-trust.html*
 
 # Journalists' Challenges with Digital Content Provenance and Trust
 

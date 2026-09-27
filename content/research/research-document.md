@@ -1,5 +1,5 @@
 ---
-description: "Table summarizing research proposals and briefs."
+description: "Every research proposal and technical brief by Dinis Cruz in one table, by month, with a one-line summary and tags for each."
 tags: [catalog, research, summaries]
 ---
 

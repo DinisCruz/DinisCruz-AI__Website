@@ -1,6 +1,6 @@
 <!-- generated from content/2025/04/01/europe-strategic-opportunity-in-gen-ai__a-deep-dive-into-six-defining-trends.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/04/01/europe-strategic-opportunity-in-gen-ai__a-deep-dive-into-six-defining-trends.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/04/01/europe-strategic-opportunity-in-gen-ai__a-deep-dive-into-six-defining-trends.html*
 
 # Europe’s Strategic Opportunity in GenAI: A Deep Dive into Six Defining Trends
 

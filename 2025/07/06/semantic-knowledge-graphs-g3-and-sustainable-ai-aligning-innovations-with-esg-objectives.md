@@ -1,6 +1,6 @@
 <!-- generated from content/2025/07/06/semantic-knowledge-graphs-g3-and-sustainable-ai-aligning-innovations-with-esg-objectives.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/07/06/semantic-knowledge-graphs-g3-and-sustainable-ai-aligning-innovations-with-esg-objectives.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/07/06/semantic-knowledge-graphs-g3-and-sustainable-ai-aligning-innovations-with-esg-objectives.html*
 
 # Semantic Knowledge Graphs, G³, and Sustainable AI: Aligning Innovations with ESG Objectives
 

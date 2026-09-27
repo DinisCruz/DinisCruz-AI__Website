@@ -1,6 +1,6 @@
 <!-- generated from admin/index.html by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/admin/index.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/admin/index.html*
 
 > How diniscruz.ai is built and released: hand-written HTML plus pages generated from the markdown migrated from docs.diniscruz.ai, a markdown twin at every URL, llms.txt, and a validate-then-deploy pipeline to GitHub Pages.
 
@@ -23,6 +23,18 @@ This is a static site on GitHub Pages, built the same way as [sgit.ai](https://s
 - **[feed.xml](../feed.xml)**, the RSS feed of the writing. It is also published as `feed_rss_created.xml` and `feed_rss_updated.xml`, the names the old MkDocs site used.
 - **Structured data.** A `Person` record on the home and about pages, `BlogPosting` on every essay (author, date, licence, word count), and canonical and Open Graph tags everywhere.
 - **[llms.txt](../llms.txt)**, which is self-sufficient: who I am and every page with its description. **[llms-full.txt](../llms-full.txt)** holds every page in one file, for agents that cannot follow links.
+
+## Search and AI features
+
+Google's guidance for its AI features (AI Overviews and AI Mode) is that no special optimisation is needed beyond the fundamentals, so this site does the fundamentals and checks them on every build:
+
+- **Crawlable, indexable text.** Every page is static HTML that works without JavaScript. Each has one `<h1>`, a real title and description, and a canonical URL that appears in [sitemap.xml](../sitemap.xml). `validate.js` fails the release if any of that is missing.
+- **Snippet-eligible.**`max-snippet:-1, max-image-preview:large` on every page, so search results and AI answers can quote and preview it in full.
+- **Structured data that matches the visible page.**`Person`, `WebSite`, `BlogPosting`, `BreadcrumbList` (generated from the same data as the visible breadcrumb) and `CollectionPage`.
+- **Internal links.** Every essay links to its topic hub, its neighbours in time, and the five nearest pieces on the same topic.
+- **No duplicates in the index.** The markdown twins and `llms-full.txt` repeat the HTML for agents. [robots.txt](../robots.txt) keeps Googlebot and Bingbot off them, so each page is indexed once, as HTML. Other crawlers and agents can still fetch them.
+
+**llms.txt** follows the [llmstxt.org](https://llmstxt.org/) format. Google has said its search does not use llms.txt, so it is here for the other agents and LLM tools that do read it, not for ranking.
 
 ## Release process
 

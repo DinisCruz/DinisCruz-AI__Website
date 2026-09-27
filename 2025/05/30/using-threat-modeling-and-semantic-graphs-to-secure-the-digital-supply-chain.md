@@ -1,6 +1,6 @@
 <!-- generated from content/2025/05/30/using-threat-modeling-and-semantic-graphs-to-secure-the-digital-supply-chain.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/05/30/using-threat-modeling-and-semantic-graphs-to-secure-the-digital-supply-chain.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/05/30/using-threat-modeling-and-semantic-graphs-to-secure-the-digital-supply-chain.html*
 
 # Using Threat Modeling and Semantic Graphs to Secure the Digital Supply Chain
 

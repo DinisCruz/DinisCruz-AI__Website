@@ -1,6 +1,6 @@
 <!-- generated from content/2025/06/13/follow-up-technical-vision-optimizations-deployment-and-security.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/06/13/follow-up-technical-vision-optimizations-deployment-and-security.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/06/13/follow-up-technical-vision-optimizations-deployment-and-security.html*
 
 # Follow-Up Technical Vision: Optimizations, Deployment, and Security
 

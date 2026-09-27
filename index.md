@@ -1,8 +1,8 @@
 <!-- generated from index.html by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/index.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/index.html*
 
-> Dinis Cruz is the founder of sgit.ai, sgraph.ai, MyFeeds.ai, The Cyber Boardroom, RiskMandate.ai and VoiceDebrief.ai, a former OWASP Board member and the creator of the O2 Platform. Essays and research on GenAI, application security, threat modeling, semantic knowledge graphs and the future of news.
+> Dinis Cruz: founder of sgit.ai, MyFeeds.ai and The Cyber Boardroom, former OWASP Board member. Essays and research on GenAI, AppSec, threat modeling and knowledge graphs.
 
 ---
 

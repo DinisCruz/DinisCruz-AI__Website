@@ -1,6 +1,6 @@
 <!-- generated from content/2025/07/02/using-memory_fs-to-build-a-file-based-representation-of-the-gdpr-standard.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/07/02/using-memory_fs-to-build-a-file-based-representation-of-the-gdpr-standard.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/07/02/using-memory_fs-to-build-a-file-based-representation-of-the-gdpr-standard.html*
 
 # Using Memory_FS to Build a File-Based Representation of the GDPR Standard
 

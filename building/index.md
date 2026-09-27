@@ -1,6 +1,6 @@
 <!-- generated from building/index.html by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/building/index.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/building/index.html*
 
 > The companies Dinis Cruz has founded (sgit.ai, sgraph.ai, MyFeeds.ai, The Cyber Boardroom, RiskMandate.ai, VoiceDebrief.ai), the open-source projects under them (OSBot, MGraph-DB, memory_fs, Issues-FS, sgit-ai), and the sgit.ai network of focused sites.
 

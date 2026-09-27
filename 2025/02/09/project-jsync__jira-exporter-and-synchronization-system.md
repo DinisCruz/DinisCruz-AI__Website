@@ -1,6 +1,6 @@
 <!-- generated from content/2025/02/09/project-jsync__jira-exporter-and-synchronization-system.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/02/09/project-jsync__jira-exporter-and-synchronization-system.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/02/09/project-jsync__jira-exporter-and-synchronization-system.html*
 
 # Project JSync: JIRA Exporter and Synchronization System
 

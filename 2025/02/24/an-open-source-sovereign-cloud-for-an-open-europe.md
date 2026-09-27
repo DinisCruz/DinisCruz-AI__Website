@@ -1,6 +1,6 @@
 <!-- generated from content/2025/02/24/an-open-source-sovereign-cloud-for-an-open-europe.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/02/24/an-open-source-sovereign-cloud-for-an-open-europe.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/02/24/an-open-source-sovereign-cloud-for-an-open-europe.html*
 
 # An Open-Source Sovereign Cloud for an Open Europe: The Case for a Federated, AI-Enabled, and Multilingual Digital Infrastructure
 

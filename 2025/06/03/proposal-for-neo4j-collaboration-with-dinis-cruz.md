@@ -1,6 +1,6 @@
 <!-- generated from content/2025/06/03/proposal-for-neo4j-collaboration-with-dinis-cruz.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/06/03/proposal-for-neo4j-collaboration-with-dinis-cruz.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/06/03/proposal-for-neo4j-collaboration-with-dinis-cruz.html*
 
 # Proposal for Neo4j Collaboration with Dinis Cruz
 

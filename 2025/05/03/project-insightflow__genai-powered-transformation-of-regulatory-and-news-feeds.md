@@ -1,6 +1,6 @@
 <!-- generated from content/2025/05/03/project-insightflow__genai-powered-transformation-of-regulatory-and-news-feeds.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/05/03/project-insightflow__genai-powered-transformation-of-regulatory-and-news-feeds.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/05/03/project-insightflow__genai-powered-transformation-of-regulatory-and-news-feeds.html*
 
 # Project InsightFlow: GenAI-Powered Transformation of Regulatory and News Feeds
 

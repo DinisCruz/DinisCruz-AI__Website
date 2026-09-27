@@ -1,6 +1,6 @@
 <!-- generated from content/2025/06/18/comparing-the-eu-fed-cloud-vs-an-open-source-federated-cloud-proposal.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/06/18/comparing-the-eu-fed-cloud-vs-an-open-source-federated-cloud-proposal.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/06/18/comparing-the-eu-fed-cloud-vs-an-open-source-federated-cloud-proposal.html*
 
 # Comparing the EU FED Cloud vs. an Open-Source Federated Cloud Proposal
 

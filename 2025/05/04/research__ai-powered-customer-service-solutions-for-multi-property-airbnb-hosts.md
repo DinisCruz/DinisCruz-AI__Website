@@ -1,6 +1,6 @@
 <!-- generated from content/2025/05/04/research__ai-powered-customer-service-solutions-for-multi-property-airbnb-hosts.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/05/04/research__ai-powered-customer-service-solutions-for-multi-property-airbnb-hosts.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/05/04/research__ai-powered-customer-service-solutions-for-multi-property-airbnb-hosts.html*
 
 # Research - AI-Powered Customer Service Solutions for Multi-Property Airbnb Hosts
 

@@ -1,6 +1,6 @@
 <!-- generated from content/2025/05/07/using-genai-to-graph-and-map-your-companys-data__the-grafter__may_2025.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/05/07/using-genai-to-graph-and-map-your-companys-data__the-grafter__may_2025.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/05/07/using-genai-to-graph-and-map-your-companys-data__the-grafter__may_2025.html*
 
 # Using GenAI to graph and map your company’s data
 

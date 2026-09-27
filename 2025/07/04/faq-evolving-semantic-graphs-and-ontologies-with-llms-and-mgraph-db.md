@@ -1,6 +1,6 @@
 <!-- generated from content/2025/07/04/faq-evolving-semantic-graphs-and-ontologies-with-llms-and-mgraph-db.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/07/04/faq-evolving-semantic-graphs-and-ontologies-with-llms-and-mgraph-db.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/07/04/faq-evolving-semantic-graphs-and-ontologies-with-llms-and-mgraph-db.html*
 
 # FAQ - Evolving Semantic Graphs and Ontologies with LLMs and MGraph-DB
 

@@ -1,6 +1,6 @@
 <!-- generated from content/2025/05/18/briefing-on-canada-new-minister-of-artificial-intelligence-and-digital-innovation-vs-uk-and-pt.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/05/18/briefing-on-canada-new-minister-of-artificial-intelligence-and-digital-innovation-vs-uk-and-pt.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/05/18/briefing-on-canada-new-minister-of-artificial-intelligence-and-digital-innovation-vs-uk-and-pt.html*
 
 # Briefing on Canada’s New Minister of Artificial Intelligence and Digital Innovation (vs UK and PT)
 

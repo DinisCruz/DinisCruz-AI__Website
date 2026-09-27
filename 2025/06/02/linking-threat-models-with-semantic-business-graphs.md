@@ -1,6 +1,6 @@
 <!-- generated from content/2025/06/02/linking-threat-models-with-semantic-business-graphs.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/06/02/linking-threat-models-with-semantic-business-graphs.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/06/02/linking-threat-models-with-semantic-business-graphs.html*
 
 # Linking Threat Models with Semantic Business Graphs
 

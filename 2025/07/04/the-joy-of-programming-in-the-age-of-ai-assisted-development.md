@@ -1,6 +1,6 @@
 <!-- generated from content/2025/07/04/the-joy-of-programming-in-the-age-of-ai-assisted-development.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/07/04/the-joy-of-programming-in-the-age-of-ai-assisted-development.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/07/04/the-joy-of-programming-in-the-age-of-ai-assisted-development.html*
 
 # The Joy of Programming in the Age of AI-Assisted Development
 

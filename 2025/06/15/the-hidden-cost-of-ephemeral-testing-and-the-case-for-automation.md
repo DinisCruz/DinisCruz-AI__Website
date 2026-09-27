@@ -1,6 +1,6 @@
 <!-- generated from content/2025/06/15/the-hidden-cost-of-ephemeral-testing-and-the-case-for-automation.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/06/15/the-hidden-cost-of-ephemeral-testing-and-the-case-for-automation.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/06/15/the-hidden-cost-of-ephemeral-testing-and-the-case-for-automation.html*
 
 # The Hidden Cost of Ephemeral Testing and the Case for Automation
 

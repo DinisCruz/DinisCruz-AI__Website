@@ -1,6 +1,6 @@
 <!-- generated from content/2025/06/25/using-ephemeral-neo4j-instances-for-a-cybersecurity-risk-graph-scenario.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/06/25/using-ephemeral-neo4j-instances-for-a-cybersecurity-risk-graph-scenario.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/06/25/using-ephemeral-neo4j-instances-for-a-cybersecurity-risk-graph-scenario.html*
 
 # Using Ephemeral Neo4j Instances for a Cybersecurity Risk Graph Scenario
 

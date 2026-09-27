@@ -1,6 +1,6 @@
 <!-- generated from content/2025/03/29/from-top-down-to-organic-evolving-graphs-ontologies-and-taxonomies.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/03/29/from-top-down-to-organic-evolving-graphs-ontologies-and-taxonomies.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/03/29/from-top-down-to-organic-evolving-graphs-ontologies-and-taxonomies.html*
 
 # From Top-Down to Organic Evolving Graphs, Ontologies, and Taxonomies
 

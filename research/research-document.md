@@ -1,10 +1,10 @@
 <!-- generated from content/research/research-document.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/research/research-document.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/research/research-document.html*
 
 # Research Document Catalog
 
-> Table summarizing research proposals and briefs.
+> Every research proposal and technical brief by Dinis Cruz in one table, by month, with a one-line summary and tags for each.
 
 ---
 

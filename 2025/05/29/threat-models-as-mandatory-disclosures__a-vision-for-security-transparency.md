@@ -1,6 +1,6 @@
 <!-- generated from content/2025/05/29/threat-models-as-mandatory-disclosures__a-vision-for-security-transparency.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/05/29/threat-models-as-mandatory-disclosures__a-vision-for-security-transparency.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/05/29/threat-models-as-mandatory-disclosures__a-vision-for-security-transparency.html*
 
 # Threat Models as Mandatory Disclosures: A Vision for Security Transparency
 

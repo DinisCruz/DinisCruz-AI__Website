@@ -1,6 +1,6 @@
 <!-- generated from content/2025/02/11/portuguese-as-a-programming-language-in-the-AI-Era.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/02/11/portuguese-as-a-programming-language-in-the-AI-Era.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/02/11/portuguese-as-a-programming-language-in-the-AI-Era.html*
 
 # Portuguese as a Programming Language in the AI Era
 

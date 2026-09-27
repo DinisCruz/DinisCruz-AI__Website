@@ -1,6 +1,6 @@
 <!-- generated from content/2025/05/22/technical-debrief__evolution-from-electron-based-to-python-native-web-content-capture-app.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/05/22/technical-debrief__evolution-from-electron-based-to-python-native-web-content-capture-app.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/05/22/technical-debrief__evolution-from-electron-based-to-python-native-web-content-capture-app.html*
 
 # Technical Debrief: Evolution from Electron‑Based to Python‑Native Web Content Capture App
 

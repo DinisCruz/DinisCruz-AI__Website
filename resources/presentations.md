@@ -1,10 +1,10 @@
 <!-- generated from content/resources/presentations.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/resources/presentations.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/resources/presentations.html*
 
 # Presentations
 
-> Presentations
+> Talks and presentations by Dinis Cruz on GenAI, application security and semantic knowledge graphs, from OWASP AppSec EU Lisbon 2024 to The Grafter meetup.
 
 ---
 

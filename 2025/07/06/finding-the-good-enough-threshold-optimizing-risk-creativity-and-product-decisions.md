@@ -1,6 +1,6 @@
 <!-- generated from content/2025/07/06/finding-the-good-enough-threshold-optimizing-risk-creativity-and-product-decisions.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/07/06/finding-the-good-enough-threshold-optimizing-risk-creativity-and-product-decisions.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/07/06/finding-the-good-enough-threshold-optimizing-risk-creativity-and-product-decisions.html*
 
 # Finding the “Good Enough” Threshold: Optimizing Risk, Creativity, and Product Decisions
 

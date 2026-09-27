@@ -1,6 +1,6 @@
 <!-- generated from content/2025/06/16/workshop-plan-user-driven-semantic-persona-graphs-powered-by-genai.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/06/16/workshop-plan-user-driven-semantic-persona-graphs-powered-by-genai.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/06/16/workshop-plan-user-driven-semantic-persona-graphs-powered-by-genai.html*
 
 # Workshop Plan: User-Driven Semantic Persona Graphs Powered by GenAI
 

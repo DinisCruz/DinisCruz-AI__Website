@@ -1,6 +1,6 @@
 <!-- generated from content/2025/06/09/supercharging-appsec-threat-modeling-services-with-genai-and-semantic-graphs.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/06/09/supercharging-appsec-threat-modeling-services-with-genai-and-semantic-graphs.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/06/09/supercharging-appsec-threat-modeling-services-with-genai-and-semantic-graphs.html*
 
 # Supercharging AppSec Threat Modeling Services with GenAI and Semantic Graphs
 

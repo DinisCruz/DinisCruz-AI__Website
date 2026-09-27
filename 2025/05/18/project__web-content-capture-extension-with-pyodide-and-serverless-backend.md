@@ -1,6 +1,6 @@
 <!-- generated from content/2025/05/18/project__web-content-capture-extension-with-pyodide-and-serverless-backend.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/05/18/project__web-content-capture-extension-with-pyodide-and-serverless-backend.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/05/18/project__web-content-capture-extension-with-pyodide-and-serverless-backend.html*
 
 # Project: Web Content Capture Extension with Pyodide and Serverless Backend
 

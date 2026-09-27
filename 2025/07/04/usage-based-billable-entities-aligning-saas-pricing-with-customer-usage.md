@@ -1,6 +1,6 @@
 <!-- generated from content/2025/07/04/usage-based-billable-entities-aligning-saas-pricing-with-customer-usage.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/07/04/usage-based-billable-entities-aligning-saas-pricing-with-customer-usage.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/07/04/usage-based-billable-entities-aligning-saas-pricing-with-customer-usage.html*
 
 # Usage-Based Billable Entities: Aligning SaaS Pricing with Customer Usage
 

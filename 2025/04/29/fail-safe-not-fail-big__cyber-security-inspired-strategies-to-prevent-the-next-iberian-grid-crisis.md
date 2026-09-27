@@ -1,6 +1,6 @@
 <!-- generated from content/2025/04/29/fail-safe-not-fail-big__cyber-security-inspired-strategies-to-prevent-the-next-iberian-grid-crisis.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/04/29/fail-safe-not-fail-big__cyber-security-inspired-strategies-to-prevent-the-next-iberian-grid-crisis.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/04/29/fail-safe-not-fail-big__cyber-security-inspired-strategies-to-prevent-the-next-iberian-grid-crisis.html*
 
 # Fail Safe, Not Fail Big: Cyber-Security-Inspired Strategies to Prevent the Next Iberian Grid Crisis
 

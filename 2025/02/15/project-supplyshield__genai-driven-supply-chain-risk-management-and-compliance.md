@@ -1,6 +1,6 @@
 <!-- generated from content/2025/02/15/project-supplyshield__genai-driven-supply-chain-risk-management-and-compliance.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/02/15/project-supplyshield__genai-driven-supply-chain-risk-management-and-compliance.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/02/15/project-supplyshield__genai-driven-supply-chain-risk-management-and-compliance.html*
 
 # Project SupplyShield: GenAI-Driven Supply Chain Risk Management and Compliance
 

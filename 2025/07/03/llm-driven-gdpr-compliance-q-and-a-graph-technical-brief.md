@@ -1,6 +1,6 @@
 <!-- generated from content/2025/07/03/llm-driven-gdpr-compliance-q-and-a-graph-technical-brief.md by admin/build/build.py — do not edit by hand -->
 
-*[diniscruz.ai](/index.md) · site v0.1.0 · canonical: https://diniscruz.ai/2025/07/03/llm-driven-gdpr-compliance-q-and-a-graph-technical-brief.html*
+*[diniscruz.ai](/index.md) · site v0.1.1 · canonical: https://diniscruz.ai/2025/07/03/llm-driven-gdpr-compliance-q-and-a-graph-technical-brief.html*
 
 # LLM-Driven GDPR Compliance Q&A Graph – Technical Brief
 
