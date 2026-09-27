@@ -1,0 +1,1131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LLM Workflows/Stateflow Service - Technical Brief — Dinis Cruz</title>
+<meta name="description" content="The LLM Workflows/Stateflow Service is a proposed stateless web service for executing AI-driven workflows with well-defined, deterministic steps. It acts as a state machine for orchestrating Large…">
+<meta name="author" content="Dinis Cruz">
+<link rel="canonical" href="https://diniscruz.ai/2025/08/23/llm-workflows-stateflow-service-technical-brief.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="diniscruz.ai">
+<meta property="og:url" content="https://diniscruz.ai/2025/08/23/llm-workflows-stateflow-service-technical-brief.html">
+<meta property="og:title" content="LLM Workflows/Stateflow Service - Technical Brief — Dinis Cruz">
+<meta property="og:description" content="The LLM Workflows/Stateflow Service is a proposed stateless web service for executing AI-driven workflows with well-defined, deterministic steps. It acts as a state machine for orchestrating Large…">
+<meta name="twitter:card" content="summary">
+<meta property="article:published_time" content="2025-08-23">
+<meta property="article:author" content="https://www.linkedin.com/in/diniscruz">
+<meta name="x-generated-from" content="content/2025/08/23/llm-workflows-stateflow-service-technical-brief.md">
+<link rel="alternate" type="text/markdown" href="llm-workflows-stateflow-service-technical-brief.md" title="This page as markdown">
+<link rel="alternate" type="application/rss+xml" title="Dinis Cruz — writing" href="../../../feed.xml">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../../assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "LLM Workflows/Stateflow Service - Technical Brief", "name": "LLM Workflows/Stateflow Service - Technical Brief", "description": "The LLM Workflows/Stateflow Service is a proposed stateless web service for executing AI-driven workflows with well-defined, deterministic steps. It acts as a state machine for orchestrating Large…", "datePublished": "2025-08-23", "author": [{"@type": "Person", "@id": "https://diniscruz.ai/about/index.html#person", "name": "Dinis Cruz", "url": "https://diniscruz.ai/about/index.html", "sameAs": ["https://www.linkedin.com/in/diniscruz", "https://github.com/DinisCruz", "https://sgit.ai/about/index.html", "https://open-source.sgit.ai/about/index.html", "https://docs.diniscruz.ai/"]}], "publisher": {"@type": "Person", "@id": "https://diniscruz.ai/about/index.html#person", "name": "Dinis Cruz"}, "url": "https://diniscruz.ai/2025/08/23/llm-workflows-stateflow-service-technical-brief.html", "mainEntityOfPage": "https://diniscruz.ai/2025/08/23/llm-workflows-stateflow-service-technical-brief.html", "inLanguage": "en", "license": "https://creativecommons.org/licenses/by/4.0/", "wordCount": 8096, "isPartOf": {"@type": "WebSite", "name": "diniscruz.ai", "url": "https://diniscruz.ai/"}, "contributor": [{"@type": "Thing", "name": "ChatGPT Deep Research"}]}</script>
+</head>
+<body>
+
+<nav class="site"><div class="row">
+  <a class="brand" href="../../../index.html">diniscruz<span>.ai</span></a>
+  <a class="parent" href="https://sgit.ai" title="sgit.ai — encrypted git for humans and AI agents, the project Dinis Cruz is building now">↗ building <b>sgit.ai</b></a>
+  <a class="ver" href="../../../admin/versions.html" title="Site release history">v0.1.0</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">Menu</button>
+  <div class="nav-items">
+    <div class="ni ni-has">
+      <a class="nl here" href="../../../writing/index.html">Writing<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../writing/index.html">All writing, newest first</a>
+      <a class="sl" href="../../../research/research-document.html">Research document catalogue</a>
+      <a class="sl" href="../../../resources/presentations.html">Talks &amp; presentations</a>
+      <a class="sl" href="../../../feed.xml">RSS feed</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl" href="../../../research/index.html">Research<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../research/index.html">Research hub</a>
+      <a class="sl" href="../../../research/cyber-security.html">Cyber-security &amp; threat modeling</a>
+      <a class="sl" href="../../../research/development-and-genai.html">AI &amp; development</a>
+      <a class="sl" href="../../../research/graphs.html">Knowledge graphs</a>
+      <a class="sl" href="../../../research/the-future-of-news.html">The future of news</a>
+      <a class="sl" href="../../../research/europe-and-learning.html">Europe &amp; learning</a>
+      <a class="sl" href="../../../research/projects.html">Projects &amp; innovation lab</a>
+      <a class="sl" href="../../../research/organizational-transformation.html">Organisational transformation</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl" href="../../../building/index.html">Building<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../building/index.html#companies">Companies</a>
+      <a class="sl" href="../../../building/index.html#open-source">Open source</a>
+      <a class="sl" href="../../../building/index.html#network">The sgit.ai network</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl" href="../../../about/index.html">About<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../about/index.html">About Dinis Cruz</a>
+      <a class="sl" href="../../../admin/index.html">How this site is built</a>
+      <a class="sl" href="../../../admin/migration.html">Moving from docs.diniscruz.ai</a>
+      <a class="sl" href="../../../admin/versions.html">Release history</a>
+      </div>
+    </div>
+  </div>
+  <a class="gh" href="https://github.com/DinisCruz/DinisCruz-AI__Website">★ GitHub</a>
+  <script src="../../../assets/nav.js" defer></script>
+</div></nav>
+
+<main class="doc essay">
+<div class="crumb"><a href="../../../index.html">diniscruz.ai</a> / <a href="../../../writing/index.html">writing</a> / <a href="../../../research/development-and-genai.html">development and genai</a></div>
+<h1>LLM Workflows/Stateflow Service - Technical Brief</h1>
+<p class="docline">By <b>Dinis Cruz and ChatGPT Deep Research</b> · <time datetime="2025-08-23">23 August 2025</time> · 35 min read</p>
+<p class="dbtns"><a class="dbtn dbtn-pdf" href="https://files.diniscruz.ai/github/pdf/2025/08/23/llm-workflows-stateflow-service-technical-brief.pdf">PDF</a></p>
+<details class="toc"><summary>Contents · 7 sections</summary><ol><li><a href="#introduction">Introduction</a></li><li><a href="#design-principles-and-goals">Design Principles and Goals</a></li><li><a href="#service-architecture-and-components">Service Architecture and Components</a></li><li><a href="#workflow-definition-and-standards">Workflow Definition and Standards</a></li><li><a href="#example-workflow-persona-based-communication-and-evaluation">Example Workflow: Persona-Based Communication and Evaluation</a></li><li><a href="#additional-workflow-examples">Additional Workflow Examples</a></li><li><a href="#implementation-considerations-python-osbot-framework">Implementation Considerations (Python &amp; OSBot Framework)</a></li></ol></details>
+<article class="prose">
+<h2 id="introduction">Introduction</h2>
+<p>The <strong>LLM Workflows/Stateflow Service</strong> is a proposed stateless web
+service for executing AI-driven workflows with well-defined,
+deterministic steps. It acts as a <strong>state machine</strong> for orchestrating
+Large Language Model (LLM) calls and other actions in a controlled
+sequence. Unlike "agentic" AI systems that freely decide each action,
+this service uses a <strong>pre-defined flow (blueprint)</strong> to ensure
+predictability and provenance. The goal is to harness the power of LLMs
+(for analysis or content generation) within strict boundaries: the LLM
+can perform complex subtasks, but it <em>never</em> dictates the workflow's
+overall
+path<a href="https://arxiv.org/html/2508.02721v1#:~:text=Agent%20framework,as%20parsing%20an%20error%20log">[1]</a>.
+This design follows the <em>"Blueprint First, Model Second"</em> principle,
+decoupling high-level logic from the probabilistic nature of
+LLMs<a href="https://arxiv.org/html/2508.02721v1#:~:text=Agent%20framework,as%20parsing%20an%20error%20log">[1]</a>.
+The result is an execution environment where every step is explicit and
+auditable, yielding reliable behavior even in complex multi-step AI
+tasks.</p>
+<p><strong>Key collaborators:</strong> The creation of this service is a collaborative
+effort between human developers and AI assistants (LLMs). Developers
+will define the workflow blueprints, implement the engine, and integrate
+services, while advanced LLMs (such as ChatGPT) assist in brainstorming,
+research, and even code generation. For example, this very document is
+co-authored by Dinis Cruz and ChatGPT, reflecting the human-AI
+partnership in designing the system. By leveraging LLM support during
+development, the team can explore design options and documentation
+rapidly, then validate and refine them with human expertise. This
+collaboration ensures the final system design is both innovative and
+technically sound.</p>
+<h2 id="design-principles-and-goals">Design Principles and Goals</h2>
+<ul>
+<li>
+<p><strong>Deterministic Control Flow:</strong> All workflows are executed according
+    to a fixed, predefined sequence of steps (a <em>stateflow</em>). The LLM is
+    not allowed to randomly alter the flow or insert unforeseen steps.
+    This contrasts with fully agentic systems where the next action is
+    decided by the model at runtime. By enforcing determinism, the
+    service guarantees predictable and repeatable executions. Recent
+    research underscores the importance of this approach: using an
+    explicit blueprint and a deterministic engine yields verifiable and
+    auditable processes, as opposed to unpredictable agent
+    behaviors<a href="https://arxiv.org/html/2508.02721v1#:~:text=Agent%20framework,as%20parsing%20an%20error%20log">[1]</a>.
+    In a similar vein, frameworks like LangGraph favor explicit state
+    machines for multi-agent orchestration, resulting in workflows that
+    are <em>"predictable and auditable"</em> -- easier to debug and trust in
+    enterprise
+    settings<a href="https://www.zenml.io/blog/langgraph-vs-autogen#:~:text=LangGraph%20is%20ideal%20for%20building,to%20debug%20and%20guarantee%20behavior">[2]</a>.</p>
+</li>
+<li>
+<p><strong>Stateless Execution:</strong> The service itself maintains no persistent
+    state between steps. Each step in a workflow is executed
+    independently, given its input and the overall flow definition, and
+    it produces an output (and possibly a next-step decision). Any state
+    needed (e.g. variables or results passed from one step to another)
+    is included in the input/output data rather than stored in the
+    server. This stateless design aligns well with serverless deployment
+    and makes the system highly scalable. It also simplifies reasoning
+    about execution, since each invocation of the service is pure (no
+    hidden state from prior runs).</p>
+</li>
+<li>
+<p><strong>Workflow as Data (Blueprint):</strong> Workflows are defined
+    declaratively as data structures (a <strong>blueprint</strong> or <strong>flow
+    definition</strong>) rather than hard-coded logic. An expert (developer) or
+    an automated design tool specifies the sequence of actions,
+    conditional branches, and allowed operations in a machine-readable
+    format. The workflow blueprint can be represented in JSON or a
+    similar structured schema, akin to how one might describe an API
+    contract in OpenAPI. This blueprint is essentially a directed graph
+    or state machine: each node represents a step (action to perform)
+    and edges define transitions to the next step. The service's engine
+    interprets the blueprint to decide what to do at each step and where
+    to go next. Crucially, the LLM is <em>only</em> invoked within specific
+    steps for bounded tasks -- for example, to generate text or analyze
+    data -- but <strong>never to choose the next step in the state
+    machine</strong><a href="https://arxiv.org/html/2508.02721v1#:~:text=Agent%20framework,as%20parsing%20an%20error%20log">[1]</a>.
+    This ensures the flow's path remains under deterministic control of
+    the blueprint.</p>
+</li>
+<li>
+<p><strong>Provenance and Auditability:</strong> Every action taken by the workflow
+    (LLM call, API call, decision branch, etc.) is logged and traceable.
+    Because the sequence is predetermined (except for conditional logic
+    which is still explicitly defined), we can provide a complete audit
+    trail of what happened and why. This is critical in enterprise or
+    safety-critical contexts where understanding the decision process is
+    required. The structured nature of the flows makes it easier to
+    inspect and verify correctness before execution, and to analyze
+    outcomes after execution.</p>
+</li>
+<li>
+<p><strong>Limited LLM Scope (Safety):</strong> The use of LLMs within the workflow
+    is intentionally constrained. LLMs will be used for tasks like
+    natural language processing, summarization, translation, or analysis
+    -- <strong>not for making control decisions</strong>. By bounding the LLM's role,
+    we avoid the unpredictability that comes if an LLM "agent" had free
+    rein. Essentially, the LLM behaves as a powerful subroutine under
+    supervision. This mitigates risks of the LLM drifting off-task or
+    producing unintended actions. It also allows insertion of validation
+    steps (for example, after an LLM produces an output, the next step
+    could validate that output against rules or schemas before
+    proceeding).</p>
+</li>
+<li>
+<p><strong>Budgets and Resource Controls:</strong> Each workflow (and even each
+    actor or tool within the workflow) can be assigned a <strong>budget</strong> --
+    for example, a limit on the number of API calls, the number of
+    tokens processed by an LLM, or a time limit. These budgets are
+    integrated into the flow logic. If a component exceeds its budget,
+    the workflow can take a predefined path (such as aborting or
+    invoking a fallback step). By designing budget constraints into the
+    blueprint, we ensure the system cannot accidentally run away in
+    loops or incur unbounded costs. In our scenario, for instance, the
+    Persona service or LLM might only have a certain token budget; if
+    translating or answering a question would exceed that, the flow
+    would stop or switch to an error state. This built-in guardrail is
+    another measure to keep executions safe and predictable.</p>
+</li>
+<li>
+<p><strong>Flexible Complexity:</strong> The system is meant to handle simple to
+    very complex workflows. A simple use-case might be a single-step
+    call (e.g. \"call this LLM with prompt X and return answer\"). A
+    complex use-case could involve multiple agents, branching logic,
+    loops (controlled by explicit conditions), and tool integrations.
+    The design should support both extremes. This implies the blueprint
+    language must be expressive enough for conditions, branching
+    (if/else), parallel execution (if needed), and looping (perhaps via
+    recursive flows or explicit loop constructs) -- all while remaining
+    human-comprehensible. The service should execute any such defined
+    flow <strong>reliably</strong>, since each part is under strict governance of the
+    blueprint.</p>
+</li>
+<li>
+<p><strong>Integration with Knowledge Graphs (Future Scope):</strong> Although not
+    the first priority, the vision includes leveraging <strong>semantic
+    knowledge graphs</strong> in conjunction with the flow engine. The idea is
+    that the workflow steps and their context could be informed by a
+    knowledge graph that contains relevant domain information or state.
+    For example, a step might query a knowledge graph for facts that an
+    LLM then uses in its prompt. Or the flow blueprint itself could be
+    stored/versioned as a graph of nodes (steps) and edges
+    (transitions), enabling visualization and analysis of the workflow
+    structure. By combining flows with semantic knowledge
+    representations, we can achieve more powerful reasoning while still
+    keeping the execution controlled. This is an area of ongoing
+    research and will be explored as the service evolves.</p>
+</li>
+</ul>
+<h2 id="service-architecture-and-components">Service Architecture and Components</h2>
+<p>The <strong>LLM Workflows/Stateflow Service</strong> architecture is composed of
+several key components that together enable the definition and execution
+of these workflows:</p>
+<ul>
+<li><strong>Workflow Definition (Blueprint):</strong> At the core is the <strong>workflow
+    blueprint</strong>, a complete specification of the states and transitions
+    for a given process. This can be a JSON document or Python object
+    (defined via dataclasses or Pydantic models) that lists all the
+    steps in order, along with any branching logic. Each <strong>Step</strong> in the
+    blueprint typically contains:</li>
+<li>An <strong>action</strong> identifier -- e.g. <code>"call_LLM"</code> or
+    <code>"call_service:persona.translate"</code> -- which tells the engine what to
+    do.</li>
+<li><strong>Parameters/input</strong> for that action -- e.g. the prompt to send to
+    the LLM, or the data to send to an API. Parameters might include
+    references to outputs of previous steps (for example, step 3 can use
+    the result produced by step 2).</li>
+<li><strong>Result handling</strong> info -- e.g. where to store the result of this
+    step (in a context object or variable map that gets passed along).</li>
+<li><strong>Transitions</strong> -- rules for what the next step is. In the simplest
+    case, each step names a single next step. In more complex cases, a
+    step may have multiple possible next steps depending on its result
+    (for example, a branching step could say: <em>if evaluation score &gt;= 8
+    go to step X, else go to step Y</em>). If a step is terminal, it can be
+    marked as an <strong>End</strong> state.</li>
+<li>Optional <strong>metadata</strong> like timeouts or retries for that step, if an
+    action might fail and should be retried.</li>
+</ul>
+<p>The blueprint is analogous to a workflow script. The service includes a
+<strong>Blueprint Interpreter</strong> (or engine) which reads this definition and
+drives execution accordingly. Because the blueprint is declarative, we
+can inspect and validate it before running, and even visualize it as a
+flowchart.</p>
+<ul>
+<li><strong>Execution Engine:</strong> The engine is a stateless component that takes
+    a workflow blueprint plus the current state (inputs and context) and
+    executes one step of the workflow. It can be implemented as a
+    FastAPI endpoint (for example, <code>/execute_step</code>) which accepts a JSON
+    payload containing the workflow definition (or a reference to it),
+    the current step to execute, and any necessary input data or
+    context. The engine performs the action of that step and returns the
+    result (and the identifier of the next step to execute, if any).
+    Important responsibilities of the engine include:</li>
+<li><strong>Action Dispatch:</strong> Based on the step's action identifier, call the
+    appropriate function or external service. For example, if the action
+    is <code>call_LLM</code>, the engine will invoke the configured LLM API (such
+    as an OpenAI or Anthropic model) with the given prompt and
+    parameters. If the action is <code>persona.translate</code> or
+    <code>persona.respond</code>, the engine calls the Persona service endpoint. If
+    it's a generic HTTP API call, the engine will make that HTTP request
+    (possibly the blueprint could contain the URL or a reference to a
+    pre-registered service with credentials).</li>
+<li><strong>Budget Checking:</strong> Before executing an action, the engine checks
+    the remaining budget for that actor/service. This could be
+    implemented by maintaining a transient budget counter in the context
+    that tracks tokens or calls. For instance, if the Persona service
+    has 100 tokens budget and translating the message is estimated to
+    use 30, the engine verifies budget &gt;= 30, deducts it, then
+    proceeds. If budget would be exceeded, the engine can skip to a
+    special termination or error step defined in the blueprint.</li>
+<li><strong>Result Handling:</strong> After performing the action, the engine takes
+    the output and places it in the workflow's state (for example,
+    storing it under a variable name). If the blueprint specifies
+    post-processing (like simple transformations) or validations (e.g.
+    ensure the result fits an expected format), those are done here as
+    well.</li>
+<li><strong>Next Step Logic:</strong> The engine determines which state to execute
+    next. In straightforward sequences, the blueprint might indicate a
+    <code>next</code> step explicitly. If the current step was a branching/choice
+    step or if the action outcome dictates the path, the engine
+    evaluates the condition and picks the appropriate next step. For
+    example, an evaluator step might branch to different follow-up steps
+    depending on the score (high score leads to a "successful
+    completion" branch, low score leads to an "escalation" branch). If
+    there is no next step (the step was marked as an end), the workflow
+    is complete and the engine returns the final result of the workflow.</li>
+</ul>
+<p>Notably, the engine is <strong>agnostic to the overall workflow</strong> -- it
+doesn't keep a running memory of all previous steps beyond what is
+carried in the input context. This makes it easy to scale or even to
+<em>pause and resume</em> workflows by simply not calling the next step
+immediately. It is the responsibility of the <strong>Orchestrator</strong> (described
+next) to drive the engine through the steps.</p>
+<ul>
+<li><strong>Workflow Orchestrator:</strong> Since the service executes one step at a
+    time, we need an orchestrator to manage multi-step workflows from
+    start to finish. This could be a separate client application, a
+    calling service, or even a simple loop in a script that keeps
+    invoking the engine until the workflow ends. For example, suppose we
+    have a workflow with steps A -&gt; B -&gt; C. The orchestrator would:</li>
+<li>Call <code>/execute_step</code> for step A with initial input. Receive result
+    and next step = B.</li>
+<li>Call <code>/execute_step</code> for step B with result of A. Receive result and
+    next step = C.</li>
+<li>Call <code>/execute_step</code> for step C with result of B. Receive result and
+    next step = none (end).</li>
+<li>Collect final result.</li>
+</ul>
+<p>The orchestrator could be implemented as part of the client using this
+service, or we could provide a utility in the service that takes a whole
+blueprint and automatically steps through it. However, having the
+orchestrator outside the core engine adds flexibility: workflows can be
+paused, inspected mid-run, or even modified between steps if needed (for
+advanced use cases).</p>
+<p>In a serverless deployment (e.g., AWS Lambda via
+OSBot-FastAPI-Serverless), the orchestrator might be a state machine
+service (like AWS Step Functions itself or Azure Durable Functions) that
+triggers the next lambda invocation. Alternatively, a simple loop in an
+API endpoint (if using a container or persistent service) could also
+orchestrate the steps synchronously.</p>
+<ul>
+<li>
+<p><strong>Integrated Services and Tools:</strong> The workflow steps can involve
+    various external services:</p>
+</li>
+<li>
+<p>An <strong>LLM Service</strong>: e.g., an API call to an OpenAI or a local model.
+    The flow can specify which model and prompt to use. The LLM service
+    endpoint would need to be reachable by the workflow engine and
+    secured (API keys, etc.). The service may have multiple models
+    (GPT-4, GPT-3.5, etc.) and the blueprint could choose which one by
+    an identifier.</p>
+</li>
+<li>
+<p>The <strong>Persona Service</strong>: (at <code>persona.qa.mgraph.ai</code> as mentioned)
+    which has two main capabilities:</p>
+<ul>
+<li><em>Persona Translation</em>: take an input message and translate or
+    rephrase it for a target persona or in a target language (e.g.,
+    explain a technical incident in board-level terms, or convert
+    English to Portuguese, etc.).</li>
+<li><em>Persona Response</em>: given a prompt or question, respond <strong>as</strong>
+    the persona (generating an answer the persona would give). This
+    service is itself likely powered by an LLM under the hood, but
+    from our workflow's perspective it's a black-box API that we
+    call with certain parameters. The workflow can include steps
+    that call <code>persona.translate</code> or <code>persona.respond</code> with the
+    appropriate persona and message.</li>
+</ul>
+</li>
+<li>
+<p><strong>Evaluation Service</strong>: an AI or rule-based system that evaluates a
+    given piece of content. In the example scenario, this is used to
+    rate how well a response was understood or how effective it was.
+    This could be another LLM prompt (e.g., asking an evaluator model to
+    score the answer on clarity), or a more deterministic function that
+    checks for certain keywords, etc. We treat it as an external call
+    (perhaps another endpoint like <code>evaluator.rate_response</code>).</p>
+</li>
+<li>
+<p><strong>Other APIs/Tools</strong>: The system could integrate with any HTTP API
+    or internal function. For instance, steps could call a database,
+    send an email, trigger a CI/CD pipeline, run a shell command (if
+    allowed), etc. These would be included by defining new action types
+    in the blueprint and teaching the engine how to execute them. The
+    design is extensible; new action handlers can be added to the engine
+    plugin-style.</p>
+</li>
+<li>
+<p><strong>Budget Manager:</strong> As mentioned, budgets for each actor/service
+    must be enforced. A simple implementation is to include budget
+    counters in the workflow context passed through steps. For example,
+    the context could have
+    <code>{ "budget": {"persona": 1000, "llm": 1500, "evaluator": 500} }</code>
+    indicating remaining token or API call counts. Each time the engine
+    is about to call one of these, it subtracts an estimated cost. If
+    the cost is not known exactly (e.g., tokens to be consumed by an LLM
+    call depends on output length), the engine can either make a
+    conservative guess or get the info after the call (some LLM APIs
+    return token usage). If a budget hits zero or goes negative, the
+    engine can trigger a special transition (for example, go to a
+    "Budget Exceeded" fail state). The blueprint can define what to do
+    in that case (maybe notify the user, or just terminate). The
+    <strong>Budget Manager</strong> could be just a piece of logic in the engine or a
+    separate helper module.</p>
+</li>
+<li>
+<p><strong>Logging &amp; Monitoring:</strong> Every request to the engine and every
+    action invocation should be logged. This includes inputs, outputs,
+    and any decision points. For debugging complex workflows, it is
+    invaluable to see a trace of steps. We can integrate this with the
+    OSBot-FastAPI's event system (which already provides
+    request/response tracking and can store
+    events)<a href="https://pypi.org/project/osbot-fast-api/#:~:text=A%20Type,AWS%20Lambda%20integration%20through%20Mangum">[3]</a>.
+    Logs can be written to a database or a cloud logging service. We
+    might also have a <strong>monitoring dashboard</strong> that shows active
+    workflows, their progress, and any errors. For long-running
+    workflows (if any), monitoring would show the current state and
+    waiting transitions. Given the stateless nature, most workflows will
+    run quickly or be orchestrated externally, but monitoring is still
+    useful for analyzing results and performance. We will also capture
+    metrics like time per step, tokens used, etc., to help optimize the
+    flows and LLM usage.</p>
+</li>
+<li>
+<p><strong>Security &amp; Access Control:</strong> As an OWASP Security Bot project,
+    security is important. The service should authenticate and authorize
+    requests (using API keys or tokens, as supported by OSBot-FastAPI
+    middleware<a href="https://pypi.org/project/osbot-fast-api/#:~:text=%2A%20Type,%E2%86%94%20BaseModel%20%E2%86%94%20Dataclass%20conversions">[4]</a>).
+    Only authorized systems or users should be able to submit a workflow
+    for execution or call the engine. Also, the actions allowed in a
+    workflow might be gated: for example, we might restrict certain
+    flows from calling arbitrary URLs unless explicitly allowed, to
+    prevent misuse. Each integrated service (Persona, LLM, etc.) will
+    have its own credentials (API keys), which the engine must handle
+    securely (likely stored in environment or a vault, not hard-coded in
+    the blueprint). The blueprint might reference a service by name and
+    the engine knows which credentials to apply.</p>
+</li>
+</ul>
+<p>In summary, the architecture separates the <em>declaration</em> of what to do
+(blueprint) from the <em>execution</em> of how it's done (engine and
+orchestrator), with clear interfaces to external AI services and strict
+control logic enveloping any LLM calls. This design maximizes
+reliability and clarity, ensuring that even as we automate complex tasks
+with AI, the process remains transparent and governable.</p>
+<h2 id="workflow-definition-and-standards">Workflow Definition and Standards</h2>
+<p>Defining the workflow blueprint in a robust way is a critical aspect of
+this service. We want a format that is <strong>expressive, standard-compliant
+(when possible), and easy for developers to author and maintain.</strong> Given
+that our implementation language is Python (with <strong>OSBot-FastAPI</strong> and
+<strong>OSBot-FastAPI-Serverless</strong> frameworks), we have a couple of choices
+for how to represent workflows:</p>
+<ol>
+<li>
+<p><strong>Python Type-Safe Classes (Code as Blueprint):</strong> We can create
+    Python classes (using OSBot's Type_Safe or Pydantic models) to
+    represent the elements of a workflow -- e.g., a <code>Flow</code> class
+    containing a list of <code>Step</code> objects, where each Step has fields like
+    <code>id</code>, <code>action</code>, <code>parameters</code>, <code>transitions</code>, etc. Developers can
+    then construct these classes in code or load them from a JSON.
+    OSBot-FastAPI will automatically handle conversion between these
+    classes and JSON
+    schemas<a href="https://pypi.org/project/osbot-fast-api/#:~:text=A%20Type,AWS%20Lambda%20integration%20through%20Mangum">[3]</a>.
+    This means we get strong typing and validation for free. For
+    example, if a step is missing a required field or has an invalid
+    next step reference, the model validation can catch it before
+    execution. This approach treats the blueprint almost like writing a
+    program (in Python), which is then serialized to JSON when needed.</p>
+</li>
+<li>
+<p><strong>JSON/YAML Workflow Schema (Data as Blueprint):</strong> Alternatively, we
+    define a pure JSON (or YAML) schema for the workflow -- a text-based
+    format that could be authored by hand or generated by tools. There
+    are <strong>existing standards and schemas</strong> in the industry that we can
+    draw inspiration from:</p>
+</li>
+<li>
+<p><strong>BPMN 2.0:</strong> A long-standing standard for business process modeling
+    (usually visual diagrams stored in
+    XML)<a href="https://github.com/woodyhayday/FlowSpec#:~:text=%2A%20BPMN%202.0%3A%20An%20industry,both%20visual%20and%20code%20views">[5]</a>.
+    BPMN is very expressive (supports events, gateways, etc.), but it
+    might be overly complex for our needs and not JSON-friendly by
+    default.</p>
+</li>
+<li>
+<p><strong>BPEL:</strong> An older XML-based language for web service
+    orchestration<a href="https://github.com/woodyhayday/FlowSpec#:~:text=%2A%20BPMN%202.0%3A%20An%20industry,both%20visual%20and%20code%20views">[5]</a>.
+    Also quite heavy and tied to WS-* services.</p>
+</li>
+<li>
+<p><strong>AWS Step Functions (Amazon States Language):</strong> A JSON-based state
+    machine definition used in AWS Step
+    Functions<a href="https://github.com/woodyhayday/FlowSpec#:~:text=,workflow%20definition%20tool%20integrated%20with">[6]</a>.
+    This is a practical and widely used format. It represents workflows
+    as a set of states (Task, Choice, Parallel, etc.) with a <code>StartAt</code>
+    and explicit <code>Next</code> transitions or <code>Choice</code> branches. It's quite
+    suitable for our concept since it inherently models step-by-step
+    execution with choices. The downside is that it's AWS-specific in
+    some of its integration details, but we could adopt the structure.
+    For example, we'd have \"Task\" states for calling LLM or Persona,
+    and \"Choice\" states for branching on evaluation results, etc., all
+    expressed in JSON.</p>
+</li>
+<li>
+<p><strong>Azure Logic Apps:</strong> Similar to Step Functions, uses JSON (and
+    often designed via a visual
+    editor)<a href="https://github.com/woodyhayday/FlowSpec#:~:text=,both%20visual%20and%20code%20views">[7]</a>.
+    Also could be a reference, though tied to Azure connectors.</p>
+</li>
+<li>
+<p><strong>Workflow Description Languages (WDL/CWL):</strong> These are specialized
+    languages for scientific and data
+    workflows<a href="https://github.com/woodyhayday/FlowSpec#:~:text=,and%20scientific%20computing%2C%20emphasizing%20reproducibility">[8]</a>.
+    They emphasize reproducibility and usually model batch processing of
+    data (like DNA sequencing pipelines). They might be too
+    domain-specific for our interactive use-cases, but they show how to
+    define steps, inputs, and outputs clearly.</p>
+</li>
+<li>
+<p><strong>Argo Workflows / Tekton:</strong> Kubernetes-native workflow engines
+    using
+    YAML<a href="https://github.com/woodyhayday/FlowSpec#:~:text=,excel%20in%20containerized%20CI%2FCD%20pipelines">[9]</a>.
+    They often focus on CI/CD pipelines and container tasks. The concept
+    of defining DAGs of steps is similar, though Argo's YAML could be
+    more low-level (each step is basically a container spec).</p>
+</li>
+<li>
+<p><strong>Custom DSLs:</strong> Many teams end up creating their own lightweight
+    JSON/YAML schemas for
+    workflows<a href="https://github.com/woodyhayday/FlowSpec#:~:text=,to%20their%20specific%20automation%20needs">[10]</a>.
+    This is likely the approach we will take: design a JSON schema
+    tailored to our AI workflow needs, while borrowing ideas from the
+    above standards for structure and best practices. For instance, we
+    might incorporate Step Function's idea of states and transitions,
+    but simplify it, or include a field for natural language description
+    like BPMN does, etc.</p>
+</li>
+</ol>
+<p>Given that we aim for a <strong>type-safe</strong> and easily maintainable solution,
+our plan is to define a <strong>JSON-based schema</strong> for the workflow and also
+represent it with Python classes for convenience. We can start from
+scratch or use a nascent standard like <strong>FlowSpec</strong>. <em>FlowSpec</em> is an
+open initiative to create a standardized JSON schema for AI automation
+workflows<a href="https://github.com/woodyhayday/FlowSpec#:~:text=A%20lightweight%20standardized%20JSON%20schema,step%20workflows">[11]</a>.
+It recognizes that many workflow tools share a flow-chart backbone, and
+it attempts to unify this in a portable way. In FlowSpec, a workflow is
+defined by a title, description, a list of steps, and transitions
+between
+steps<a href="https://github.com/woodyhayday/FlowSpec#:~:text=A%20lightweight%20standardized%20JSON%20schema,step%20workflows">[11]</a>.
+Each step has fields for what action to execute, its inputs, expected
+outputs, and what the next step(s) are depending on outcomes. It even
+allows global default transitions (like what to do on any
+failure)<a href="https://github.com/woodyhayday/FlowSpec#:~:text=,">[12]</a><a href="https://github.com/woodyhayday/FlowSpec#:~:text=%2A%20BPMN%202.0%3A%20An%20industry,intensive%20pipelines%20and">[13]</a>.
+FlowSpec also enumerates existing workflow standards (as we did above)
+to validate the approach of a common
+schema<a href="https://github.com/woodyhayday/FlowSpec#:~:text=%2A%20BPMN%202.0%3A%20An%20industry,intensive%20pipelines%20and">[13]</a>.</p>
+<p>After researching these options, <strong>our recommendation</strong> is to adopt a
+JSON state machine schema inspired by AWS Step Functions and FlowSpec.
+This gives us a known structure (states, next, choice, etc.) but we will
+customize it for our needs (for example, integrate the notion of budget
+and our specific action types). We will keep the schema human-readable
+and not too verbose. For instance, a simple flow with two steps might
+look like:</p>
+<pre><code>{
+  "workflowName": "Simple Q&amp;A",
+  "startAt": "AskQuestion",
+  "states": {
+    "AskQuestion": {
+       "type": "Task",
+       "action": "call_LLM",
+       "parameters": {
+          "prompt": "Answer the user's question: {user_question}"
+       },
+       "resultVar": "answer",
+       "next": "EvaluateAnswer"
+    },
+    "EvaluateAnswer": {
+       "type": "Task",
+       "action": "evaluator.rate_response",
+       "parameters": {
+          "response": "{answer}"
+       },
+       "resultVar": "score",
+       "end": true
+    }
+  }
+}
+</code></pre>
+<p>In this pseudo-JSON: - <code>startAt</code> specifies the entry step. - We have two
+states: one calls an LLM to get an answer, the next calls an evaluator
+to score that answer, then ends. - We use placeholders like
+<code>{user_question}</code> and <code>{answer}</code> to indicate passing data between steps
+(the engine would replace those at runtime with actual values from
+context). - This format is quite similar to Amazon States Language (each
+state has a <code>Type</code> and either a <code>Next</code> or
+<code>End</code>)<a href="https://states-language.net/#:~:text=%7B%20,1%3A123456789012%3Afunction%3AHelloWorld%22%2C%20%22End%22%3A%20true">[14]</a><a href="https://states-language.net/#:~:text=When%20this%20state%20machine%20is,or%20a%20runtime%20error%20occurs">[15]</a>,
+but with an <code>action</code> field that is our custom addition to specify what
+the Task does (since we are not tying directly into AWS Lambda ARNs as
+AWS
+does<a href="https://states-language.net/#:~:text=,true%20%7D%20%7D">[16]</a>).</p>
+<p>We will formalize such a schema and provide a JSON Schema definition for
+it (so it can be validated). The use of Python with OSBot-FastAPI means
+we can also create corresponding classes. For example, a <code>TaskState</code>
+class and a <code>ChoiceState</code> class that inherit from a base <code>State</code> class,
+etc., enabling developers to construct workflows in Python fluidly. The
+<strong>OSBot-Fast-API</strong> toolkit will assist by ensuring these classes convert
+to Pydantic models easily, preserving the strong
+types<a href="https://pypi.org/project/osbot-fast-api/#:~:text=A%20Type,AWS%20Lambda%20integration%20through%20Mangum">[3]</a>.
+This approach satisfies our need for a clear contract for workflows,
+while leveraging existing best practices from industry
+standards<a href="https://github.com/woodyhayday/FlowSpec#:~:text=%2A%20BPMN%202.0%3A%20An%20industry,intensive%20pipelines%20and">[13]</a><a href="https://github.com/woodyhayday/FlowSpec#:~:text=,to%20their%20specific%20automation%20needs">[17]</a>.</p>
+<p>To summarize, the workflow definition will likely be expressed as JSON
+but with first-class support in Python. It will incorporate ideas from
+state machine standards (like having explicit states, transitions,
+start/end, etc.) and will be designed to be <strong>readable, easy to modify,
+and rigorous</strong>. By doing this, we make it easier for developers to
+create new workflows or adjust existing ones, and possibly even enable
+<em>LLM-assisted workflow authoring</em> in the future -- for instance, an LLM
+could take a high-level description and output a draft JSON workflow,
+which a developer then reviews and fine-tunes. The use of a standard
+schema also opens the door to visualization tools or workflow editors
+down the line.</p>
+<h2 id="example-workflow-persona-based-communication-and-evaluation">Example Workflow: Persona-Based Communication and Evaluation</h2>
+<p>To illustrate how the stateflow service works, let\'s walk through a
+detailed example workflow. This scenario involves translating and
+conveying a critical message between two types of personas in an
+organization, and evaluating the communication's effectiveness. We will
+use the previously described actors: - <strong>Actor A:</strong> The originator of
+the message (could be a human user or an automated alert). In our
+scenario, the message is: <em>\"A ransomware attack has hit Division X,
+which will impact the P&amp;L (profit and loss) for this quarter.\"</em> -
+<strong>Actor B:</strong> The Persona Service, which can assume different personas.
+We will use it in two modes: - <em>Translator mode:</em> to rephrase a message
+for a target persona's understanding. - <em>Responder mode:</em> to generate a
+reply as if coming from a persona. - <strong>Actor C:</strong> The Evaluator service,
+which will judge the quality of responses (e.g., does the response
+answer the question clearly, does the target persona understand the
+message, etc.).</p>
+<p>The organizational context is that <strong>Board Members</strong> care about
+financial terms like P&amp;L but might not understand technical
+cybersecurity jargon, whereas <strong>CISOs (Chief Information Security
+Officers)</strong> understand ransomware but might not grasp business impact
+jargon. Our message contains both technical (ransomware) and financial
+(P&amp;L) terms, so it's challenging for either persona to fully understand
+without translation.</p>
+<p>We will construct a workflow that explores different communication
+paths:</p>
+<p><strong>1. Direct Communication to CISO (No Translation):</strong>\
+Actor A sends the original message directly to a CISO persona (via Actor
+B's responder mode acting as a CISO). The flow steps might be: - <em>Step
+1:</em> <code>persona.respond</code> as <strong>CISO</strong> with input = \"Ransomware attack on
+Division X will impact P&amp;L this quarter.\"\
+→ (Actor B generates a response as it thinks a CISO would reply. This
+CISO likely understands the ransomware part but may be confused or less
+concerned about P&amp;L specifics. The response might say something focusing
+on cybersecurity mitigation but not address financial impact fully.) -
+<em>Step 2:</em> <code>evaluator.rate_response</code> on the CISO's reply, with criteria
+like <em>completeness</em>, <em>clarity</em>, <em>appropriateness for the question</em>.\
+→ (Actor C returns a score or feedback. We expect this might be a
+mediocre score if the CISO persona missed the financial aspect.) - <em>Step
+3:</em> End. (We record the score and perhaps the content of the CISO's
+answer.)</p>
+<p>Expected outcome: The CISO's answer might mention technical steps (e.g.,
+<em>"We are investigating the ransomware attack on Division X and working
+to contain it."</em>) but not translate that into business terms. The
+evaluator might note that the board (who cares about P&amp;L) would not get
+a full picture from this answer. The score could be low or moderate.</p>
+<p><strong>2. Direct Communication to Board Member (No Translation):</strong>\
+Actor A sends the same message directly to a Board Member persona (Actor
+B acting as a board member): - <em>Step 1:</em> <code>persona.respond</code> as
+<strong>BoardMember</strong> with input = \"Ransomware attack on Division X will
+impact P&amp;L this quarter.\"\
+→ (Actor B generates a response a board member might give. The board
+member persona might latch onto the P&amp;L impact but be unsure about the
+technical details, possibly responding with something like <em>"How severe
+is the ransomware attack and what are the projected losses?"</em>) - <em>Step
+2:</em> <code>evaluator.rate_response</code> on the Board Member's reply.\
+→ (We expect the board member's answer might not be directly useful
+because the board persona might actually ask questions or express
+confusion about the ransomware aspect. The evaluator likely scores this
+low in terms of addressing the problem, since the board member persona
+didn't provide a solution or clear action.) - <em>End.</em></p>
+<p>This path shows how a mismatched communication (technical message to
+non-technical persona) might fail. The board member didn't provide a
+satisfying answer because they themselves didn't fully understand the
+technical side. The evaluator would likely flag that the communication
+was ineffective.</p>
+<p><strong>3. Translated Communication to CISO:</strong>\
+Now we improve the communication. Actor A's original message will first
+be translated to the CISO's \"language\" (i.e., reframed in
+cybersecurity terms), then delivered to the CISO persona, and
+evaluated: - <em>Step 1:</em> <code>persona.translate</code> target=<strong>CISO</strong>, input =
+\"Ransomware attack on Division X will impact P&amp;L...\"\
+→ (Actor B returns a <strong>translated message</strong> that a CISO would
+immediately grasp. For instance, it might elaborate the technical threat
+and downplay financial jargon: <em>"Division X has been hit by ransomware,
+affecting operations; this could have a significant business impact this
+quarter."</em>) - <em>Step 2:</em> <code>persona.respond</code> as <strong>CISO</strong> with input =
+<strong>translated message from Step 1</strong>.\
+→ (Now, receiving a message phrased in his context, the CISO persona can
+respond more appropriately. The answer might be like: <em>"Understood. We
+have isolated the affected systems and are initiating incident response.
+We estimate recovery in 48 hours. Financial impact is being assessed in
+collaboration with finance."</em> This is a more complete answer covering
+both tech and acknowledging financial impact, because the question was
+framed in terms the CISO cares about.) - <em>Step 3:</em>
+<code>evaluator.rate_response</code> on the CISO's new reply.\
+→ (Actor C would likely give a higher score here, since the response is
+clear, addresses the issue, and bridges to business impact. The
+evaluator might note that the communication was effective for the target
+audience.) - <em>End.</em></p>
+<p>We expect this translated workflow to yield a good outcome: the CISO
+persona understood the question after translation and responded in a way
+that likely satisfies a board or oversight evaluator.</p>
+<p><strong>4. Translated Communication to Board Member:</strong>\
+Similarly, translate the message for a Board Member, then get a
+response: - <em>Step 1:</em> <code>persona.translate</code> target=<strong>BoardMember</strong>, input
+= original message.\
+→ (This might produce something like: <em>"We estimate a hit to this
+quarter's profits due to a cyber incident (ransomware in Division X)."</em>
+Essentially explaining ransomware impact in terms a board cares about,
+possibly avoiding jargon.) - <em>Step 2:</em> <code>persona.respond</code> as
+<strong>BoardMember</strong> with input = translated message.\
+→ (Now the board persona, fully aware of the financial framing, might
+respond appropriately, e.g.: <em>"Understood. Ensure all necessary
+resources are allocated to IT to resolve this quickly. Let's prepare a
+statement for stakeholders about the financial impact."</em>) - <em>Step 3:</em>
+<code>evaluator.rate_response</code> on this reply.\
+→ (Likely another high score -- the board member persona's answer is on
+point when the question was phrased in their terms.) - <em>End.</em></p>
+<p>This shows that with proper translation, even a non-technical persona
+can engage effectively.</p>
+<p><strong>5. Back-and-Forth Dialogue (CISO ⟷ Board, Mediated by
+Translations):</strong>\
+We can extend the scenario to simulate an interactive dialogue between
+the CISO and Board Member personas. The idea is to have multiple
+turns: - First, the CISO receives a translated question (as in #3) and
+responds as CISO. - Then take the CISO's response, translate it for the
+Board, get a Board persona reply. - Then translate that reply back to
+CISO's terms, get CISO's next response. - Continue this exchange for a
+few iterations or until a <strong>budget limit</strong> is reached (to prevent
+infinite loops).</p>
+<p>In the workflow blueprint, this could be represented by a loop or
+recursive transitions. For example: - Step 1: <code>persona.translate</code> to
+CISO (original message) -&gt; output ciso_msg. - Step 2: <code>persona.respond</code>
+as CISO (ciso_msg) -&gt; output ciso_reply. - Step 3: <code>persona.translate</code>
+to Board (ciso_reply) -&gt; output board_msg. - Step 4: <code>persona.respond</code>
+as Board (board_msg) -&gt; output board_reply. - Step 5: <strong>Loop
+condition</strong>: If <code>board_reply</code> or some context indicates conversation
+should continue AND budgets remain, go back to Step 1 (or a specific
+step) with <code>board_reply</code> now serving as the \"original message\" (Actor
+A's input) for the next round, targeting CISO again. - If loop ends
+(either a set number of rounds reached or budget exhausted), proceed to
+evaluation or finalization: - Step 6: <code>evaluator.rate_response</code> on the
+final response or on the overall dialogue quality. - End.</p>
+<p>This looping construct is explicitly controlled. The blueprint would
+contain a <strong>Choice</strong> or condition check after Step 4 to decide whether
+to loop or exit. The <em>budget</em> for each persona ensures that, say, we
+don't allow more than N exchanges or Y tokens. For instance, we might
+give each persona service 3 calls budget. Each <code>persona.respond</code> call
+uses 1. So at most 3 rounds of responses per persona can happen (which
+is 3 CISO replies and 3 Board replies, for a total of 3 cycles) before
+the budget prevents further calls.</p>
+<p>During this back-and-forth, each translation ensures both parties
+understand each other's messages in their own context. The <strong>Evaluator</strong>
+at the end might evaluate the overall success of the communication.
+Perhaps it looks at the final outcome: did they reach a mutual
+understanding or plan? We could even have the evaluator step after each
+reply, storing intermediate scores, but in practice it might suffice to
+evaluate at the end or only log the conversation.</p>
+<p>This complex example demonstrates the power of the workflow approach: -
+We can coordinate multiple AI calls (translations, persona responses,
+evaluations) in a sequence that achieves a larger goal (effective
+communication). - Because it's all in a defined flow, we avoid chaos:
+e.g., the Board and CISO personas will not talk over each other or go
+off on tangents; they only respond when prompted by the workflow. - If
+something fails (say one of the steps returns an error or empty
+response), we could have failure paths defined. For example, if
+<code>persona.respond</code> fails due to no available LLM, the blueprint could go
+to a step that sends a default apology message or logs the failure. -
+The budget prevents infinite loops or runaway costs, which is something
+ad-hoc agent loops might suffer from.</p>
+<p>In summary, this Persona Communication workflow shows a realistic
+use-case where <strong>deterministic orchestration of LLM-powered services</strong>
+adds significant value. It ensures that two different knowledge domains
+(technical vs business) can interact via AI intermediaries in a
+structured manner. The <em>stateflow service</em> makes it feasible to design
+such an interaction as a series of controlled steps, rather than leaving
+the entire conversation flow to an unpredictable AI agent. Each step's
+outcome is evaluated and can trigger specific next steps, which is
+exactly the kind of fine-grained control we need for enterprise
+applications.</p>
+<h2 id="additional-workflow-examples">Additional Workflow Examples</h2>
+<p>Beyond the persona translation scenario, the LLM Workflows service can
+support a wide range of other workflows. Here are a few <strong>example
+use-cases</strong> to demonstrate its versatility:</p>
+<ul>
+<li>
+<p><strong>Simple LLM Q&amp;A Workflow:</strong> <em>(\"Single-step answer\")</em> -- The user
+    provides a query, and the workflow simply calls an LLM to get an
+    answer and returns it. This is essentially a one-step workflow (plus
+    maybe an evaluator or format step). While trivial, it shows how even
+    a simple LLM invocation can be wrapped in the workflow for
+    consistency (logging, budgeting, etc.). For instance, a
+    question-answering bot could be just a workflow with one Task:
+    <code>call_LLM</code> (with a certain prompt structure) and then End.</p>
+</li>
+<li>
+<p><strong>Knowledge Base Retrieval and Answering:</strong> <em>(\"Tool-augmented
+    query\")</em> -- A workflow can integrate a search or database lookup
+    before calling the LLM. Steps might be: (1) take a user
+    question, (2) use a custom action <code>call_web_search</code> or
+    <code>query_knowledge_graph</code> to retrieve relevant info, (3) feed the
+    results into an <code>call_LLM</code> step that formulates an answer using
+    those results, (4) maybe an evaluator step to check confidence or
+    filter out any disallowed content. This deterministic sequence
+    ensures the LLM's answer is grounded in retrieved data (addressing
+    factuality), and each part is controlled (for example, if the search
+    returns nothing, we could have a conditional branch to skip the LLM
+    call and respond with "no data found").</p>
+</li>
+<li>
+<p><strong>Automated Code Assistant Workflow:</strong> -- Consider a developer
+    asking for code assistance. The workflow could involve multiple
+    specialized steps: (1) <code>call_LLM</code> with a \"planner\" prompt that
+    breaks down the request (e.g., "write a function to do X") into
+    tasks, (2) loop through sub-tasks where for each task we call either
+    a coding LLM to generate code or a testing tool to verify the
+    code, (3) integrate results, (4) evaluate final code. For example,
+    the first LLM might produce a pseudocode or list of steps, the
+    workflow then calls a code-generation model to implement each step,
+    then calls a compilation or test action to check it, if a test fails
+    perhaps branch to a debugging LLM step, etc. Using a workflow
+    ensures each step (planning, coding, testing, fixing) is done in
+    order and under budget. This is much safer than an autonomous coding
+    agent that might go into an infinite loop or execute code unsafely
+    -- our workflow can explicitly restrict what happens (like only
+    allow running tests in a sandbox, etc.).</p>
+</li>
+<li>
+<p><strong>Content Moderation Pipeline:</strong> -- An enterprise might use a
+    workflow to filter and respond to user-generated content. For
+    example: (1) <code>moderation_model</code> step (could be an LLM or a dedicated
+    model) to classify a piece of text (is it hate speech, spam,
+    etc.?), (2) a <code>choice</code> state that branches: if content is OK,
+    proceed to next step, if not OK, go to a rejection message step or
+    escalation, (3) maybe an <code>auto-response</code> step that uses an LLM to
+    draft a polite reply or explanation, (4) an <code>approve</code> step where
+    either automatically send the reply or require a human approval
+    (this could be an integration point where the workflow pauses until
+    a human intervenes -- possible by having the orchestrator not call
+    the next step until a signal). This kind of workflow could automate
+    moderation while keeping humans in the loop for tough cases, all
+    defined by policy in the blueprint.</p>
+</li>
+<li>
+<p><strong>Incident Response Workflow:</strong> -- In a cybersecurity context
+    (relevant to OWASP), imagine a workflow triggered by a security
+    alert. Steps could be: (1) parse the alert details (maybe using
+    regex or an LLM to summarize), (2) <code>choice</code> to categorize
+    severity, (3) if severe, call a script or API to isolate affected
+    systems, (4) call LLM to draft a notification email to the IT team
+    or management, (5) log the incident to a database. Each of these is
+    a deterministic step. The LLM is used in a constrained way (only to
+    generate the email text), while decisions like \"if severe then
+    isolate systems\" are hard-coded in the flow logic (not left to the
+    AI). This ensures that important actions (like isolating systems)
+    happen exactly when they should according to a predefined protocol,
+    but we still benefit from AI in parsing and communicating
+    information.</p>
+</li>
+<li>
+<p><strong>Multi-Language Customer Support:</strong> -- A customer writes in with a
+    query in language X. The workflow: (1) detect language (maybe a
+    small model or library call), (2) if not English, <code>translate</code> to
+    English via an LLM or translation API, (3) use an LLM to draft an
+    answer in English, referencing a support knowledge base if
+    needed, (4) translate the answer back to the customer's
+    language, (5) send the reply via an API. This workflow uses two LLM
+    calls (one to answer, and possibly the same or another to translate)
+    and ensures the final answer is in the customer's language. By
+    orchestrating it, we can ensure translation happens both ways and
+    include fallback steps (if translation fails, perhaps route to a
+    human agent). It's a controlled agent that can autonomously handle
+    many support tickets in multiple languages without ever deviating
+    from the defined process.</p>
+</li>
+</ul>
+<p>These examples scratch the surface. Essentially, any time we want an
+<strong>LLM or AI-driven process with multiple steps</strong> and we care about
+controlling those steps, this service can help. It provides the skeleton
+to plug in various AI and non-AI functions into a flowchart of actions.</p>
+<p>By keeping the workflows <strong>declarative</strong> and using this service,
+organizations can codify complex procedures that involve AI into a form
+that's <em>transparent, testable, and tunable</em>. Need to change the persona
+or the prompt? Just update the blueprint. Want to add a step to log to a
+new database? Add it to the blueprint. Because the execution is isolated
+per step, these modifications won't affect other steps' correctness.
+This modularity and clarity is much harder to achieve if one tries to
+hard-code logic intermingled with LLM prompts in a single blob. Our
+service enforces good separation of concerns.</p>
+<h2 id="implementation-considerations-python-osbot-framework">Implementation Considerations (Python &amp; OSBot Framework)</h2>
+<p>The service will be implemented in <strong>Python 3.11+</strong> (per OSBot-Fast-API
+requirements<a href="https://pypi.org/project/osbot-fast-api/#:~:text=,18">[18]</a>)
+using the <strong>OSBot-Fast-API</strong> library and its serverless extension. Here
+we outline how we leverage these technologies and other implementation
+details:</p>
+<ul>
+<li>
+<p><strong>OSBot-Fast-API for Type Safety:</strong> OSBot-Fast-API provides a strong
+    type-safe layer on top of
+    FastAPI<a href="https://pypi.org/project/osbot-fast-api/#:~:text=A%20Type,AWS%20Lambda%20integration%20through%20Mangum">[3]</a>.
+    We will define the data models for our workflow blueprint (and
+    related requests/responses) as classes using OSBot's <code>Type_Safe</code> or
+    Pydantic. This ensures that when a workflow JSON is received, it's
+    automatically validated against our schema. It also makes it easy to
+    return structured responses. For instance, the <code>/execute_step</code>
+    endpoint can be defined to accept a <code>WorkflowStepExecutionRequest</code>
+    object (containing the blueprint or reference and current step data)
+    and return a <code>WorkflowStepResult</code> object. OSBot-Fast-API will handle
+    converting those to JSON for us, and we can be confident in the
+    structure. Strong typing will catch mistakes early -- e.g., if a
+    transition refers to a step that doesn't exist, we can detect that
+    when loading the workflow.</p>
+</li>
+<li>
+<p><strong>Serverless Deployment:</strong> OSBot-Fast-API-Serverless enables
+    deploying the FastAPI app to AWS Lambda easily. Our service, being
+    stateless and lightweight in memory (each step execution is quick),
+    is a good candidate for serverless. We could deploy the entire
+    service as a Lambda behind an API Gateway. Each step execution call
+    would be a separate invocation (which is fine given statelessness).
+    The benefits: scaling automatically with load and zero server
+    maintenance. We do need to be mindful of cold start times (Python
+    Lambdas can have a few seconds cold start; using smaller models or
+    warming mechanisms might be considered if needed). Also, token-based
+    LLM calls can be slow (hundreds of milliseconds to seconds), but
+    those are external API waits; the Lambda timeout should be set
+    sufficiently high to allow an LLM call to complete (perhaps 30
+    seconds or more for large prompts). For now, we focus on
+    functionality, and we have the flexibility to also run the service
+    in a container or on a VM if needed (FastAPI is versatile).</p>
+</li>
+<li>
+<p><strong>Integration of LLM APIs:</strong> We will integrate with LLM providers
+    via their Python SDKs or HTTP APIs. Likely, OpenAI's API (for GPT-4
+    or others) will be used initially (assuming we have keys). Calls to
+    these will happen inside the engine's action dispatch. We must
+    handle errors (network issues, rate limits) gracefully -- possibly
+    by catching exceptions and either retrying (with backoff) or moving
+    to a failure state. We should also use streaming responses only if
+    necessary; otherwise synchronous calls returning the full output are
+    simpler. For local LLMs or alternative providers, we can abstract
+    the LLM call behind a common interface so that switching out is easy
+    (for example, have a <code>LLMService</code> class with a method
+    <code>generate(model, prompt)</code> that can call OpenAI, or HuggingFace
+    pipeline, etc., based on configuration).</p>
+</li>
+<li>
+<p><strong>Testing Workflows:</strong> Because of the deterministic nature, we can
+    unit test workflows by simulating the orchestrator. For a given
+    blueprint, we can run the engine step by step and assert the final
+    outcome or intermediate states. We can also create dummy action
+    handlers for tests (e.g., instead of calling the real LLM API, use a
+    stub that returns a fixed string or uses a local small model). This
+    way, we can verify logic (like branching) without external
+    dependencies. OSBot-Fast-API's testing utilities (like the built-in
+    test
+    server<a href="https://pypi.org/project/osbot-fast-api/#:~:text=%2A%20Type,%E2%86%94%20BaseModel%20%E2%86%94%20Dataclass%20conversions">[4]</a>)
+    will help in writing these tests. Each workflow example can have an
+    automated test case that ensures it runs to completion and yields
+    expected evaluator scores, etc., which is important for continuous
+    integration.</p>
+</li>
+<li>
+<p><strong>Performance and Caching:</strong> Calling LLMs is the slowest part. We
+    might implement caching at the step level. For example, if the same
+    <code>persona.translate</code> is called with the exact same input frequently,
+    we could cache the result to avoid redundant API calls. This could
+    be done in-memory (for a single lambda invocation sequence) or even
+    persisted (like a small Redis or DynamoDB cache keyed by input).
+    However, caching needs to be designed carefully (e.g., LLM outputs
+    might not be identical every time unless using deterministic
+    prompts). Perhaps more straightforward is to avoid duplicate calls
+    in the same workflow execution -- since a single workflow might
+    reuse a result anyway via variables.</p>
+</li>
+<li>
+<p><strong>Choosing Standards Libraries:</strong> For state machine logic within
+    Python, we might use or draw inspiration from libraries like
+    <code>transitions</code> (a Python state machine library) or others, but given
+    our custom requirements, we will likely implement the transition
+    handling ourselves. The logic is not too complex given a proper data
+    structure for the blueprint.</p>
+</li>
+<li>
+<p><strong>Error Handling and Recovery:</strong> If a step errors out (throws an
+    exception, or returns a response indicating failure), the engine
+    should catch that and either:</p>
+</li>
+<li>
+<p>Move to a predefined error state if the blueprint defined one (like
+    how AWS Step Functions has a <code>Catch</code> mechanism).</p>
+</li>
+<li>
+<p>Or return an error back to the orchestrator. Since orchestrator is
+    external, it\'s probably better to handle it within the workflow. We
+    can allow steps to have a <code>on_error: &lt;stepId&gt;</code> field. This way,
+    e.g., if an LLM call fails, we go to a specific step (maybe an
+    apology message, or a cleanup). If no on_error is specified, the
+    engine can return an error code and the whole workflow aborts. This
+    aspect should be defined in our schema for completeness.</p>
+</li>
+<li>
+<p>Logging the error is important regardless, for debugging.</p>
+</li>
+<li>
+<p><strong>Collaboration and Iteration:</strong> As development proceeds, the team
+    (human developers) will refine the blueprint schema and engine
+    logic, often with the assistance of LLMs for ideas or
+    troubleshooting. This synergy will continue as we implement new
+    features. For instance, if we want to introduce a new kind of step
+    (say, a Parallel step to do two things concurrently), we might
+    consult resources or have an LLM suggest how to implement thread
+    pools or async patterns in FastAPI. However, all changes will be
+    reviewed and tested by developers to ensure they meet the
+    determinism and security criteria.</p>
+</li>
+<li>
+<p><strong>Documentation and Accessibility:</strong> We will document the schema and
+    usage of the service thoroughly (potentially even auto-generating
+    part of the docs from the schema, similar to how OpenAPI does for
+    APIs). Since Dinis Cruz and the team are building this in the open
+    (likely on GitHub), the documentation will credit the contributions
+    of both the developers and the AI (ChatGPT) that helped along the
+    way. This technical brief itself can serve as a living document to
+    guide implementation, and as we integrate feedback and real-world
+    testing, the design may be adjusted. The flexibility of our approach
+    (thanks to Python and JSON) means we can iterate quickly.</p>
+</li>
+</ul>
+<p>In conclusion, the <strong>LLM Workflows/Stateflow Service</strong> is a cutting-edge
+approach to making LLM-based systems more robust, transparent, and
+controllable. By blending established workflow orchestration concepts
+with the latest AI capabilities, and implementing it with modern Python
+frameworks, we aim to create a service that developers and AI systems
+can <strong>collaboratively use and improve</strong>. It will empower the creation of
+AI-driven applications that have the creativity of LLMs <em>and</em> the
+reliability of traditional software -- a combination that is
+increasingly essential in high-stakes
+applications<a href="https://arxiv.org/html/2508.02721v1#:~:text=process,demonstrate%20that%20the%20Source%20Code">[19]</a><a href="https://arxiv.org/html/2508.02721v1#:~:text=Foundation%20Model%20is%20thus%20strategically,agents%20in%20handling%20OOM%20errors">[20]</a>.
+With this foundation, we anticipate a new class of solutions where
+humans specify the <em>roadmap</em> (workflow) and AI fills in the <em>details</em>
+(content), all under a structure that ensures safety and effectiveness.</p>
+<p><a href="https://arxiv.org/html/2508.02721v1#:~:text=Agent%20framework,as%20parsing%20an%20error%20log">[1]</a>
+<a href="https://arxiv.org/html/2508.02721v1#:~:text=process,demonstrate%20that%20the%20Source%20Code">[19]</a>
+<a href="https://arxiv.org/html/2508.02721v1#:~:text=Foundation%20Model%20is%20thus%20strategically,agents%20in%20handling%20OOM%20errors">[20]</a>
+Blueprint First, Model Second: A Framework for Deterministic LLM
+Workflow</p>
+<p><a href="https://arxiv.org/html/2508.02721v1">https://arxiv.org/html/2508.02721v1</a></p>
+<p><a href="https://www.zenml.io/blog/langgraph-vs-autogen#:~:text=LangGraph%20is%20ideal%20for%20building,to%20debug%20and%20guarantee%20behavior">[2]</a>
+LangGraph vs AutoGen: How are These LLM Workflow Orchestration Platforms
+Different? - ZenML Blog</p>
+<p><a href="https://www.zenml.io/blog/langgraph-vs-autogen">https://www.zenml.io/blog/langgraph-vs-autogen</a></p>
+<p><a href="https://pypi.org/project/osbot-fast-api/#:~:text=A%20Type,AWS%20Lambda%20integration%20through%20Mangum">[3]</a>
+<a href="https://pypi.org/project/osbot-fast-api/#:~:text=%2A%20Type,%E2%86%94%20BaseModel%20%E2%86%94%20Dataclass%20conversions">[4]</a>
+<a href="https://pypi.org/project/osbot-fast-api/#:~:text=,18">[18]</a>
+osbot-fast-api · PyPI</p>
+<p><a href="https://pypi.org/project/osbot-fast-api/">https://pypi.org/project/osbot-fast-api/</a></p>
+<p><a href="https://github.com/woodyhayday/FlowSpec#:~:text=%2A%20BPMN%202.0%3A%20An%20industry,both%20visual%20and%20code%20views">[5]</a>
+<a href="https://github.com/woodyhayday/FlowSpec#:~:text=,workflow%20definition%20tool%20integrated%20with">[6]</a>
+<a href="https://github.com/woodyhayday/FlowSpec#:~:text=,both%20visual%20and%20code%20views">[7]</a>
+<a href="https://github.com/woodyhayday/FlowSpec#:~:text=,and%20scientific%20computing%2C%20emphasizing%20reproducibility">[8]</a>
+<a href="https://github.com/woodyhayday/FlowSpec#:~:text=,excel%20in%20containerized%20CI%2FCD%20pipelines">[9]</a>
+<a href="https://github.com/woodyhayday/FlowSpec#:~:text=,to%20their%20specific%20automation%20needs">[10]</a>
+<a href="https://github.com/woodyhayday/FlowSpec#:~:text=A%20lightweight%20standardized%20JSON%20schema,step%20workflows">[11]</a>
+<a href="https://github.com/woodyhayday/FlowSpec#:~:text=,">[12]</a>
+<a href="https://github.com/woodyhayday/FlowSpec#:~:text=%2A%20BPMN%202.0%3A%20An%20industry,intensive%20pipelines%20and">[13]</a>
+<a href="https://github.com/woodyhayday/FlowSpec#:~:text=,to%20their%20specific%20automation%20needs">[17]</a>
+GitHub - woodyhayday/FlowSpec: FlowSpec: Automation Workflow Schema - A
+lightweight JSON schema for defining automations and multi-step
+workflows. Designed for AI Automation Workflows</p>
+<p><a href="https://github.com/woodyhayday/FlowSpec">https://github.com/woodyhayday/FlowSpec</a></p>
+<p><a href="https://states-language.net/#:~:text=%7B%20,1%3A123456789012%3Afunction%3AHelloWorld%22%2C%20%22End%22%3A%20true">[14]</a>
+<a href="https://states-language.net/#:~:text=When%20this%20state%20machine%20is,or%20a%20runtime%20error%20occurs">[15]</a>
+<a href="https://states-language.net/#:~:text=,true%20%7D%20%7D">[16]</a> Amazon
+States Language</p>
+<p><a href="https://states-language.net/">https://states-language.net/</a></p>
+</article>
+<p class="small dim licence-note">Released under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. First published on docs.diniscruz.ai; <a href="llm-workflows-stateflow-service-technical-brief.md">this page as markdown</a>.</p>
+<div class="pagenav"><a href="../../../2025/08/23/personas-service-technical-llm-brief.html">← Personas Service - Technical LLM Brief</a><a href="../../../2025/09/01/dinis-cruz-research-on-api-security-2009-2025.html">Dinis Cruz&#x27;s Research on API Security (2009-2025) →</a></div>
+</main>
+
+<footer class="site"><div class="cols">
+  <div>
+    <div class="brandline">diniscruz<span>.ai</span></div>
+    <p>The personal site of Dinis Cruz: essays and research on AI, cyber security, semantic knowledge graphs and the future of news, and the companies and open-source projects they feed into. All writing CC BY 4.0.</p>
+    <p class="netline"><a href="https://sgit.ai"><b>↗ sgit.ai</b></a> — encrypted git for humans and AI agents · <a href="https://open-source.sgit.ai">↗ open-source.sgit.ai</a> — open source as a strategy · <a href="https://sgit.ai/network/index.html">↗ the sgit.ai network</a></p>
+    <p class="verline">site <a href="../../../admin/versions.html">v0.1.0</a> · <a href="../../../admin/index.html">engineering</a> · <a href="../../../2025/08/23/llm-workflows-stateflow-service-technical-brief.md">this page as markdown</a></p>
+  </div>
+  <div>
+    <h4>Writing</h4>
+    <a href="../../../writing/index.html">All writing</a>
+    <a href="../../../research/index.html">Research hub</a>
+    <a href="../../../resources/presentations.html">Talks</a>
+    <a href="../../../feed.xml">RSS feed</a>
+  </div>
+  <div>
+    <h4>Building</h4>
+    <a href="../../../building/index.html#companies">Companies</a>
+    <a href="../../../building/index.html#open-source">Open source</a>
+    <a href="https://sgit.ai">↗ sgit.ai</a>
+    <a href="https://open-source.sgit.ai">↗ open-source.sgit.ai</a>
+  </div>
+  <div>
+    <h4>About</h4>
+    <a href="../../../about/index.html">About Dinis Cruz</a>
+    <a href="https://www.linkedin.com/in/diniscruz">↗ LinkedIn</a>
+    <a href="https://github.com/DinisCruz">↗ GitHub</a>
+    <a href="../../../admin/index.html">How this site is built</a>
+    <a href="../../../admin/versions.html">Release history</a>
+    <a href="../../../llms.txt">llms.txt</a>
+    <a href="../../../llms-full.txt">llms-full.txt</a>
+  </div>
+</div></footer>
+
+</body>
+</html>

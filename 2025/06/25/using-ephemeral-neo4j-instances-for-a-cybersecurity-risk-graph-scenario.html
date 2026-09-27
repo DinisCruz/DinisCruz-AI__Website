@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Using Ephemeral Neo4j Instances for a Cybersecurity Risk Graph Scenario — Dinis Cruz</title>
+<meta name="description" content="Graph thinkers – those who naturally conceptualize information as networks of nodes and relationships – can greatly benefit from on-demand graph analytics. Recently, we demonstrated how a Large…">
+<meta name="author" content="Dinis Cruz">
+<link rel="canonical" href="https://diniscruz.ai/2025/06/25/using-ephemeral-neo4j-instances-for-a-cybersecurity-risk-graph-scenario.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="diniscruz.ai">
+<meta property="og:url" content="https://diniscruz.ai/2025/06/25/using-ephemeral-neo4j-instances-for-a-cybersecurity-risk-graph-scenario.html">
+<meta property="og:title" content="Using Ephemeral Neo4j Instances for a Cybersecurity Risk Graph Scenario — Dinis Cruz">
+<meta property="og:description" content="Graph thinkers – those who naturally conceptualize information as networks of nodes and relationships – can greatly benefit from on-demand graph analytics. Recently, we demonstrated how a Large…">
+<meta name="twitter:card" content="summary">
+<meta property="article:published_time" content="2025-06-25">
+<meta property="article:author" content="https://www.linkedin.com/in/diniscruz">
+<meta name="x-generated-from" content="content/2025/06/25/using-ephemeral-neo4j-instances-for-a-cybersecurity-risk-graph-scenario.md">
+<link rel="alternate" type="text/markdown" href="using-ephemeral-neo4j-instances-for-a-cybersecurity-risk-graph-scenario.md" title="This page as markdown">
+<link rel="alternate" type="application/rss+xml" title="Dinis Cruz — writing" href="../../../feed.xml">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../../assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Using Ephemeral Neo4j Instances for a Cybersecurity Risk Graph Scenario", "name": "Using Ephemeral Neo4j Instances for a Cybersecurity Risk Graph Scenario", "description": "Graph thinkers – those who naturally conceptualize information as networks of nodes and relationships – can greatly benefit from on-demand graph analytics. Recently, we demonstrated how a Large…", "datePublished": "2025-06-25", "author": [{"@type": "Person", "@id": "https://diniscruz.ai/about/index.html#person", "name": "Dinis Cruz", "url": "https://diniscruz.ai/about/index.html", "sameAs": ["https://www.linkedin.com/in/diniscruz", "https://github.com/DinisCruz", "https://sgit.ai/about/index.html", "https://open-source.sgit.ai/about/index.html", "https://docs.diniscruz.ai/"]}], "publisher": {"@type": "Person", "@id": "https://diniscruz.ai/about/index.html#person", "name": "Dinis Cruz"}, "url": "https://diniscruz.ai/2025/06/25/using-ephemeral-neo4j-instances-for-a-cybersecurity-risk-graph-scenario.html", "mainEntityOfPage": "https://diniscruz.ai/2025/06/25/using-ephemeral-neo4j-instances-for-a-cybersecurity-risk-graph-scenario.html", "inLanguage": "en", "license": "https://creativecommons.org/licenses/by/4.0/", "wordCount": 5093, "isPartOf": {"@type": "WebSite", "name": "diniscruz.ai", "url": "https://diniscruz.ai/"}, "contributor": [{"@type": "Thing", "name": "ChatGPT Deep Research"}]}</script>
+</head>
+<body>
+
+<nav class="site"><div class="row">
+  <a class="brand" href="../../../index.html">diniscruz<span>.ai</span></a>
+  <a class="parent" href="https://sgit.ai" title="sgit.ai — encrypted git for humans and AI agents, the project Dinis Cruz is building now">↗ building <b>sgit.ai</b></a>
+  <a class="ver" href="../../../admin/versions.html" title="Site release history">v0.1.0</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">Menu</button>
+  <div class="nav-items">
+    <div class="ni ni-has">
+      <a class="nl here" href="../../../writing/index.html">Writing<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../writing/index.html">All writing, newest first</a>
+      <a class="sl" href="../../../research/research-document.html">Research document catalogue</a>
+      <a class="sl" href="../../../resources/presentations.html">Talks &amp; presentations</a>
+      <a class="sl" href="../../../feed.xml">RSS feed</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl" href="../../../research/index.html">Research<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../research/index.html">Research hub</a>
+      <a class="sl" href="../../../research/cyber-security.html">Cyber-security &amp; threat modeling</a>
+      <a class="sl" href="../../../research/development-and-genai.html">AI &amp; development</a>
+      <a class="sl" href="../../../research/graphs.html">Knowledge graphs</a>
+      <a class="sl" href="../../../research/the-future-of-news.html">The future of news</a>
+      <a class="sl" href="../../../research/europe-and-learning.html">Europe &amp; learning</a>
+      <a class="sl" href="../../../research/projects.html">Projects &amp; innovation lab</a>
+      <a class="sl" href="../../../research/organizational-transformation.html">Organisational transformation</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl" href="../../../building/index.html">Building<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../building/index.html#companies">Companies</a>
+      <a class="sl" href="../../../building/index.html#open-source">Open source</a>
+      <a class="sl" href="../../../building/index.html#network">The sgit.ai network</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl" href="../../../about/index.html">About<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../about/index.html">About Dinis Cruz</a>
+      <a class="sl" href="../../../admin/index.html">How this site is built</a>
+      <a class="sl" href="../../../admin/migration.html">Moving from docs.diniscruz.ai</a>
+      <a class="sl" href="../../../admin/versions.html">Release history</a>
+      </div>
+    </div>
+  </div>
+  <a class="gh" href="https://github.com/DinisCruz/DinisCruz-AI__Website">★ GitHub</a>
+  <script src="../../../assets/nav.js" defer></script>
+</div></nav>
+
+<main class="doc essay">
+<div class="crumb"><a href="../../../index.html">diniscruz.ai</a> / <a href="../../../writing/index.html">writing</a> / <a href="../../../research/graphs.html">knowledge graphs</a></div>
+<h1>Using Ephemeral Neo4j Instances for a Cybersecurity Risk Graph Scenario</h1>
+<p class="docline">By <b>Dinis Cruz and ChatGPT Deep Research</b> · <time datetime="2025-06-25">25 June 2025</time> · 22 min read</p>
+<p class="dbtns"><a class="dbtn dbtn-pdf" href="https://files.diniscruz.ai/github/pdf/2025/06/25/using-ephemeral-neo4j-instances-for-a-cybersecurity-risk-graph-scenario.pdf">PDF</a> <a class="dbtn dbtn-linkedin" href="https://www.linkedin.com/posts/diniscruz_using-ephemeral-neo4j-instances-for-cybersecurity-activity-7343969750667976705-OLJF">LinkedIn post</a></p>
+<details class="toc"><summary>Contents · 4 sections</summary><ol><li><a href="#introduction-and-motivation">Introduction and Motivation</a></li><li><a href="#from-llms-as-graphs-to-neo4j-on-demand">From LLMs as Graphs to Neo4j on Demand</a></li><li><a href="#tutorial-building-a-cybersecurity-risk-graph-on-an-ephemeral-neo4j-instance">Tutorial: Building a Cybersecurity Risk Graph on an Ephemeral Neo4j Instance</a></li><li><a href="#conclusion">Conclusion</a></li></ol></details>
+<article class="prose">
+<h2 id="introduction-and-motivation">Introduction and Motivation</h2>
+<p>Graph thinkers – those who naturally conceptualize information as networks of nodes and relationships – can greatly benefit from on-demand graph analytics. Recently, we demonstrated how a Large Language Model (LLM) could serve as an <strong>ephemeral graph database</strong> to help non-programmers build and query a risk management knowledge graph using only natural language. In that approach, the LLM acted as a transient graph engine: nodes and edges existed only in the AI’s conversational context (no external database required). This lowers the barrier to entry – no installation or query language needed – but comes with limitations: the “database” resets when the AI session ends, and we rely on the LLM’s internal reasoning rather than a true graph query engine.</p>
+<p>In this white paper, we bridge that conceptual idea into a practical <strong>Neo4j</strong> implementation. We show how to run the same cybersecurity risk graph scenario on ephemeral (temporary) Neo4j instances. By “ephemeral,” we mean spinning up a Neo4j graph database on-demand, using it to perform our analysis, and then tearing it down – much like the LLM’s transient memory, but now with a real database. This approach provides the best of both worlds: the full power of a graph database (with Cypher queries, persistence options, and graph algorithms) combined with the flexibility of on-demand usage (no always-on server required). Crucially, it aligns with emerging trends in cloud architecture – treating the database as a disposable, <strong>serverless</strong> component. As described in our technical plan for ephemeral Neo4j on AWS, the idea is to <strong>pay for graph processing only when it runs</strong> and shut everything down when done. Neo4j itself is moving in this direction with offerings like Aura Graph Analytics, which provides <strong>on-demand, ephemeral compute</strong> for graph algorithms.</p>
+<p><strong>Use Case:</strong> We will walk through a real-world example – modeling a cybersecurity risk management scenario – in a step-by-step, workshop style. This is the same scenario initially built with an LLM, now implemented on Neo4j. The scenario involves a <em>“User accounts can be compromised”</em> risk, and expands to include causes (why the risk might happen), impacts (consequences if it happens), controls (mitigations to prevent it), assets (systems affected), and stakeholders (people responsible). By the end, we will have constructed a rich knowledge graph that connects a technical IT risk to business-level consequences and owners. We’ll demonstrate how to create this graph in Neo4j, visualize it, and query it to gain insights. All of this can be done on a temporary Neo4j instance that you spin up just for this analysis – for example, using a Docker container or a Neo4j Aura free tier instance – and discard afterward, achieving true on-demand graph analytics.</p>
+<p><strong>Target Audience:</strong> This guide is aimed at Neo4j users, engineers, and graph enthusiasts. We assume you have basic familiarity with Neo4j and Cypher, and we focus on the <em>implementation details</em> of the ephemeral graph concept. The goal is to empower technical users to replicate the agility of the LLM-based approach within a proper Neo4j environment. By following this workshop, you can run complex graph transformations without maintaining a permanent database server, and integrate the results into your workflows with full provenance and control.</p>
+<h2 id="from-llms-as-graphs-to-neo4j-on-demand">From LLMs as Graphs to Neo4j on Demand</h2>
+<p>Before diving into the tutorial, it’s worth contrasting the LLM-as-graph approach with our Neo4j-based approach:</p>
+<ul>
+<li>
+<p><strong>Ephemeral LLM Graphs:</strong> In the LLM approach, the graph lives in the model’s memory. Users “create” nodes and relationships by prompting the LLM in plain English (e.g. <em>“Create a node called User and a node called Account Compromise”</em>). The LLM interprets and internally represents this structured data. The benefit is a completely natural language interface – no Cypher or setup needed – which makes graph building accessible to non-coders. However, this ephemeral graph is <strong>volatile</strong> and <strong>opaque</strong>. There’s no persistent database to query with standard tools, and the fidelity of the graph (and any query results) depends on the LLM’s correctness. Complex or large graphs may exceed the context window limits of the model.</p>
+</li>
+<li>
+<p><strong>Ephemeral Neo4j Instances:</strong> In our approach, we spin up a real Neo4j database on demand. This could be done locally (using a Docker container or Neo4j Sandbox for a quick temporary instance) or in the cloud (using an orchestrated ephemeral instance as described in our AWS architecture). The user will use Cypher queries to create nodes and relationships (which requires some technical skill), but gains the <strong>accuracy and power of Neo4j</strong> – including ACID transactions, indexing, Cypher query language, and integration with graph visualization tools. The graph can be saved (if desired) or exported, but by default we treat the database as <strong>throwaway</strong>: once the analysis is done, we extract any results needed and shut the instance down. This means no ongoing resource usage or cost when not in use, analogous to how the LLM’s graph vanished after the conversation.</p>
+</li>
+</ul>
+<p>In summary, using an LLM as a graph DB is like scribbling on a whiteboard that an AI holds up – quick and flexible but temporary. Using an ephemeral Neo4j is like booting up a dedicated tool for a task – a bit more effort to start, but you get a reliable engine for as long as you need it, then you clean up. As we proceed, we’ll see how to practically create the same risk graph with Neo4j and discuss the trade-offs and insights gained.</p>
+<h2 id="tutorial-building-a-cybersecurity-risk-graph-on-an-ephemeral-neo4j-instance">Tutorial: Building a Cybersecurity Risk Graph on an Ephemeral Neo4j Instance</h2>
+<p>We will now recreate the cybersecurity risk scenario step-by-step in Neo4j. The scenario revolves around the risk statement: <strong>“User accounts can be compromised.”</strong> We’ll start from this core risk and progressively expand the graph to include impacts, causes, controls, assets, and stakeholders, simulating a realistic threat modeling exercise. For each step, we provide the Cypher queries to input the data and some guidance on visualizing or querying the results in Neo4j.</p>
+<p><strong>Ephemeral Setup:</strong> To follow along, you can launch a fresh Neo4j instance in a few ways:</p>
+<ul>
+<li><strong>Locally via Docker:</strong> For example, run <code>docker run -p 7474:7474 -p 7687:7687 -e NEO4J_AUTH=none neo4j:5</code> to start a Neo4j database locally with no authentication. This is quick and disposable – when you stop the container, the database is gone (ephemeral storage).</li>
+<li><strong>Neo4j Sandbox or Aura:</strong> Alternatively, use the Neo4j Sandbox (a temporary cloud instance provided by Neo4j) or Neo4j AuraDB Free. These give you a time-limited database online without installation.</li>
+<li><strong>Cloud VM/Container:</strong> For a more automated ephemeral setup (as per our AWS architecture), you could script the launch of a Neo4j container on AWS Fargate or an EC2 VM, load data, and destroy it after – but for workshop purposes, a local Docker or Sandbox is simpler.</li>
+</ul>
+<p>Once you have Neo4j running, connect to it (e.g., open Neo4j Browser at <a href="http://localhost:7474">http://localhost:7474</a> if using Docker locally). The Neo4j Browser provides a web interface where you can enter Cypher queries, see textual results, and visualize graph data as nodes and relationships.</p>
+<p><strong>Note on Data Model:</strong> We will use labels to categorize nodes (e.g. <code>Risk</code>, <code>Persona</code>, <code>Event</code>, <code>Impact</code>, <code>Control</code>, <code>Cause</code>, <code>Asset</code>, <code>Role</code>, <code>Incident</code>) corresponding to their roles in the scenario. Relationships will have descriptive types (e.g. <code>IMPacts</code>, <code>INVOLVES</code>, <code>LEADS_TO</code>, <code>MITIGATES</code>, etc.). This explicit schema is something we define as we go – similar to how the LLM inferred types on the fly. In Neo4j, you can create nodes and relationships without a predefined schema, which gives us flexibility to mirror the evolving graph thinking process.</p>
+<h3 id="step-1-initialize-an-empty-graph">Step 1: Initialize an Empty Graph</h3>
+<p>When using an LLM, we began by “initializing” the graph engine in the conversation (essentially instructing the AI to start with a blank slate memory). In Neo4j, if you just started a fresh instance, you already have an empty database. We should ensure no residual data is present (especially if reusing a sandbox). You can execute a cleanup query to remove all existing nodes and relationships (skip this on a fresh DB):</p>
+<pre><code class="language-cypher">MATCH (n) DETACH DELETE n;
+</code></pre>
+<p>This will detach and delete all nodes in the database, giving us a true blank slate. Neo4j will confirm by returning the number of nodes deleted. We are now ready to start adding our risk data.</p>
+<h3 id="step-2-creating-nodes-entities">Step 2: Creating Nodes (Entities)</h3>
+<p>Our first task is to capture the basic entities from the risk statement <em>“User accounts can be compromised.”</em> This statement implies a few key concepts:</p>
+<ul>
+<li>A <strong>Risk</strong> node representing the overall issue (the fact that user accounts can be compromised).</li>
+<li>An <strong>Actor/Persona</strong> node for <em>User</em> (who is impacted by the risk).</li>
+<li>An <strong>Event/Outcome</strong> node for <em>Account Compromise</em> (the kind of incident we fear).</li>
+</ul>
+<p>In the LLM approach, we simply described these nodes in natural language and the AI listed them. Here, we explicitly create them in Neo4j:</p>
+<pre><code class="language-cypher">// Create the core risk node
+CREATE (r:Risk {name: &quot;User accounts can be compromised&quot;});
+// Create related persona and event nodes
+CREATE (u:Persona {name: &quot;User&quot;});
+CREATE (e:Event {name: &quot;Account Compromise&quot;});
+</code></pre>
+<p>Run these queries (you can execute them one by one or all together). Neo4j will create three nodes. Each node has a <code>name</code> property and a label indicating its type. After creation, you might verify the nodes exist:</p>
+<pre><code class="language-cypher">MATCH (n) RETURN labels(n) AS Labels, n.name AS Name;
+</code></pre>
+<p>This query fetches all nodes and lists their labels and names. You should see something like:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Labels</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Risk</code></td>
+<td>User accounts can be compromised</td>
+</tr>
+<tr>
+<td><code>Persona</code></td>
+<td>User</td>
+</tr>
+<tr>
+<td><code>Event</code></td>
+<td>Account Compromise</td>
+</tr>
+</tbody>
+</table></div>
+<p>At this stage, we have our primary entities, but they are isolated. In the Neo4j Browser’s graph view, if you click the small circle icon next to each result row (or run a query returning the nodes), you’ll see three separate nodes with no connections. The power of a graph comes from linking these nodes with relationships, which is our next step.</p>
+<h3 id="step-3-establishing-basic-relationships">Step 3: Establishing Basic Relationships</h3>
+<p>Now we will link the nodes to reflect the meaning of the risk statement. From <em>“User accounts can be compromised”</em>, we can infer:</p>
+<ul>
+<li>The risk <strong>impacts</strong> the User (if accounts are compromised, users are affected).</li>
+<li>The risk <strong>involves</strong> an Account Compromise event (that’s the negative outcome described).</li>
+</ul>
+<p>In Neo4j, relationships are directed and have a type. We’ll create two relationships:</p>
+<ol>
+<li><code>(:Risk)-[:IMPACTS]-&gt;(:Persona)</code> to show the Risk impacts the User.</li>
+<li><code>(:Risk)-[:INVOLVES]-&gt;(:Event)</code> to show the Risk is about the Account Compromise event.</li>
+</ol>
+<p>We can add these by matching existing nodes and creating relationships between them:</p>
+<pre><code class="language-cypher">MATCH (r:Risk {name: &quot;User accounts can be compromised&quot;}), 
+      (u:Persona {name: &quot;User&quot;})
+CREATE (r)-[:IMPACTS]-&gt;(u);
+
+MATCH (r:Risk {name: &quot;User accounts can be compromised&quot;}), 
+      (e:Event {name: &quot;Account Compromise&quot;})
+CREATE (r)-[:INVOLVES]-&gt;(e);
+</code></pre>
+<p>After running these, the database now has two relationships. We can ask Neo4j to show a summary of the graph. For example:</p>
+<pre><code class="language-cypher">MATCH (r:Risk {name: &quot;User accounts can be compromised&quot;})-[]-&gt;(x) 
+RETURN r.name AS Risk, type(last(relationships(path))) AS Relationship, x.name AS RelatedEntity;
+</code></pre>
+<p><em>(This query finds any relationship from the risk node to another node and returns the type and target's name.)</em> The result should list something like:</p>
+<ul>
+<li><strong>Risk:</strong> "User accounts can be compromised" — <strong>Relationship:</strong> IMPACTS — <strong>RelatedEntity:</strong> "User"</li>
+<li><strong>Risk:</strong> "User accounts can be compromised" — <strong>Relationship:</strong> INVOLVES — <strong>RelatedEntity:</strong> "Account Compromise"</li>
+</ul>
+<p>In the Neo4j Browser graphical view, if you now visualize the Risk node with its neighbors (e.g. by clicking on the Risk node and expanding relationships), you will see a mini network: the Risk node connected to the User node and the Account Compromise node. This corresponds to the textual summary above. We’ve effectively structured the basic risk statement into a graph format. In the LLM-based approach, this was done via conversation; here we did it with a couple of Cypher commands.</p>
+<p>This small graph is our starting point. Next, we will expand the graph in two directions: downstream impacts (what happens if the risk materializes) and upstream causes (why the risk might happen), followed by controls and context.</p>
+<h3 id="step-4-expanding-the-graph-adding-impacts-and-consequences">Step 4: Expanding the Graph – Adding Impacts and Consequences</h3>
+<p>In risk management, a single technical risk can cascade into multiple <strong>impacts</strong>. We will model the consequences if <em>“User accounts are compromised”</em>. Based on our scenario, consider these impact points:</p>
+<ul>
+<li><strong>Sensitive Data Exposed</strong> – if accounts are compromised, sensitive user/customer data could be accessed by an attacker.</li>
+<li><strong>Breaks GDPR Compliance</strong> – exposure of personal data likely violates regulations (like GDPR).</li>
+<li><strong>Financial Impact (~ $500K)</strong> – the data breach and compliance fines could result in an estimated financial loss of, say, $500K.</li>
+<li><strong>Company Performance Risk</strong> – ultimately, such a breach can affect the company’s performance (e.g., reputational damage, stock impact). We use this as a high-level business risk node.</li>
+</ul>
+<p>We will create nodes for each of these and then link them to depict the chain of consequences:</p>
+<ul>
+<li><em>Account Compromise</em> <strong>LEADS_TO</strong> <em>Sensitive Data Exposed</em></li>
+<li><em>Sensitive Data Exposed</em> <strong>CAUSES</strong> <em>Breaks GDPR Compliance</em></li>
+<li><em>Sensitive Data Exposed</em> <strong>RESULTS_IN</strong> <em>Financial Impact (~ $500K)</em></li>
+<li><em>Breaks GDPR Compliance</em> <strong>RESULTS_IN</strong> <em>Financial Impact (~ $500K)</em> (regulatory fines contribute to the financial loss)</li>
+<li><em>Financial Impact (~ $500K)</em> <strong>CONTRIBUTES_TO</strong> <em>Company Performance Risk</em></li>
+</ul>
+<p>Let’s execute this in Cypher. We can do it in batches:</p>
+<pre><code class="language-cypher">// Create impact and consequence nodes
+CREATE (i1:Impact {name: &quot;Sensitive Data Exposed&quot;}),
+       (c1:ComplianceImpact {name: &quot;Breaks GDPR Compliance&quot;}),
+       (b:Impact {name: &quot;Financial Impact (~ $500K)&quot;}),
+       (tr:Impact {name: &quot;Company Performance Risk&quot;}); 
+
+// Create relationships for the consequence chain
+MATCH (e:Event {name: &quot;Account Compromise&quot;}),
+      (i1:Impact {name: &quot;Sensitive Data Exposed&quot;}),
+      (c1:ComplianceImpact {name: &quot;Breaks GDPR Compliance&quot;}),
+      (b:Impact {name: &quot;Financial Impact (~ $500K)&quot;}),
+      (tr:Impact {name: &quot;Company Performance Risk&quot;})
+CREATE (e)-[:LEADS_TO]-&gt;(i1),
+       (i1)-[:CAUSES]-&gt;(c1),
+       (i1)-[:RESULTS_IN]-&gt;(b),
+       (c1)-[:RESULTS_IN]-&gt;(b),
+       (b)-[:CONTRIBUTES_TO]-&gt;(tr);
+</code></pre>
+<p>Here we introduced a new label <code>ComplianceImpact</code> for the GDPR-related node, to distinguish it as a compliance issue (you could also just use <code>Impact</code>, but giving it a separate label can be useful for clarity). After running these commands, our graph has grown significantly. We can inspect the new subgraph by querying, for example, all impacts stemming from the Account Compromise event:</p>
+<pre><code class="language-cypher">MATCH (e:Event {name: &quot;Account Compromise&quot;})-[:LEADS_TO|:CAUSES|:RESULTS_IN|:CONTRIBUTES_TO*]-&gt;(impact) 
+RETURN DISTINCT impact.name AS ImpactNode;
+</code></pre>
+<p>This query traverses all outgoing impact-related links from <em>Account Compromise</em> and should return:</p>
+<ul>
+<li>"Sensitive Data Exposed"</li>
+<li>"Breaks GDPR Compliance"</li>
+<li>"Financial Impact (~ $500K)"</li>
+<li>"Company Performance Risk"</li>
+</ul>
+<p>This confirms our consequence chain. To visualize the hierarchy, you can also step through the chain in the Browser: start from <em>Account Compromise</em>, expand the <code>LEADS_TO</code> relationship to see <em>Sensitive Data Exposed</em>, then expand its outgoing relationships, and so on. You will see a branching structure: Account Compromise → Sensitive Data Exposed → (two branches: Breaks GDPR Compliance and Financial Impact) → and both compliance and financial nodes ultimately connect to Company Performance Risk.</p>
+<p>What we’ve modeled is the reasoning path from a technical event to business risk. As noted in the original LLM-based analysis, this kind of explicit linkage is powerful for explaining <em>why</em> a low-level security issue matters in broader terms. In a typical spreadsheet risk register, such relationships might be implicit or lost, but our graph makes them transparent.</p>
+<h3 id="step-5-incorporating-causes-and-preventive-controls">Step 5: Incorporating Causes and Preventive Controls</h3>
+<p>Now that we have the impact side, we turn to the <strong>cause</strong> side – understanding why <em>“User accounts can be compromised”</em> in the first place, and what controls exist (or could exist) to prevent it. We’ll add contributing factors (causes) to the <em>Account Compromise</em> event, and then link mitigation controls to those causes.</p>
+<p>Based on our scenario, three primary causes were identified:</p>
+<ol>
+<li><strong>Credentials Leaked</strong> – user passwords/credentials are obtained by attackers (e.g., via phishing or a data leak).</li>
+<li><strong>No MFA Enabled</strong> – accounts did not have Multi-Factor Authentication, so a stolen password is enough to compromise them.</li>
+<li><strong>Threat Not Detected</strong> – the breach wasn’t quickly caught by monitoring systems, allowing the attacker to persist.</li>
+</ol>
+<p>We model each cause as a node and link them into the graph:</p>
+<ul>
+<li><em>Credentials Leaked</em> <strong>CONTRIBUTES_TO</strong> <em>Account Compromise</em></li>
+<li><em>No MFA Enabled</em> <strong>ALLOWS</strong> <em>Account Compromise</em></li>
+<li><em>Threat Not Detected</em> <strong>AGGRAVATES</strong> <em>Account Compromise</em></li>
+</ul>
+<p>Next, for each cause we have an associated preventive control (a policy or measure that mitigates that cause):</p>
+<ul>
+<li>To mitigate <strong>Credentials Leaked</strong>, implement a <strong>Password Policy</strong> (e.g., strong passwords, rotations) and conduct user security training (for simplicity, we’ll focus on the policy).</li>
+<li>To mitigate <strong>No MFA Enabled</strong>, enforce an <strong>MFA Policy</strong> (requiring multi-factor auth on accounts).</li>
+<li>To mitigate <strong>Threat Not Detected</strong>, have a <strong>Security Monitoring Procedure</strong> (ensuring security alerts and incident response are in place).</li>
+</ul>
+<p>We will create cause nodes and control nodes, then link each control to the cause it mitigates. Additionally, many organizations tie their controls to industry standards or compliance requirements. In our scenario, assume these controls are part of an <strong>ISO 27001 Standard</strong>:</p>
+<ul>
+<li>We add a node for "ISO 27001 Standard".</li>
+<li>We link the standard to each control (relationship like <strong>INCLUDES_CONTROL</strong> or similar) to show these policies are required by the standard.</li>
+</ul>
+<p>Let’s execute these additions:</p>
+<pre><code class="language-cypher">// Create cause nodes
+CREATE (cL:Cause {name: &quot;Credentials Leaked&quot;}),
+       (cM:Cause {name: &quot;No MFA Enabled&quot;}),
+       (cD:Cause {name: &quot;Threat Not Detected&quot;});
+
+// Link causes to the Account Compromise event
+MATCH (e:Event {name: &quot;Account Compromise&quot;}),
+      (cL:Cause {name: &quot;Credentials Leaked&quot;}),
+      (cM:Cause {name: &quot;No MFA Enabled&quot;}),
+      (cD:Cause {name: &quot;Threat Not Detected&quot;})
+CREATE (cL)-[:CONTRIBUTES_TO]-&gt;(e),
+       (cM)-[:ALLOWS]-&gt;(e),
+       (cD)-[:AGGRAVATES]-&gt;(e);
+
+// Create control nodes
+CREATE (p:Control {name: &quot;Password Policy&quot;}),
+       (mfa:Control {name: &quot;MFA Policy&quot;}),
+       (mon:Control {name: &quot;Security Monitoring Procedure&quot;}),
+       (iso:Standard {name: &quot;ISO 27001 Standard&quot;});
+
+// Link controls to causes (mitigations)
+MATCH (cL:Cause {name: &quot;Credentials Leaked&quot;}), 
+      (cM:Cause {name: &quot;No MFA Enabled&quot;}), 
+      (cD:Cause {name: &quot;Threat Not Detected&quot;}),
+      (p:Control {name: &quot;Password Policy&quot;}), 
+      (mfa:Control {name: &quot;MFA Policy&quot;}), 
+      (mon:Control {name: &quot;Security Monitoring Procedure&quot;})
+CREATE (p)-[:MITIGATES]-&gt;(cL),
+       (mfa)-[:MITIGATES]-&gt;(cM),
+       (mon)-[:MITIGATES]-&gt;(cD);
+
+// Link standard to controls
+MATCH (iso:Standard {name: &quot;ISO 27001 Standard&quot;}),
+      (p:Control {name: &quot;Password Policy&quot;}),
+      (mfa:Control {name: &quot;MFA Policy&quot;}),
+      (mon:Control {name: &quot;Security Monitoring Procedure&quot;})
+CREATE (iso)-[:INCLUDES_CONTROL]-&gt;(p),
+       (iso)-[:INCLUDES_CONTROL]-&gt;(mfa),
+       (iso)-[:INCLUDES_CONTROL]-&gt;(mon);
+</code></pre>
+<p>We added three cause nodes, three control nodes, and one standard node, plus the relationships connecting them appropriately. Our graph now has an upstream side (causes) feeding into the risk event, and a downstream side (impacts) leading out of the risk event, with controls mitigating the causes.</p>
+<p>To verify, we can query a couple of things:</p>
+<ul>
+<li>List the causes linked to <em>Account Compromise</em>:</li>
+</ul>
+<p><code>cypher
+  MATCH (cause:Cause)-[r]-&gt;(e:Event {name:"Account Compromise"}) 
+  RETURN cause.name AS Cause, type(r) AS Relationship;</code></p>
+<p>Expected results (order may vary):</p>
+<ul>
+<li>Cause: "Credentials Leaked" – Relationship: CONTRIBUTES_TO</li>
+<li>Cause: "No MFA Enabled" – Relationship: ALLOWS</li>
+<li>
+<p>Cause: "Threat Not Detected" – Relationship: AGGRAVATES</p>
+</li>
+<li>
+<p>List controls mitigating each cause:</p>
+</li>
+</ul>
+<p><code>cypher
+  MATCH (ctrl:Control)-[:MITIGATES]-&gt;(cause:Cause) 
+  RETURN ctrl.name AS Control, cause.name AS MitigatedCause;</code></p>
+<p>Expected:</p>
+<ul>
+<li>Control: "Password Policy" mitigates "Credentials Leaked"</li>
+<li>Control: "MFA Policy" mitigates "No MFA Enabled"</li>
+<li>
+<p>Control: "Security Monitoring Procedure" mitigates "Threat Not Detected"</p>
+</li>
+<li>
+<p>Check the standard linkage:</p>
+</li>
+</ul>
+<p><code>cypher
+  MATCH (:Standard {name:"ISO 27001 Standard"})-[:INCLUDES_CONTROL]-&gt;(ctrl:Control) 
+  RETURN ctrl.name AS ISO_Control;</code></p>
+<p>Expected controls under ISO 27001:
+  "Password Policy", "MFA Policy", "Security Monitoring Procedure".</p>
+<p>At this point, the graph is quite comprehensive. If you visualize the whole thing in Neo4j Browser (by doing something like <code>MATCH (n) RETURN n</code> and then using the auto-layout), you will see <em>Account Compromise</em> roughly in the center:</p>
+<ul>
+<li>To its left/upstream, the cause nodes (Credentials Leaked, No MFA, Threat Not Detected) each connected upward to their mitigating controls and further up to the ISO standard.</li>
+<li>To its right/downstream, the impact nodes (Sensitive Data Exposed, etc.) leading to the Company Performance Risk.</li>
+<li>Above or central, the Risk node “User accounts can be compromised” linking to the Account Compromise event and the User persona.</li>
+<li>We also have the persona “User” hanging off the Risk (with no further connections yet).</li>
+</ul>
+<p>This mirrors the diagram we had the LLM generate in the previous approach – except now it’s a live Neo4j graph we can query and update at will. We have one more dimension to add: the human and asset context that grounds this abstract risk in reality.</p>
+<h3 id="step-6-adding-assets-and-stakeholders">Step 6: Adding Assets and Stakeholders</h3>
+<p>So far, our graph is conceptual: it doesn’t yet show which systems and people in our organization are involved. In practice, a risk scenario needs to be tied to actual assets (applications, databases, etc.) and owners (the people responsible for those assets). We will introduce two example systems and their owners:</p>
+<ul>
+<li><strong>HR System</strong> – an internal system holding employee data. It has good security (strong passwords, MFA enabled).</li>
+<li><strong>Marketing System</strong> – a system holding customer data for marketing campaigns. It has a weakness: no MFA enforced (just strong passwords).</li>
+<li><strong>HR Manager</strong> – role/person responsible for the HR System.</li>
+<li><strong>Marketing Manager</strong> – responsible for the Marketing System.</li>
+<li><strong>Chief People Officer (CPO)</strong> – the HR Manager reports to this executive.</li>
+<li><strong>Chief Marketing Officer (CMO)</strong> – the Marketing Manager reports to this executive.</li>
+</ul>
+<p>Now, we connect these to our risk graph:</p>
+<ul>
+<li>Both systems are <strong>at risk of</strong> the <em>Account Compromise</em> event (since user accounts in those systems could be taken over if credentials leak). We model <code>(:Asset)-[:AT_RISK_OF]-&gt;(:Event)</code>.</li>
+<li>
+<p>Each system <strong>implements</strong> certain controls:</p>
+</li>
+<li>
+<p>HR System implements Password Policy and MFA Policy.</p>
+</li>
+<li>Marketing System implements Password Policy but (not) MFA Policy. We can either omit the MFA link to indicate the gap or explicitly represent a lack (for simplicity, we just won’t create an MFA implementation for Marketing System, meaning it’s missing).</li>
+<li>
+<p>Ownership relationships:</p>
+</li>
+<li>
+<p>HR Manager <strong>OWNS</strong> HR System.</p>
+</li>
+<li>Marketing Manager <strong>OWNS</strong> Marketing System.</li>
+<li>HR Manager <strong>REPORTS_TO</strong> CPO.</li>
+<li>Marketing Manager <strong>REPORTS_TO</strong> CMO.</li>
+</ul>
+<p>Let’s add these to the graph:</p>
+<pre><code class="language-cypher">// Create asset and role nodes
+CREATE (hr:Asset {name: &quot;HR System&quot;}),
+       (mkt:Asset {name: &quot;Marketing System&quot;}),
+       (hrMgr:Role {name: &quot;HR Manager&quot;}),
+       (mktMgr:Role {name: &quot;Marketing Manager&quot;}),
+       (cpo:Role {name: &quot;Chief People Officer&quot;}),
+       (cmo:Role {name: &quot;Chief Marketing Officer&quot;});
+
+// Link assets to controls they implement
+MATCH (hr:Asset {name: &quot;HR System&quot;}), (mkt:Asset {name: &quot;Marketing System&quot;}),
+      (pwd:Control {name: &quot;Password Policy&quot;}), (mfa:Control {name: &quot;MFA Policy&quot;})
+CREATE (hr)-[:IMPLEMENTS]-&gt;(pwd),
+       (hr)-[:IMPLEMENTS]-&gt;(mfa),
+       (mkt)-[:IMPLEMENTS]-&gt;(pwd);
+// (Note: We do NOT create (mkt)-[:IMPLEMENTS]-&gt;(mfa) to reflect that Marketing lacks MFA)
+
+// Link assets to the risk event (at risk of compromise)
+MATCH (e:Event {name: &quot;Account Compromise&quot;}),
+      (hr:Asset {name: &quot;HR System&quot;}), (mkt:Asset {name: &quot;Marketing System&quot;})
+CREATE (hr)-[:AT_RISK_OF]-&gt;(e),
+       (mkt)-[:AT_RISK_OF]-&gt;(e);
+
+// Link ownership of assets
+MATCH (hrMgr:Role {name: &quot;HR Manager&quot;}), (mktMgr:Role {name: &quot;Marketing Manager&quot;}),
+      (hr:Asset {name: &quot;HR System&quot;}), (mkt:Asset {name: &quot;Marketing System&quot;})
+CREATE (hrMgr)-[:OWNS]-&gt;(hr),
+       (mktMgr)-[:OWNS]-&gt;(mkt);
+
+// Link reporting structure
+MATCH (hrMgr:Role {name: &quot;HR Manager&quot;}), (mktMgr:Role {name: &quot;Marketing Manager&quot;}),
+      (cpo:Role {name: &quot;Chief People Officer&quot;}), (cmo:Role {name: &quot;Chief Marketing Officer&quot;})
+CREATE (hrMgr)-[:REPORTS_TO]-&gt;(cpo),
+       (mktMgr)-[:REPORTS_TO]-&gt;(cmo);
+</code></pre>
+<p>Now we have grounded the graph in reality:</p>
+<ul>
+<li>The <strong>HR System</strong> and <strong>Marketing System</strong> nodes attach to the controls and the risk event. Notably, the Marketing System lacks an <code>IMPLEMENTS MFA Policy</code> relationship, which is an intentional gap.</li>
+<li>The <strong>User accounts can be compromised</strong> risk now can be contextualized: it affects those two systems (and those systems have different preparedness levels).</li>
+<li>The <strong>stakeholder hierarchy</strong> is captured: each system has an owner, and those owners report to higher management. This will be useful when determining who needs to know about problems.</li>
+</ul>
+<p>To check our additions:</p>
+<ul>
+<li>See which systems are at risk of account compromise:</li>
+</ul>
+<p><code>cypher
+  MATCH (asset:Asset)-[:AT_RISK_OF]-&gt;(:Event {name:"Account Compromise"})
+  RETURN asset.name AS System, "at risk of Account Compromise" AS RiskRelation;</code></p>
+<p>Should list "HR System" and "Marketing System".</p>
+<ul>
+<li>Confirm control implementations:</li>
+</ul>
+<p><code>cypher
+  MATCH (asset:Asset)-[:IMPLEMENTS]-&gt;(ctrl:Control) 
+  RETURN asset.name AS System, collect(ctrl.name) AS ImplementedControls;</code></p>
+<p>Expect:</p>
+<ul>
+<li>HR System implements ["Password Policy","MFA Policy"]</li>
+<li>Marketing System implements ["Password Policy"]</li>
+</ul>
+<p>(No MFA in Marketing’s list, indicating the gap.)</p>
+<ul>
+<li>Check ownership:</li>
+</ul>
+<p><code>cypher
+  MATCH (mgr:Role)-[:OWNS]-&gt;(asset:Asset) 
+  RETURN mgr.name AS Owner, asset.name AS Asset;</code></p>
+<p>Expect:</p>
+<ul>
+<li>"HR Manager" owns "HR System"</li>
+<li>
+<p>"Marketing Manager" owns "Marketing System"</p>
+</li>
+<li>
+<p>Check reporting:</p>
+</li>
+</ul>
+<p><code>cypher
+  MATCH (mgr:Role)-[:REPORTS_TO]-&gt;(exec:Role) 
+  RETURN mgr.name AS Manager, exec.name AS Executive;</code></p>
+<p>Expect:</p>
+<ul>
+<li>"HR Manager" reports to "Chief People Officer"</li>
+<li>"Marketing Manager" reports to "Chief Marketing Officer"</li>
+</ul>
+<p>Our graph now connects technology, people, and policy. It’s evident that the Marketing System is in a riskier state (since it lacks the MFA control), which could be flagged in an analysis. We have effectively set the stage to <strong>simulate an incident</strong>: a credential leak affecting these systems, and then use the graph to deduce consequences and actions.</p>
+<h3 id="step-7-simulating-an-incident-and-querying-the-graph">Step 7: Simulating an Incident and Querying the Graph</h3>
+<p>Finally, we introduce an incident to test our risk model. Imagine the following scenario: A breach monitoring service reports that a dump of company usernames and hashed passwords has appeared on the internet – a credential leak has occurred (say in June 2025). Among the leaked credentials are accounts from both the HR System and the Marketing System (five accounts from each, for example). This incident can potentially trigger account compromises on those systems.</p>
+<p>We will add an <strong>Incident</strong> node to represent this credential leak event, and connect it to our graph:</p>
+<ul>
+<li><em>Credential Leak (June 2025)</em> <strong>AFFECTS</strong> <em>HR System</em> (with a detail like "5 accounts" as part of the relationship or node properties).</li>
+<li><em>Credential Leak (June 2025)</em> <strong>AFFECTS</strong> <em>Marketing System</em>.</li>
+<li><em>Credential Leak (June 2025)</em> <strong>TRIGGERS</strong> <em>Account Compromise</em> (since leaked credentials could lead to accounts being taken over).</li>
+</ul>
+<p>Let’s add the incident:</p>
+<pre><code class="language-cypher">// Create incident node
+CREATE (incident:Incident {name: &quot;Credential Leak (June 2025)&quot;});
+
+// Link incident to affected assets
+MATCH (incident:Incident {name:&quot;Credential Leak (June 2025)&quot;}),
+      (hr:Asset {name:&quot;HR System&quot;}), (mkt:Asset {name:&quot;Marketing System&quot;})
+CREATE (incident)-[:AFFECTS {accounts:5}]-&gt;(hr),
+       (incident)-[:AFFECTS {accounts:5}]-&gt;(mkt);
+
+// Link incident to risk event
+MATCH (incident:Incident {name:&quot;Credential Leak (June 2025)&quot;}),
+      (e:Event {name:&quot;Account Compromise&quot;})
+CREATE (incident)-[:TRIGGERS]-&gt;(e);
+</code></pre>
+<p>We added a property <code>{accounts:5}</code> on the AFFECTS relationships to denote the number of accounts compromised in each system, just as an example of including incident details.</p>
+<p>Now, with the incident in place, we can <strong>query the graph to answer important questions</strong>. Unlike the LLM approach where we asked the AI in natural language and it reasoned over the implicit graph，here we can write Cypher queries to get precise answers from the data.</p>
+<p><strong>1. Which system is at highest risk now?</strong>
+Given the leak, both systems have some accounts exposed. However, the Marketing System lacks MFA, making it more vulnerable (those leaked passwords can be directly used by attackers). We can find assets that do <em>not</em> implement MFA:</p>
+<pre><code class="language-cypher">MATCH (asset:Asset)-[:AT_RISK_OF]-&gt;(:Event {name:&quot;Account Compromise&quot;})
+OPTIONAL MATCH (asset)-[:IMPLEMENTS]-&gt;(:Control {name:&quot;MFA Policy&quot;})
+WITH asset, COUNT(*) AS hasMFA
+WHERE hasMFA = 0
+RETURN asset.name AS AssetWithoutMFA;
+</code></pre>
+<p>This will return "Marketing System" as the asset without MFA. In contrast, if we check assets with MFA, HR System would appear. Thus, <strong>Marketing System</strong> is most at risk. (We could also directly see this by noting the missing relationship in the graph or using a Boolean property, but this query demonstrates the approach.)</p>
+<p><strong>2. What data could be exposed if the Marketing System is breached?</strong>
+We can follow the chain from the Marketing System to its potential impacts. One way is to traverse from the asset through the risk event to impacts:</p>
+<pre><code class="language-cypher">MATCH (mkt:Asset {name:&quot;Marketing System&quot;})-[:AT_RISK_OF]-&gt;(e:Event)-[:LEADS_TO|:CAUSES|:RESULTS_IN|:CONTRIBUTES_TO*]-&gt;(impact)
+RETURN DISTINCT impact.name AS Potential_Impact;
+</code></pre>
+<p>This will find all impact nodes reachable from <em>Marketing System</em> via the Account Compromise event. The results would include "Sensitive Data Exposed", "Breaks GDPR Compliance", "Financial Impact (~ $500K)", "Company Performance Risk". In other words, if Marketing System accounts are compromised, it could lead to exposure of sensitive customer data, violation of GDPR, a significant financial hit (~$500K), and ultimately a broader business impact on company performance. This matches the scenario we modeled.</p>
+<p><strong>3. Who should be notified about this incident?</strong>
+We want to find the stakeholders responsible for the affected systems. We can traverse the ownership hierarchy from each affected asset:</p>
+<pre><code class="language-cypher">MATCH (incident:Incident {name:&quot;Credential Leak (June 2025)&quot;})-[:AFFECTS]-&gt;(asset:Asset)&lt;-[:OWNS]-(owner:Role)
+OPTIONAL MATCH (owner)-[:REPORTS_TO]-&gt;(exec:Role)
+RETURN asset.name AS AffectedSystem, owner.name AS Owner, exec.name AS ReportsTo;
+</code></pre>
+<p>This query goes from the incident to each asset it affects, finds who owns that asset, and who that owner reports to. The results should be:</p>
+<ul>
+<li>AffectedSystem: HR System – Owner: HR Manager – ReportsTo: Chief People Officer</li>
+<li>AffectedSystem: Marketing System – Owner: Marketing Manager – ReportsTo: Chief Marketing Officer</li>
+</ul>
+<p>Thus, the <strong>Marketing Manager and CMO</strong> should be notified for the Marketing System incident, and the <strong>HR Manager and CPO</strong> for the HR System incident. These individuals are accountable for the systems at risk.</p>
+<p><strong>4. What immediate actions should be taken?</strong>
+While this question involves some judgment, our graph can highlight actions by pointing to missing controls or active causes:</p>
+<ul>
+<li>The graph shows Marketing System lacks an MFA Policy implementation – an immediate action is <em>enable MFA on Marketing System</em> (to close that gap).</li>
+<li>The Password Policy was in place, yet credentials leaked – likely through phishing or reuse. Action: <em>reset all compromised passwords</em> (since the graph can’t tell us how they leaked, but it shows password policy alone wasn’t enough to prevent the leak).</li>
+<li>The presence of <em>Threat Not Detected</em> cause suggests if the compromise had happened quietly, it might go unnoticed. If our monitoring didn’t catch the misuse of leaked credentials, we need to <em>improve monitoring and incident response</em> (the graph node “Threat Not Detected” mitigated by “Monitoring Procedure” hints at this).</li>
+<li>The <em>Compliance</em> aspect shows we violated the ISO standard by not having MFA on one system – we should <em>report this gap and ensure compliance</em> to avoid audit issues.</li>
+</ul>
+<p>We can’t get all of these directly via Cypher since some are interpretive, but we can identify that Marketing System is missing an MFA link, which is a red flag:</p>
+<pre><code class="language-cypher">MATCH (mkt:Asset {name:&quot;Marketing System&quot;})
+OPTIONAL MATCH (mkt)-[:IMPLEMENTS]-&gt;(ctrl:Control {name:&quot;MFA Policy&quot;})
+RETURN mkt.name AS System, ctrl IS NULL AS MFA_Missing;
+</code></pre>
+<p>This will return "Marketing System" with MFA_Missing = true. So indeed, enabling MFA is an action item. We could also query if any cause nodes are currently not mitigated by controls (though in our graph all causes have a control linked, so that’s covered).</p>
+<p>By querying and examining the graph, we’ve effectively performed an <strong>analysis of the incident</strong> using our knowledge graph. In the original LLM session, we asked the AI these questions and it reasoned along the graph; here we wrote explicit queries to derive the answers from the data model. The advantage now is that the results are traceable and we can adjust queries or data as needed.</p>
+<h3 id="step-8-visualizing-the-graph-optional">Step 8: Visualizing the Graph (Optional)</h3>
+<p>Neo4j Browser will automatically visualize query results that contain nodes and relationships. For instance, if you run a query like <code>MATCH (n)-[r]-&gt;(m) RETURN n,r,m</code> to fetch a subgraph, the result view shows an interactive node-link diagram. You can also use Neo4j Bloom (a visualization tool) to create more polished graph visualizations or run Cypher-based search phrases.</p>
+<p>For a quick visualization of the <strong>entire graph</strong>, you could run:</p>
+<pre><code class="language-cypher">MATCH (n)-[r]-&gt;(m) RETURN n,r,m;
+</code></pre>
+<p>This returns all nodes and relationships. In the graph view, you’ll see the full picture of our risk scenario. It may be a bit cluttered, so you can manually arrange the nodes:</p>
+<ul>
+<li>Pull the central <em>Account Compromise</em> event and <em>User accounts can be compromised</em> risk to the center.</li>
+<li>Arrange cause nodes and controls to one side, impact nodes to the opposite side, and assets/roles to another side.</li>
+<li>Alternatively, break it down: visualize upstream causes and controls with one query, and downstream impacts with another. For example: <code>MATCH (c:Cause)-[*]-&gt;(e:Event {name:"Account Compromise"}) RETURN c, e</code> for the upstream side, and <code>MATCH (e:Event {name:"Account Compromise"})-[*]-&gt;(impact) RETURN e, impact</code> for downstream.</li>
+</ul>
+<p>If needed, you can export the graph or a subgraph. Neo4j supports exporting to formats like GraphML, or you can simply copy the Mermaid diagram format as we did with the LLM (the LLM provided a Mermaid code which we could use to render a diagram). For example, the structure we built could be expressed in Mermaid syntax, or you might use the APOC library (if installed) to export a textual representation. Since this is a hands-on workshop, the Neo4j Browser view might suffice as a visual confirmation.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>We have successfully translated the <em>“LLM as ephemeral graph database”</em> concept into a tangible Neo4j graph implementation. Using a temporary Neo4j instance, we built a cybersecurity risk knowledge graph that mirrors the one previously created through conversational AI. This exercise demonstrates several key points:</p>
+<ul>
+<li>
+<p><strong>Feasibility of Ephemeral Graph Analytics:</strong> We spun up a Neo4j database on-demand, performed complex graph modeling and querying, and we could just as easily shut it down after extracting insights. This validates the approach proposed in our MVP white paper on ephemeral Neo4j usage – that graph databases can be treated as disposable computation engines, activated only when needed. In a production setting, one could automate this: provision a Neo4j container, load data (e.g., from CSV or S3), run Cypher transformations, output results, then terminate the instance.</p>
+</li>
+<li>
+<p><strong>Benefits of a Real Graph DB:</strong> Compared to the LLM approach, using Neo4j gave us precise control and reliability. We defined an explicit schema (node labels, relationship types) and could query the graph with well-defined semantics. There’s no risk of the AI “misremembering” a link or hallucinating data – the relationships are exactly as we created them. We also gained the ability to handle larger data (not limited by an AI context window) and to integrate with other tools (for example, connecting the database to BI dashboards or running graph algorithms from Neo4j’s GDS library).</p>
+</li>
+<li>
+<p><strong>Interactive Exploration and Queries:</strong> Through Cypher queries, we were able to ask nuanced questions of the graph (e.g., find assets missing a control, traverse impact paths, identify stakeholders) and get answers based on the data. This is akin to how we’d query any Neo4j graph – reinforcing that ephemeral instances don’t lose any functionality. You could even run graph algorithms on an ephemeral instance if you needed (for example, PageRank on a subgraph) and then shut it down, illustrating on-demand analytics power.</p>
+</li>
+<li>
+<p><strong>Bridging Non-Technical and Technical Users:</strong> While an LLM interface might be friendlier to non-technical users, this walkthrough shows that with a bit of Cypher, a technical user can achieve the same outcome and more. Importantly, one could wrap this logic behind a simple interface or use an LLM as a front-end to generate Cypher (i.e., the LLM could translate natural language requests into Cypher against an ephemeral Neo4j). This hybrid approach could marry the accessibility of natural language with the robustness of a real database.</p>
+</li>
+<li>
+<p><strong>Ephemerality as a Mindset:</strong> Finally, working with an ephemeral Neo4j encourages good practices like automation and documentation of the build process. Because you don’t assume a long-running database, you script the steps to create the graph from scratch. This means the graph’s creation becomes <strong>reproducible</strong> and version-controlled (as we have essentially in this document, step by step). If the graph needs to be updated or corrected, you can recreate it. If an analysis needs to be rerun next month with new data, you spin up a fresh instance and execute the script. This ephemeral mindset leads to more reproducible analytics and eliminates configuration drift that often plagues long-lived databases.</p>
+</li>
+</ul>
+<p>In conclusion, empowering graph thinkers in the age of Generative AI can be achieved with a blend of AI and traditional databases. LLMs can inspire new approaches to user interaction with graphs, but Neo4j and other graph databases provide a strong foundation for execution. Using ephemeral Neo4j instances, as we’ve shown, organizations can perform powerful graph-based reasoning on demand, with cost-efficiency and scalability, without permanently hosting a database. This approach transforms graph analytics into a serverless, flexible service – bring up a graph when you need it, ask your important questions, get your insights, and then gracefully shut it down. The result: more agile decision-making with graphs, and a methodology that keeps pace with the dynamic, ephemeral nature of modern problems and data.</p>
+</article>
+<p class="small dim licence-note">Released under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. First published on docs.diniscruz.ai; <a href="using-ephemeral-neo4j-instances-for-a-cybersecurity-risk-graph-scenario.md">this page as markdown</a>.</p>
+<div class="pagenav"><a href="../../../2025/06/25/ephemeral-neo4j-instances-for-on-demand-graph-analytics.html">← Ephemeral Neo4j Instances for On-Demand Graph Analytics</a><a href="../../../2025/07/02/ephemeral-genai-siem-a-serverless-graph-driven-approach-to-security-event-management.html">Ephemeral GenAI SIEM: A Serverless, Graph-Driven Approach to Security Event Management →</a></div>
+</main>
+
+<footer class="site"><div class="cols">
+  <div>
+    <div class="brandline">diniscruz<span>.ai</span></div>
+    <p>The personal site of Dinis Cruz: essays and research on AI, cyber security, semantic knowledge graphs and the future of news, and the companies and open-source projects they feed into. All writing CC BY 4.0.</p>
+    <p class="netline"><a href="https://sgit.ai"><b>↗ sgit.ai</b></a> — encrypted git for humans and AI agents · <a href="https://open-source.sgit.ai">↗ open-source.sgit.ai</a> — open source as a strategy · <a href="https://sgit.ai/network/index.html">↗ the sgit.ai network</a></p>
+    <p class="verline">site <a href="../../../admin/versions.html">v0.1.0</a> · <a href="../../../admin/index.html">engineering</a> · <a href="../../../2025/06/25/using-ephemeral-neo4j-instances-for-a-cybersecurity-risk-graph-scenario.md">this page as markdown</a></p>
+  </div>
+  <div>
+    <h4>Writing</h4>
+    <a href="../../../writing/index.html">All writing</a>
+    <a href="../../../research/index.html">Research hub</a>
+    <a href="../../../resources/presentations.html">Talks</a>
+    <a href="../../../feed.xml">RSS feed</a>
+  </div>
+  <div>
+    <h4>Building</h4>
+    <a href="../../../building/index.html#companies">Companies</a>
+    <a href="../../../building/index.html#open-source">Open source</a>
+    <a href="https://sgit.ai">↗ sgit.ai</a>
+    <a href="https://open-source.sgit.ai">↗ open-source.sgit.ai</a>
+  </div>
+  <div>
+    <h4>About</h4>
+    <a href="../../../about/index.html">About Dinis Cruz</a>
+    <a href="https://www.linkedin.com/in/diniscruz">↗ LinkedIn</a>
+    <a href="https://github.com/DinisCruz">↗ GitHub</a>
+    <a href="../../../admin/index.html">How this site is built</a>
+    <a href="../../../admin/versions.html">Release history</a>
+    <a href="../../../llms.txt">llms.txt</a>
+    <a href="../../../llms-full.txt">llms-full.txt</a>
+  </div>
+</div></footer>
+
+</body>
+</html>

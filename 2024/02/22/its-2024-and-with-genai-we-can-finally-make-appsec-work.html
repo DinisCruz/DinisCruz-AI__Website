@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>It’s 2024 and, with GenAI, we can finally make AppSec work — Dinis Cruz</title>
+<meta name="description" content="Presentation delivered at the OWASP London Chapter meeting on the 22nd Feb 2024">
+<meta name="author" content="Dinis Cruz">
+<link rel="canonical" href="https://diniscruz.ai/2024/02/22/its-2024-and-with-genai-we-can-finally-make-appsec-work.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="diniscruz.ai">
+<meta property="og:url" content="https://diniscruz.ai/2024/02/22/its-2024-and-with-genai-we-can-finally-make-appsec-work.html">
+<meta property="og:title" content="It’s 2024 and, with GenAI, we can finally make AppSec work — Dinis Cruz">
+<meta property="og:description" content="Presentation delivered at the OWASP London Chapter meeting on the 22nd Feb 2024">
+<meta name="twitter:card" content="summary">
+<meta property="article:published_time" content="2024-02-22">
+<meta property="article:author" content="https://www.linkedin.com/in/diniscruz">
+<meta name="x-generated-from" content="content/2024/02/22/its-2024-and-with-genai-we-can-finally-make-appsec-work.md">
+<link rel="alternate" type="text/markdown" href="its-2024-and-with-genai-we-can-finally-make-appsec-work.md" title="This page as markdown">
+<link rel="alternate" type="application/rss+xml" title="Dinis Cruz — writing" href="../../../feed.xml">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../../assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "It’s 2024 and, with GenAI, we can finally make AppSec work", "name": "It’s 2024 and, with GenAI, we can finally make AppSec work", "description": "Presentation delivered at the OWASP London Chapter meeting on the 22nd Feb 2024", "datePublished": "2024-02-22", "author": [{"@type": "Person", "@id": "https://diniscruz.ai/about/index.html#person", "name": "Dinis Cruz", "url": "https://diniscruz.ai/about/index.html", "sameAs": ["https://www.linkedin.com/in/diniscruz", "https://github.com/DinisCruz", "https://sgit.ai/about/index.html", "https://open-source.sgit.ai/about/index.html", "https://docs.diniscruz.ai/"]}], "publisher": {"@type": "Person", "@id": "https://diniscruz.ai/about/index.html#person", "name": "Dinis Cruz"}, "url": "https://diniscruz.ai/2024/02/22/its-2024-and-with-genai-we-can-finally-make-appsec-work.html", "mainEntityOfPage": "https://diniscruz.ai/2024/02/22/its-2024-and-with-genai-we-can-finally-make-appsec-work.html", "inLanguage": "en", "license": "https://creativecommons.org/licenses/by/4.0/", "wordCount": 25, "isPartOf": {"@type": "WebSite", "name": "diniscruz.ai", "url": "https://diniscruz.ai/"}}</script>
+</head>
+<body>
+
+<nav class="site"><div class="row">
+  <a class="brand" href="../../../index.html">diniscruz<span>.ai</span></a>
+  <a class="parent" href="https://sgit.ai" title="sgit.ai — encrypted git for humans and AI agents, the project Dinis Cruz is building now">↗ building <b>sgit.ai</b></a>
+  <a class="ver" href="../../../admin/versions.html" title="Site release history">v0.1.0</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">Menu</button>
+  <div class="nav-items">
+    <div class="ni ni-has">
+      <a class="nl here" href="../../../writing/index.html">Writing<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../writing/index.html">All writing, newest first</a>
+      <a class="sl" href="../../../research/research-document.html">Research document catalogue</a>
+      <a class="sl" href="../../../resources/presentations.html">Talks &amp; presentations</a>
+      <a class="sl" href="../../../feed.xml">RSS feed</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl" href="../../../research/index.html">Research<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../research/index.html">Research hub</a>
+      <a class="sl" href="../../../research/cyber-security.html">Cyber-security &amp; threat modeling</a>
+      <a class="sl" href="../../../research/development-and-genai.html">AI &amp; development</a>
+      <a class="sl" href="../../../research/graphs.html">Knowledge graphs</a>
+      <a class="sl" href="../../../research/the-future-of-news.html">The future of news</a>
+      <a class="sl" href="../../../research/europe-and-learning.html">Europe &amp; learning</a>
+      <a class="sl" href="../../../research/projects.html">Projects &amp; innovation lab</a>
+      <a class="sl" href="../../../research/organizational-transformation.html">Organisational transformation</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl" href="../../../building/index.html">Building<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../building/index.html#companies">Companies</a>
+      <a class="sl" href="../../../building/index.html#open-source">Open source</a>
+      <a class="sl" href="../../../building/index.html#network">The sgit.ai network</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl" href="../../../about/index.html">About<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../about/index.html">About Dinis Cruz</a>
+      <a class="sl" href="../../../admin/index.html">How this site is built</a>
+      <a class="sl" href="../../../admin/migration.html">Moving from docs.diniscruz.ai</a>
+      <a class="sl" href="../../../admin/versions.html">Release history</a>
+      </div>
+    </div>
+  </div>
+  <a class="gh" href="https://github.com/DinisCruz/DinisCruz-AI__Website">★ GitHub</a>
+  <script src="../../../assets/nav.js" defer></script>
+</div></nav>
+
+<main class="doc essay">
+<div class="crumb"><a href="../../../index.html">diniscruz.ai</a> / <a href="../../../writing/index.html">writing</a></div>
+<h1>It’s 2024 and, with GenAI, we can finally make AppSec work</h1>
+<p class="docline">By <b>Dinis Cruz</b> · <time datetime="2024-02-22">22 February 2024</time> · 1 min read</p>
+<p class="dbtns"><a class="dbtn dbtn-linkedin" href="https://www.linkedin.com/posts/diniscruz_its-2024-and-with-genai-we-can-finally-activity-7166527231131922435-C0va">LinkedIn post</a></p>
+<article class="prose">
+<p>Presentation delivered at the OWASP London Chapter meeting on the 22nd Feb 2024</p>
+<h2 id="slides">Slides</h2>
+<div class="embed embed-pdf"><iframe src="https://files.diniscruz.ai/s3/pdf/2024/02/22/its-2024-and-with-genai-we-can-finally-make-appsec-work.pdf" title="Slides" loading="lazy"></iframe></div>
+<p class="small"><a href="https://files.diniscruz.ai/s3/pdf/2024/02/22/its-2024-and-with-genai-we-can-finally-make-appsec-work.pdf">Open the slides in a new tab →</a></p>
+
+<h2 id="video">Video</h2>
+<div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/d61sGlgdNoo?start=0" title="Video" loading="lazy" allowfullscreen></iframe></div>
+</article>
+<p class="small dim licence-note">Released under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. First published on docs.diniscruz.ai; <a href="its-2024-and-with-genai-we-can-finally-make-appsec-work.md">this page as markdown</a>.</p>
+<div class="pagenav"><span></span><a href="../../../2024/06/28/deterministic-genai-outputs-with-provenance__owasp-appsec-lisbon__gslides.html">Deterministic GenAI Outputs with Provenance  (OWASP EU AppSec Lisbon) →</a></div>
+</main>
+
+<footer class="site"><div class="cols">
+  <div>
+    <div class="brandline">diniscruz<span>.ai</span></div>
+    <p>The personal site of Dinis Cruz: essays and research on AI, cyber security, semantic knowledge graphs and the future of news, and the companies and open-source projects they feed into. All writing CC BY 4.0.</p>
+    <p class="netline"><a href="https://sgit.ai"><b>↗ sgit.ai</b></a> — encrypted git for humans and AI agents · <a href="https://open-source.sgit.ai">↗ open-source.sgit.ai</a> — open source as a strategy · <a href="https://sgit.ai/network/index.html">↗ the sgit.ai network</a></p>
+    <p class="verline">site <a href="../../../admin/versions.html">v0.1.0</a> · <a href="../../../admin/index.html">engineering</a> · <a href="../../../2024/02/22/its-2024-and-with-genai-we-can-finally-make-appsec-work.md">this page as markdown</a></p>
+  </div>
+  <div>
+    <h4>Writing</h4>
+    <a href="../../../writing/index.html">All writing</a>
+    <a href="../../../research/index.html">Research hub</a>
+    <a href="../../../resources/presentations.html">Talks</a>
+    <a href="../../../feed.xml">RSS feed</a>
+  </div>
+  <div>
+    <h4>Building</h4>
+    <a href="../../../building/index.html#companies">Companies</a>
+    <a href="../../../building/index.html#open-source">Open source</a>
+    <a href="https://sgit.ai">↗ sgit.ai</a>
+    <a href="https://open-source.sgit.ai">↗ open-source.sgit.ai</a>
+  </div>
+  <div>
+    <h4>About</h4>
+    <a href="../../../about/index.html">About Dinis Cruz</a>
+    <a href="https://www.linkedin.com/in/diniscruz">↗ LinkedIn</a>
+    <a href="https://github.com/DinisCruz">↗ GitHub</a>
+    <a href="../../../admin/index.html">How this site is built</a>
+    <a href="../../../admin/versions.html">Release history</a>
+    <a href="../../../llms.txt">llms.txt</a>
+    <a href="../../../llms-full.txt">llms-full.txt</a>
+  </div>
+</div></footer>
+
+</body>
+</html>

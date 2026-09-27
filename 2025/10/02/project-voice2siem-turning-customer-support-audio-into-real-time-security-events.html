@@ -1,0 +1,806 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Project Voice2SIEM: Turning Customer Support Audio Into Real-Time Security Events — Dinis Cruz</title>
+<meta name="description" content="Phone-based social engineering and vishing (voice phishing) attacks are on the rise, targeting customer support and help desk agents. Attackers impersonate customers or executives to manipulate…">
+<meta name="author" content="Dinis Cruz">
+<link rel="canonical" href="https://diniscruz.ai/2025/10/02/project-voice2siem-turning-customer-support-audio-into-real-time-security-events.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="diniscruz.ai">
+<meta property="og:url" content="https://diniscruz.ai/2025/10/02/project-voice2siem-turning-customer-support-audio-into-real-time-security-events.html">
+<meta property="og:title" content="Project Voice2SIEM: Turning Customer Support Audio Into Real-Time Security Events — Dinis Cruz">
+<meta property="og:description" content="Phone-based social engineering and vishing (voice phishing) attacks are on the rise, targeting customer support and help desk agents. Attackers impersonate customers or executives to manipulate…">
+<meta name="twitter:card" content="summary">
+<meta property="article:published_time" content="2025-10-02">
+<meta property="article:author" content="https://www.linkedin.com/in/diniscruz">
+<meta name="x-generated-from" content="content/2025/10/02/project-voice2siem-turning-customer-support-audio-into-real-time-security-events.md">
+<link rel="alternate" type="text/markdown" href="project-voice2siem-turning-customer-support-audio-into-real-time-security-events.md" title="This page as markdown">
+<link rel="alternate" type="application/rss+xml" title="Dinis Cruz — writing" href="../../../feed.xml">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../../assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Project Voice2SIEM: Turning Customer Support Audio Into Real-Time Security Events", "name": "Project Voice2SIEM: Turning Customer Support Audio Into Real-Time Security Events", "description": "Phone-based social engineering and vishing (voice phishing) attacks are on the rise, targeting customer support and help desk agents. Attackers impersonate customers or executives to manipulate…", "datePublished": "2025-10-02", "author": [{"@type": "Person", "@id": "https://diniscruz.ai/about/index.html#person", "name": "Dinis Cruz", "url": "https://diniscruz.ai/about/index.html", "sameAs": ["https://www.linkedin.com/in/diniscruz", "https://github.com/DinisCruz", "https://sgit.ai/about/index.html", "https://open-source.sgit.ai/about/index.html", "https://docs.diniscruz.ai/"]}], "publisher": {"@type": "Person", "@id": "https://diniscruz.ai/about/index.html#person", "name": "Dinis Cruz"}, "url": "https://diniscruz.ai/2025/10/02/project-voice2siem-turning-customer-support-audio-into-real-time-security-events.html", "mainEntityOfPage": "https://diniscruz.ai/2025/10/02/project-voice2siem-turning-customer-support-audio-into-real-time-security-events.html", "inLanguage": "en", "license": "https://creativecommons.org/licenses/by/4.0/", "wordCount": 6139, "isPartOf": {"@type": "WebSite", "name": "diniscruz.ai", "url": "https://diniscruz.ai/"}, "contributor": [{"@type": "Thing", "name": "ChatGPT Deep Research"}]}</script>
+</head>
+<body>
+
+<nav class="site"><div class="row">
+  <a class="brand" href="../../../index.html">diniscruz<span>.ai</span></a>
+  <a class="parent" href="https://sgit.ai" title="sgit.ai — encrypted git for humans and AI agents, the project Dinis Cruz is building now">↗ building <b>sgit.ai</b></a>
+  <a class="ver" href="../../../admin/versions.html" title="Site release history">v0.1.0</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">Menu</button>
+  <div class="nav-items">
+    <div class="ni ni-has">
+      <a class="nl here" href="../../../writing/index.html">Writing<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../writing/index.html">All writing, newest first</a>
+      <a class="sl" href="../../../research/research-document.html">Research document catalogue</a>
+      <a class="sl" href="../../../resources/presentations.html">Talks &amp; presentations</a>
+      <a class="sl" href="../../../feed.xml">RSS feed</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl" href="../../../research/index.html">Research<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../research/index.html">Research hub</a>
+      <a class="sl" href="../../../research/cyber-security.html">Cyber-security &amp; threat modeling</a>
+      <a class="sl" href="../../../research/development-and-genai.html">AI &amp; development</a>
+      <a class="sl" href="../../../research/graphs.html">Knowledge graphs</a>
+      <a class="sl" href="../../../research/the-future-of-news.html">The future of news</a>
+      <a class="sl" href="../../../research/europe-and-learning.html">Europe &amp; learning</a>
+      <a class="sl" href="../../../research/projects.html">Projects &amp; innovation lab</a>
+      <a class="sl" href="../../../research/organizational-transformation.html">Organisational transformation</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl" href="../../../building/index.html">Building<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../building/index.html#companies">Companies</a>
+      <a class="sl" href="../../../building/index.html#open-source">Open source</a>
+      <a class="sl" href="../../../building/index.html#network">The sgit.ai network</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl" href="../../../about/index.html">About<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../about/index.html">About Dinis Cruz</a>
+      <a class="sl" href="../../../admin/index.html">How this site is built</a>
+      <a class="sl" href="../../../admin/migration.html">Moving from docs.diniscruz.ai</a>
+      <a class="sl" href="../../../admin/versions.html">Release history</a>
+      </div>
+    </div>
+  </div>
+  <a class="gh" href="https://github.com/DinisCruz/DinisCruz-AI__Website">★ GitHub</a>
+  <script src="../../../assets/nav.js" defer></script>
+</div></nav>
+
+<main class="doc essay">
+<div class="crumb"><a href="../../../index.html">diniscruz.ai</a> / <a href="../../../writing/index.html">writing</a> / <a href="../../../research/projects.html">projects and innovation lab</a></div>
+<h1>Project Voice2SIEM: Turning Customer Support Audio Into Real-Time Security Events</h1>
+<p class="docline">By <b>Dinis Cruz and ChatGPT Deep Research</b> · <time datetime="2025-10-02">2 October 2025</time> · 27 min read</p>
+<p class="dbtns"><a class="dbtn dbtn-pdf" href="https://files.diniscruz.ai/github/pdf/2025/10/02/project-voice2siem-turning-customer-support-audio-into-real-time-security-events.pdf">PDF</a></p>
+<details class="toc"><summary>Contents · 4 sections</summary><ol><li><a href="#problem-and-architecture-overview">Problem and Architecture Overview</a></li><li><a href="#solution-using-commodity-cloud-services-aws-reference-implementation">Solution Using Commodity Cloud Services (AWS Reference Implementation)</a></li><li><a href="#open-source-and-semantic-graph-based-implementation">Open Source and Semantic Graph-Based Implementation</a></li><li><a href="#conclusion-and-call-to-action">Conclusion and Call to Action</a></li></ol></details>
+<article class="prose">
+<h2 id="problem-and-architecture-overview">Problem and Architecture Overview</h2>
+<p>Phone-based <strong>social engineering and vishing (voice phishing)</strong> attacks
+are on the rise, targeting customer support and help desk agents.
+Attackers impersonate customers or executives to manipulate agents into
+divulging sensitive information or performing unauthorized actions
+(password resets, fund transfers, etc.). With AI-driven voice cloning,
+fraudsters can even mimic a victim's voice to fool biometric checks or
+<strong>bypass security questions by social engineering the
+agent</strong><a href="https://www.tsys.com/insights/2024/10/22/new-voice-fraud-cloning-techniques-expose-a-vulnerability-of-call-centers#:~:text=Call%20center%20fraud%20is%20when,into%20giving%20them%20customer%20information">[1]</a>.
+The business impact is severe -- breached accounts, financial loss,
+compliance violations -- and <strong>detecting these threats during a call is
+extremely challenging</strong>. Human agents may miss subtle cues of
+manipulation, especially if the caller is persuasive or the attack
+blends into normal support workflows.</p>
+<p>The technical challenge is to <strong>analyze voice conversations on-the-fly
+for signs of phishing or manipulation</strong>. This means turning an audio
+stream into structured data (transcripts, sentiment, detected intents)
+that security systems can evaluate. A straightforward approach is to
+treat each support call as an input to a pipeline of detection stages.
+The pipeline would transcribe the audio, analyze linguistic content and
+vocal tone for <em>urgency or stress</em>, extract semantic information (e.g.
+what requests are being made, what account or device is discussed), and
+then apply logic to decide if the call is suspicious. If a threat is
+likely, the system should generate a <strong>security event</strong> (e.g. alert in
+the Security Information and Event Management system, SIEM) so the
+incident can be investigated or action can be taken (like warning the
+agent or supervisor).</p>
+<p><strong>Real-time vs "fast enough" detection:</strong> Importantly, this pipeline
+does <strong>not</strong> need to operate in true real-time (i.e. within
+milliseconds). Unlike a network firewall, we don't necessarily have to
+stop the conversation mid-sentence. The goal is to be <em>fast enough</em> --
+ideally analyzing the call <strong>within seconds to a minute</strong> -- so that if
+a high-risk social engineering attempt is detected, we can intervene
+<em>before the attacker's goal is achieved</em>. For example, if the caller is
+trying to convince the agent to reset a password or reveal an OTP
+(one-time passcode), detecting the threat just in time could prompt a
+supervisor to intervene or require additional verification. In essence,
+as long as the system flags the call <strong>before a fraudulent transaction
+completes</strong>, it's effectively real-time for security purposes.</p>
+<h3 id="architectural-workflow">Architectural Workflow</h3>
+<p>At a high level, <strong>Project Voice2SIEM</strong> proposes a pipeline with
+multiple stages, each transforming the raw audio into more refined
+signals (see <strong>Figure 1</strong>). By the end, the system has enough
+understanding of the conversation to decide if it warrants a security
+alert. The stages include:</p>
+<ol>
+<li><strong>Audio Input Capture:</strong> The customer support call (which may be
+    telephone audio or VoIP) is recorded or streamed into the system.
+    This could be a real-time audio feed from the telephony system or a
+    recording saved after the call.</li>
+<li><strong>Speech-to-Text Transcription:</strong> The raw audio is converted to text
+    using Automatic Speech Recognition (ASR). This produces a transcript
+    of the call with timestamps and speaker identification (who said
+    what). Accurate transcription is crucial since all further analysis
+    relies on the textual content.</li>
+<li><strong>Urgency, Tone, and Emotion Detection:</strong> Beyond the words spoken,
+    the system analyzes <em>how</em> things are said. It looks at indicators of
+    stress or emotion in the audio (e.g. elevated volume or pitch, rapid
+    speech suggesting urgency, or pauses suggesting hesitation). In the
+    transcript, this can be supplemented by sentiment analysis -- e.g.
+    detecting if the <strong>customer is angry, anxious, or
+    insistent</strong><a href="https://aws.amazon.com/transcribe/call-analytics/#:~:text=With%20Amazon%20Transcribe%20Call%20Analytics%2C,the%20issue%20was%20addressed%2C%20and">[2]</a>.
+    A manipulative caller might sound either unusually pushy or feign
+    distress; these vocal features provide early clues.</li>
+<li><strong>Semantic Extraction of Content:</strong> In parallel with tone analysis,
+    the transcript is parsed for <strong>topics, intents, and requests</strong> being
+    made. For example, the system extracts what the caller is asking for
+    ("reset my password", "update my email", "check a charge on my
+    account"), any mention of sensitive information (account numbers,
+    one-time passcodes), and entities like names or organizations.
+    Natural Language Processing (NLP) techniques identify key entities
+    and the overall intent of the call. The system might also detect
+    conversation acts (caller provided authentication info, agent
+    verified identity, caller requested an exception to policy, etc.).</li>
+<li><strong>Conversation Graph Generation:</strong> All the extracted data --
+    semantic facts, entities, the dialog sequence, emotional indicators
+    -- are aggregated into a <strong>graph representation</strong> of the
+    conversation. In this graph, nodes might represent the participants
+    (customer, agent), the <strong>utterances</strong> (individual statements or
+    questions), and important entities (like an account or ticket
+    number). Edges can illustrate the flow of the conversation ("agent
+    asks for verification after customer request") or relationships
+    ("caller identity provided matches account name"). The graph format
+    makes it easier to see the overall structure of the interaction and
+    to apply pattern-matching for known attack scenarios.</li>
+<li><strong>Scoring and Decision for SIEM Escalation:</strong> Finally, a decision
+    engine evaluates the graph and all collected signals to produce a
+    <strong>threat score</strong>. This could be a simple rules engine or a
+    machine-learning model trained on past call data. It considers
+    factors like: <em>Did the caller exhibit high stress or urgency while
+    requesting a sensitive action?</em> <em>Were there anomalies in
+    authentication (e.g. multiple failed attempts, or the caller
+    bypassing questions)?</em> <em>Does the sequence of events match known
+    fraud playbooks (such as the "CEO impersonation" scam)?</em> If the
+    score exceeds a threshold or certain red flags are present, the
+    system generates a <strong>security event</strong> that is sent to the SIEM. This
+    event would contain the pertinent details (timestamp, call ID,
+    transcript highlights, reason for alert) so security analysts or
+    automated responders can take action.</li>
+</ol>
+<p><em>Figure 1: Conceptual Voice2SIEM pipeline converting a support call into
+a security alert. The process begins with audio input from a
+customer-agent conversation. The audio is transcribed to text, then
+analyzed for emotional tone (e.g. urgency, anger) and semantic content
+(topics, intents, requests). These insights feed into a</em> <em>conversation
+graph</em> <em>representing the flow of the call. Finally, a scoring logic
+decides if the graph indicates a likely social engineering attack,
+triggering a SIEM event.</em></p>
+<p>This architecture acknowledges that <strong>no single signal is conclusive</strong>.
+A caller might be angry for legitimate reasons, or mention sensitive
+info as part of normal troubleshooting. It's the <strong>combination of
+signals and the context</strong> that reveals a social engineering attempt. For
+example, an attacker might start very friendly (low anger, positive
+sentiment) then suddenly create urgency ("I need this done <em>immediately</em>
+or I'll get you fired!") -- a stark sentiment change coupled with a
+policy exception request. The conversation graph for such a call would
+show an abnormal sequence (from small talk to threats) that differs from
+genuine customer calls. By breaking down the audio and analyzing these
+aspects step by step, the system can catch what a human agent alone
+might miss.</p>
+<h2 id="solution-using-commodity-cloud-services-aws-reference-implementation">Solution Using Commodity Cloud Services (AWS Reference Implementation)</h2>
+<p>Designing and implementing the above pipeline from scratch can be
+complex. Fortunately, modern cloud providers offer building blocks that
+can be assembled to create this voice-to-SIEM analysis system. To
+demonstrate, we outline a reference solution using <strong>Amazon Web Services
+(AWS)</strong> serverless components (note that similar services exist on Azure
+and Google Cloud, so the approach is portable). The emphasis is on using
+<strong>managed, pay-per-use services</strong> to achieve this inexpensively at
+scale. We don't need to maintain servers or deep ML expertise -- we can
+leverage cloud AI APIs that are readily
+available<a href="https://github.com/aws-samples/amazon-transcribe-live-call-analytics#:~:text=Amazon%20machine%20learning%20services%20like,You%20figure%20that">[3]</a>.</p>
+<p><strong>Key AWS components in the pipeline:</strong></p>
+<ul>
+<li>
+<p><strong>Audio Ingestion (S3 + Lambda):</strong> A call recording (for post-call
+    analysis) or a live audio stream is fed into the pipeline. In AWS,
+    one simple method is to use Amazon S3 as an ingestion point: the
+    call system saves the audio file (e.g. MP3/WAV) to an S3 bucket at
+    the end of the call. This event triggers an AWS Lambda function (via
+    S3 event notification) to start processing. For live calls, AWS
+    Kinesis Streams or Amazon Chime SDK can stream audio in real-time,
+    but for our "fast enough" approach a short post-call delay is
+    acceptable. The Lambda retrieves the audio from S3 and initiates
+    transcription.</p>
+</li>
+<li>
+<p><strong>Speech-to-Text with Amazon Transcribe:</strong> The Lambda function uses
+    <strong>Amazon Transcribe</strong> to convert the audio to text. Amazon
+    Transcribe can operate in batch mode (transcribing a file from S3
+    asynchronously) or streaming mode (transcribing a live stream in
+    real-time). In our reference design, the Lambda could call the
+    Transcribe API to start a transcription job on the audio file. The
+    result will be a transcript file (JSON or TXT) -- possibly stored
+    back in S3 or returned to the Lambda after completion. Transcribe
+    can provide word-by-word timestamps and distinguish between speakers
+    (important for identifying "who said what" in the dialogue).</p>
+</li>
+<li>
+<p><strong>Tone and Sentiment Analysis with Comprehend:</strong> Once the transcript
+    is ready (within seconds for an average call), another Lambda step
+    (or the same Lambda if orchestrated sequentially) analyzes the text.
+    <strong>Amazon Comprehend</strong>, a natural language AI service, can detect
+    sentiment (positive, negative, neutral, mixed) of text and extract
+    key phrases. Comprehend's sentiment analysis helps determine if the
+    caller was angry, frustrated, or urgent during the call. This can be
+    done at the overall call level and even per sentence to see if
+    sentiment shifted over time. Additionally, Comprehend can perform
+    entity recognition -- identifying names, dates, organizations
+    mentioned -- which could flag if the caller mentioned things like a
+    specific bank, a password, an account number, etc. These become
+    pieces of metadata attached to the call record.</p>
+</li>
+<li>
+<p><strong>Intent and Keyword Extraction:</strong> While Comprehend covers basic
+    NLP, AWS offers other tools for deeper insight. Amazon Transcribe
+    itself has a feature called <strong>Call Analytics</strong> that can directly
+    identify <strong>call categories and issues</strong>, like spotting if certain
+    phrases (e.g. "not happy", "speak to manager")
+    occurred<a href="https://aws.amazon.com/transcribe/call-analytics/#:~:text=customer%20and%20agent%20sentiment%2C%20call,names%2C%20addresses%2C%20and%20credit%20card">[4]</a>.
+    Alternatively, one could use <strong>Amazon Lex</strong>, a conversational AI
+    service, to parse the transcript or even actively listen during the
+    call to identify intents. For example, Lex could be configured with
+    intents such as "PasswordResetIntent", "VerifyIdentityIntent",
+    "AccountUnlockIntent" etc., and the transcript (or live audio via
+    Lex integration) would reveal if the caller's requests match any of
+    these. The combination of Comprehend and Lex can thus provide a
+    structured view of <em>what the caller was trying to achieve</em>. AWS's
+    own blog notes that using services like Transcribe with Comprehend
+    and Lex enables capturing both <strong>insights and intents from
+    conversations</strong><a href="https://github.com/aws-samples/amazon-transcribe-live-call-analytics#:~:text=Amazon%20machine%20learning%20services%20like,You%20figure%20that">[3]</a>.</p>
+</li>
+<li>
+<p><strong>Orchestration and Data Flow:</strong> All the above steps can be
+    orchestrated with AWS Lambda functions passing data through Amazon
+    S3 or in-memory. A simple approach is a <strong>pipeline of Lambdas</strong>
+    triggered in sequence: audio file lands in S3 -&gt; triggers
+    Transcription Lambda -&gt; writes transcript to S3 -&gt; triggers
+    Analysis Lambda -&gt; which calls Comprehend/Lex -&gt; outputs findings
+    to a results database. AWS Step Functions (a serverless workflow
+    service) could also manage this multi-step pipeline with error
+    handling and retries built-in. Each service in the pipeline is
+    pay-per-use: you pay only for the seconds of Lambda execution, the
+    seconds of transcription, and the Comprehend API calls used, making
+    it cost-efficient.</p>
+</li>
+<li>
+<p><strong>Graph and Pattern Analysis:</strong> In an AWS-only implementation, we
+    might not explicitly build a graph database for the conversation
+    (since that introduces a stateful component). However, we can
+    simulate the graph analysis through structured data and search
+    indices. For example, after analysis we could construct a JSON
+    object that represents the conversation structure (speakers,
+    sequence of intents, sentiment timeline, entities mentioned). This
+    JSON could be indexed in <strong>Amazon OpenSearch</strong> (the AWS-hosted
+    Elasticsearch service) to enable complex queries and visualization.
+    OpenSearch can serve as a lightweight SIEM database where all call
+    transcripts and alert scores are stored. Analysts could search this
+    index for patterns (like all calls where a password reset was
+    requested and caller sentiment was angry). If needed, Amazon Neptune
+    (a managed graph DB) could be used to store the conversation graph
+    and run graph queries -- but that adds complexity, so our reference
+    keeps it simple with JSON data and OpenSearch.</p>
+</li>
+<li>
+<p><strong>Scoring and SIEM Alerting:</strong> The final step is deciding if a
+    particular call is malicious. This logic can run in a Lambda
+    function once all analysis data is available. The Lambda might use a
+    set of rules (e.g., IF caller_sentiment = "angry" AND
+    requested_action = "password_reset" AND auth_failed = true THEN
+    high_risk) to compute a risk score. More advanced, it could use a
+    machine learning model (perhaps SageMaker or even a Comprehend
+    custom classifier trained on examples of fraudulent vs. normal
+    calls). But clear, explainable rules are a good starting point. If
+    the call is deemed suspicious, the system creates a <strong>security event
+    record</strong>. In AWS, this could be an entry sent to <strong>Amazon
+    EventBridge</strong>, which can route the event to various targets: an SNS
+    notification to Security Engineers, a ticket in an incident
+    management system, or even automatically calling an AWS Lambda to
+    disable the customer's account until verified. Alternatively, the
+    Lambda could index an "alert" document into the OpenSearch index
+    with a field like <code>alert=true</code> so it shows up in SIEM dashboards.
+    The key is that a tangible alert or log is generated and integrated
+    with whatever SIEM or logging solution the company uses (could be
+    Splunk, Elastic, Datadog, etc., via webhooks or connectors).</p>
+</li>
+<li>
+<p><strong>Modularity and Cloud Portability:</strong> All components here are
+    loosely coupled. Audio files and transcripts reside in S3 (or could
+    be any object store), triggers are event-driven, and each analysis
+    piece is a replaceable module. For instance, if one wanted to switch
+    to Google Cloud, you could use Cloud Storage instead of S3, Google's
+    Speech-to-Text instead of Transcribe, and Cloud NLP for
+    sentiment/intent instead of Comprehend/Lex. The pipeline concept
+    remains the same. Because it's serverless, scaling to thousands of
+    calls is simply a matter of AWS handling more Lambda invocations and
+    more parallel transcribe jobs -- no infrastructure bottlenecks.
+    Cost-wise, using these services means you pay per call-minute
+    processed, which for sporadic or moderate call volumes is extremely
+    cost-effective compared to hiring a team of human monitors.</p>
+</li>
+</ul>
+<p><strong>Data Pipeline Example (AWS):</strong> Below is a summary of how data flows in
+this serverless design:</p>
+<ol>
+<li><strong>Ingestion:</strong> Agent software or telephony records the call audio
+    and uploads <code>call123.mp3</code> to S3.</li>
+<li><strong>Transcription Trigger:</strong> S3 event kicks off Lambda
+    "TranscribeCall". It calls Amazon Transcribe to transcribe the audio
+    file (language can be auto-detected if needed). Transcribe outputs
+    <code>call123-transcript.json</code> to an S3 <code>transcripts/</code> folder.</li>
+<li><strong>Analysis Trigger:</strong> The upload of the transcript JSON triggers
+    Lambda "AnalyzeCall". This function loads the transcript (could also
+    get it from the Transcribe API result) and calls Amazon Comprehend
+    for sentiment and entities. It may also invoke Amazon Lex (or a
+    custom intent classifier) with the transcript to get recognized
+    intents (e.g. <code>intent: ResetPassword</code>). The function compiles an
+    analysis result JSON with fields like <code>sentiment_trend</code>,
+    <code>key_phrases</code>, <code>detected_intent</code>, <code>caller_tone</code>, <code>auth_attempts</code>,
+    etc. It saves this to S3 or sends it directly to the next step.</li>
+<li><strong>Scoring &amp; Alert:</strong> A final Lambda "ScoreCall" (triggered by the
+    presence of analysis results) evaluates all inputs. It might say:
+    <em>sentiment went from neutral to highly negative when agent asked
+    security question</em>, <em>caller requested high-risk action</em>, <em>caller
+    provided account info after failing initial verification</em>. These
+    factors are tallied into a risk score (say 85/100). If above
+    threshold (e.g. 80), the Lambda sends an event to EventBridge with
+    details
+    (<code>alert: true, risk:85, call_id:123, reason:"high urgency password reset"</code>).
+    EventBridge forwards it to the security notification topic and also
+    logs it into OpenSearch. If the score is low, the call record might
+    just be logged in OpenSearch with <code>alert: false, risk:10</code> for
+    learning/tracking.</li>
+<li><strong>SIEM Integration:</strong> In our case, Amazon OpenSearch acts as a
+    simple SIEM data store where all calls and alerts reside. Security
+    teams can query and visualize this (e.g. see trends, or get an alert
+    feed). If the organization has an existing SIEM (Splunk, QRadar,
+    etc.), the EventBridge rule could instead call a webhook or use a
+    connector Lambda to forward the event to that system in real-time.</li>
+</ol>
+<p>Through this AWS solution, we achieve a functional <strong>voice-to-SIEM
+pipeline using off-the-shelf services</strong>. We leveraged <strong>Transcribe for
+speech-to-text</strong>, <strong>Comprehend for NLP insights</strong>, and simple logic in
+Lambda for the decision -- demonstrating that even complex-sounding
+capabilities like emotion detection or intent recognition are accessible
+via
+APIs<a href="https://github.com/aws-samples/amazon-transcribe-live-call-analytics#:~:text=Amazon%20machine%20learning%20services%20like,You%20figure%20that">[3]</a>.
+All data (audio, text, results) is centralized in S3/OpenSearch which
+provides an audit trail. Moreover, the <strong>serverless architecture</strong> means
+we can handle bursts of calls or scale down to zero when no calls are
+happening, paying only for actual usage. This cloud reference
+implementation proves the concept: organizations can start detecting
+social engineering in calls <em>today</em>, without waiting for a specialized
+vendor product, by composing existing cloud services.</p>
+<h2 id="open-source-and-semantic-graph-based-implementation">Open Source and Semantic Graph-Based Implementation</h2>
+<p>While cloud services are convenient, some organizations prefer
+open-source, self-hosted solutions -- for flexibility, <strong>transparency,
+and avoiding vendor lock-in</strong>. Furthermore, to push the envelope, we can
+design a system that not only detects threats but does so in a <strong>fully
+explainable, graph-driven manner</strong>, aligning with cutting-edge semantic
+analysis techniques. In this section, we present an open-source
+blueprint using Dinis Cruz's stack of tools and frameworks, which are
+geared towards building <strong>type-safe, graph-centric, and auditable AI
+systems</strong>. The goal is to show how the Voice2SIEM pipeline can be
+constructed with open technologies, yielding a high degree of control
+and introspection into how decisions are made.</p>
+<p>The open-source solution will use the following key components:</p>
+<ul>
+<li><strong>Cache Service (FastAPI-based)</strong> -- for structured storage of
+    audio, transcriptions, metadata, and event outputs.</li>
+<li><strong>MGraph-DB (Memory Graph Database)</strong> -- for building and querying
+    the semantic graph of each conversation.</li>
+<li><strong>Type_Safe Schema System</strong> -- to define all data models (call
+    records, transcript segments, analysis results, alerts) with strict
+    types, ensuring consistency and traceability across the pipeline.</li>
+<li><strong>MyFeeds.ai LETS Pipeline</strong> -- an architectural pattern
+    (Load-Extract-Transform-Save) that guides the data flow in
+    deterministic, debuggable steps.</li>
+<li><strong>Persona Modeling and Scoring</strong> -- a layer that infers the
+    "persona" or likely intent of the caller (legitimate customer vs.
+    potential fraudster) and scores threat likelihood based on how the
+    conversation aligns with known patterns.</li>
+</ul>
+<p>Let's discuss each in the context of Voice2SIEM:</p>
+<p><strong>Cache Service for Data Ingestion and Storage:</strong> The Cache Service is a
+lightweight, fast key-value store accessible via API (built with FastAPI
+and OSBot-FastAPI extensions). We use it as the glue between pipeline
+stages. For example, when a call audio is received, it can be stored as
+a binary blob in the Cache (under some unique key like
+<code>call/123/audio</code>). When the transcription step runs (as a microservice
+or job), it pulls the audio from Cache, produces a transcript object,
+and saves that back to the Cache (e.g. under <code>call/123/transcript</code>).
+Similarly, analysis stages store their outputs (tone analysis, intent
+extraction results, etc.) in the Cache with versioning. The Cache
+Service essentially provides a <strong>central state repository</strong> so that each
+stage of the pipeline is decoupled (they communicate by reading/writing
+data via the Cache API). Because it's backed by a fast datastore and
+supports JSON natively, it's ideal for persisting the conversation data
+at each step. This also means every intermediate artifact is saved --
+enabling <strong>replay, auditing, and debugging</strong>. If an alert is raised on a
+call, we have the full chain of data (audio -&gt; transcript -&gt; graph -&gt;
+score) stored for forensic analysis or model improvement.</p>
+<p><strong>Transcription and Analysis (Open-Source Tools):</strong> For transcription,
+one could use an open-source ASR engine. A leading choice is <strong>OpenAI
+Whisper</strong> (which has a high-accuracy model that can run on-premise GPUs
+or even on CPU for smaller models). There are also others like Kaldi or
+Vosk. In our blueprint, we'll assume using Whisper for speech-to-text,
+integrated into the pipeline as a service (perhaps a container that the
+Cache Service can call, or an offline batch process that writes results
+to Cache). For text analysis (sentiment, intent), we can leverage
+open-source NLP libraries or models: for sentiment, models from
+HuggingFace (e.g. a RoBERTa sentiment classifier) can be used; for
+keyword/entity extraction, spaCy or transformers can identify entities;
+for intent, one might train a simple classifier or use an LLM with
+prompts. The <strong>persona modeling</strong> can even utilize a <strong>large language
+model</strong> in a controlled way: for instance, use an LLM to parse the
+transcript and fill in a structured <strong>"CallAnalysis" JSON schema</strong> with
+fields like <code>suspected_attack_vector</code>, <code>caller_persona</code>,
+<code>important_entities</code>. By defining the schema and validating it (with
+Type_Safe classes), we ensure the LLM's output is structured and can be
+parsed deterministically (a technique proven in Dinis's MyFeeds.ai
+project, where LLMs populate predefined JSON
+schemas)<a href="https://github.com/DinisCruz/docs.diniscruz.ai/blob/6e0e278d80d0ea5cdb125f998590a3b2b248021d/docs/2025/05/27/lets__load-extract-transform-save__a-deterministic-and-debuggable-data-pipeline_architecture.md#L8-L16">[5]</a>.
+Each of these analysis steps writes its JSON results to the Cache. This
+approach means even if we use advanced AI (LLM) for analysis, we
+<strong>capture its reasoning in data form</strong>, rather than a black-box
+judgment.</p>
+<p><strong>MGraph-DB for Semantic Graph Construction:</strong> Once the transcript and
+initial analyses are done, we consolidate the information into a
+<strong>semantic graph</strong> using MGraph-DB. MGraph-DB is an in-memory graph
+database optimized for JSON and Python
+usage<a href="https://pypi.org/project/mgraph-db/#:~:text=MGraph,suited%20for">[6]</a>.
+We create nodes for key elements of the call: e.g. a node for the
+<em>Caller</em>, a node for the <em>Agent</em>, nodes for each <em>Utterance</em> (with
+properties like timestamp, sentiment, speaker), nodes for important
+<em>Entities</em> (like <em>Account</em> or <em>PIN Code</em> if they were mentioned), and
+perhaps nodes for <em>Intents</em> or <em>Requests</em> (like <em>ResetPasswordAction</em>).
+Then we add edges to connect these: <em>Caller</em> --(speaks)--&gt;
+<em>Utterance1</em>; <em>Utterance1</em> --(intent)--&gt; <em>ResetPasswordAction</em>;
+<em>Utterance2</em> --(sentiment)--&gt; <em>Angry</em>; <em>Caller</em> --(provides)--&gt;
+<em>AccountNumberEntity</em>, etc. The exact schema of the graph can evolve,
+but the idea is to create a rich representation that can be traversed to
+answer questions like "Did the caller provide credentials?" or "How did
+the agent respond after the caller got angry?". MGraph-DB, being
+type-safe and in-memory, allows us to quickly build and query this graph
+within a Python service. Its <strong>type-safe nature</strong> ensures we only create
+valid node/edge types as defined in our schema (catching mistakes
+early)<a href="https://pypi.org/project/mgraph-db/#:~:text=">[7]</a><a href="https://github.com/owasp-sbot/OSBot-Fast-API/blob/f3bc57390c988d6cce2d9bd5e16d9618beb00868/docs/dev/briefs/v0.26.1__developing-fastapi-service-clients.md#L41-L48">[8]</a>.
+We can also serialize this graph to JSON for storage or debugging, since
+MGraph-DB supports JSON persistence.</p>
+<p><strong>Type_Safe Schemas and Data Models:</strong> All data entities in this
+pipeline are defined as classes using the <strong>Type_Safe</strong> system (from
+OSBot). For example, we might define <code>class Transcript(Type_Safe): ...</code>
+with fields for call_id, full_text, segments, etc., or
+<code>class Utterance(Type_Safe): speaker, text, timestamp, sentiment</code>. By
+using Type_Safe, we get runtime-checked, self-documenting data
+structures that can seamlessly convert to/from
+JSON<a href="https://github.com/owasp-sbot/OSBot-Fast-API/blob/f3bc57390c988d6cce2d9bd5e16d9618beb00868/docs/dev/briefs/v0.26.1__developing-fastapi-service-clients.md#L41-L48">[8]</a>.
+This means when we pass data between services (or even within the graph
+DB), we do so in a structured manner. It also aids transparency: each
+piece of data can be logged or inspected with confidence in its format.
+The Type_Safe schema definitions essentially act as the <strong>contract</strong> for
+each pipeline stage's input/output. Moreover, this system helps with
+auditability: for instance, a <code>SecurityAlert</code> class might require
+certain fields (e.g. reason, score, timestamp, evidence graph
+reference), ensuring no alert is created without sufficient data.
+Sharing these schema classes between the pipeline components (the Cache
+service, the analysis code, the graph builder, etc.) guarantees
+consistency -- similar to how the client-server model in OSBot shares
+schemas to have a single source of
+truth<a href="https://github.com/owasp-sbot/OSBot-Fast-API/blob/f3bc57390c988d6cce2d9bd5e16d9618beb00868/docs/dev/briefs/v0.26.1__developing-fastapi-service-clients.md#L41-L48">[8]</a>.</p>
+<p><strong>LETS Pipeline Orchestration:</strong> We adopt the <strong>LETS
+(Load-Extract-Transform-Save)</strong> architecture to manage the pipeline
+execution in clear
+steps<a href="https://github.com/DinisCruz/docs.diniscruz.ai/blob/6e0e278d80d0ea5cdb125f998590a3b2b248021d/docs/2025/05/27/lets__load-extract-transform-save__a-deterministic-and-debuggable-data-pipeline_architecture.md#L18-L26">[9]</a><a href="https://github.com/DinisCruz/docs.diniscruz.ai/blob/6e0e278d80d0ea5cdb125f998590a3b2b248021d/docs/2025/05/27/lets__load-extract-transform-save__a-deterministic-and-debuggable-data-pipeline_architecture.md#L32-L35">[10]</a>.
+Here's how it maps to Voice2SIEM: - <strong>Load:</strong> Bring in the raw data
+(audio file) and save it unmodified. In practice, when a call audio
+arrives, we "load" it by storing it in the Cache (this is analogous to
+saving the raw RSS feed in MyFeeds.ai's
+pipeline<a href="https://github.com/DinisCruz/docs.diniscruz.ai/blob/6e0e278d80d0ea5cdb125f998590a3b2b248021d/docs/2025/05/27/lets__load-extract-transform-save__a-deterministic-and-debuggable-data-pipeline_architecture.md#L40-L45">[11]</a>).
+This ensures the exact original audio is preserved. - <strong>Extract:</strong>
+Derive initial structured data from the raw input. This would be the
+transcription step (audio -&gt; text) and perhaps parsing the text into
+structured dialogues. The transcript (with speaker turns) is saved as a
+JSON in the Cache. We might also extract other low-level info, like a
+timeline of who spoke when, or a list of detected keywords. The key is
+this stage is about structuring the raw audio into data we can work with
+(similar to how MyFeeds extracted article JSON from raw
+RSS)<a href="https://github.com/DinisCruz/docs.diniscruz.ai/blob/6e0e278d80d0ea5cdb125f998590a3b2b248021d/docs/2025/05/27/lets__load-extract-transform-save__a-deterministic-and-debuggable-data-pipeline_architecture.md#L26-L34">[12]</a>. -
+<strong>Transform:</strong> Perform higher-level transformations to enrich the data
+with semantics and insights. In our case, several sub-stages of
+Transform happen: sentiment analysis, intent detection, building the
+conversation graph, and scoring the risk. Each of these can be its own
+Transform step that takes the output of Extract or a previous transform
+and produces a new artifact. For example, "Transform 1" might take the
+Transcript and produce a <strong>SentimentTimeline</strong> object (list of
+utterances with sentiment tags). "Transform 2" might take Transcript +
+SentimentTimeline and produce the <strong>ConversationGraph</strong> (using
+MGraph-DB). "Transform 3" might take the ConversationGraph and produce a
+<strong>ThreatHypothesis</strong> (which encapsulates the potential attack vectors
+identified, e.g. "caller impersonating CEO scenario"). Each of these
+transforms saves its output to the Cache (and could be an API call or
+microservice in the implementation). By chaining multiple fine-grained
+transformations, we make the system easier to debug and
+extend<a href="https://github.com/DinisCruz/docs.diniscruz.ai/blob/6e0e278d80d0ea5cdb125f998590a3b2b248021d/docs/2025/05/27/lets__load-extract-transform-save__a-deterministic-and-debuggable-data-pipeline_architecture.md#L8-L16">[5]</a>.
+Crucially, we <strong>persist after each transform</strong>, so intermediate data is
+always available for inspection. If the final decision seems wrong, we
+can go back to see, for example, what the conversation graph looked like
+or what the sentiment analysis found, to pinpoint which stage
+misinterpreted the data. - <strong>Save:</strong> In LETS, every stage saves its
+output, but finally we also <strong>save the final results to their
+destination</strong>. In this context, the ultimate "save" is to log the
+security event (if any) and related data in a permanent store. The Cache
+service could serve in this capacity (it might append the alert to an
+"alerts" collection in its storage). Or we might output it to a SIEM
+system or even just a JSON file repository. The Save step here
+emphasizes versioning and traceability: we label the final outputs with
+version IDs and timestamps. If six months later we want to audit why a
+certain call was flagged, we can retrieve the exact data versions that
+led to it. This strong provenance tracking is a core benefit of the LETS
+approach<a href="https://github.com/DinisCruz/docs.diniscruz.ai/blob/6e0e278d80d0ea5cdb125f998590a3b2b248021d/docs/2025/05/27/lets__load-extract-transform-save__a-deterministic-and-debuggable-data-pipeline_architecture.md#L12-L16">[13]</a>
+-- every decision can be traced back through the pipeline with records
+of each intermediate state.</p>
+<p>Using LETS in this pipeline means the solution is <strong>fully reproducible
+and debuggable</strong>. If an error is found in our analysis logic, we can
+re-run that step on the saved inputs to test a fix. It also means we can
+gradually improve each stage (swap out a model, fine-tune a rule) and
+have confidence how it impacts the end result, since we can replay past
+calls through the pipeline offline if needed.</p>
+<p><strong>Persona Modeling and Threat Scoring:</strong> One of the powerful ideas we
+introduce is modeling the personas involved in the call -- especially
+the caller, who could be genuine or malicious. Over time, the system can
+build profiles of legitimate customer behavior versus known attacker
+tactics. For instance, a legitimate customer might answer verification
+questions slowly but correctly, exhibit frustration <em>after</em> repeated
+problems, but will comply with security checks. In contrast, an attacker
+persona might <strong>either</strong> act overly authoritative ("I'm in a huge hurry,
+I'm the CTO, just reset my password now") or overly distressed ("I've
+been locked out and this is an emergency, please help, I can't answer
+all these questions!"). By creating a library of these <strong>persona
+archetypes</strong> (which could be informed by real fraud cases), the system
+can compare a live call's features to the personas. The <strong>persona
+modeling system</strong> (inspired by MyFeeds.ai's approach of creating persona
+interest
+graphs<a href="https://github.com/DinisCruz/docs.diniscruz.ai/blob/6e0e278d80d0ea5cdb125f998590a3b2b248021d/docs/2025/05/27/lets__load-extract-transform-save__a-deterministic-and-debuggable-data-pipeline_architecture.md#L26-L34">[12]</a>)
+could represent each archetype as a set of expected behaviors or
+markers. For example, an <em>"Impersonator Executive" persona</em> might have
+markers like: high authority tone, expresses urgency, drops names of
+company executives, attempts to bypass normal process. A <em>"Distraught
+User" persona</em> might: sound panicked, mention personal crises, push the
+agent to bend rules out of sympathy. These can be encoded in a data
+structure (even as a graph or just a profile object).</p>
+<p>During the Transform stage, we take the conversation data and try to
+<strong>match it against these persona profiles</strong>. This could be done with
+rules or possibly an ML model that classifies the call into one of
+several personas. If a strong match to a malicious persona is found,
+that heavily influences the threat score. It's not a binary thing -- we
+might see partial matches to multiple personas -- so the scoring system
+can weigh various factors. For example: <em>caller matched 80% of
+"Impersonator Executive" traits + caller requested password reset (a
+high-risk action) + call came from an unusual phone number (metadata
+anomaly)</em> -- combine these to yield a, say, 95/100 risk score, clearly
+over the threshold.</p>
+<p><strong>Graph-Based Detection of Patterns:</strong> Because we have the conversation
+as a graph in MGraph-DB, we can also directly apply graph algorithms or
+queries to spot suspicious patterns. For example, we could query for a
+subgraph where: a <em>Caller node</em> is connected to an <em>Account node</em> via a
+<em>provided credential</em> edge, but the <em>Agent node</em> is connected to a
+<em>Verification step</em> that failed. This pattern (caller provided some
+info, failed verification, but is still pushing) could be indicative of
+fraud. Another pattern: the time between <em>Caller's request</em> and <em>Agent's
+action</em> is very short because the caller pressured the agent (could be
+calculated via timestamps in the graph). Or a sequence pattern: <em>Caller
+asks innocuous question -&gt; builds rapport -&gt; then asks for a sensitive
+action.</em> In the graph, that might appear as three utterances where the
+first has neutral intent, second is small talk, third is high-risk
+intent; the presence of that sequence can be automatically flagged by
+traversing the graph or by converting the conversation into a sequence
+of intent labels and running it through a sequence pattern matcher. We
+can even search across calls: if the same caller (or same voice print,
+if we did voice analysis) appears in multiple incidents, the graph of
+their interactions across calls could expose a fraud campaign.</p>
+<p><strong>Examples of Detectable Social Engineering Signs:</strong> To illustrate, here
+are a few scenarios and how our system would catch them: - <em>Sequence
+Pattern:</em> An attacker often follows a script. For instance, "Friendly
+introduction" -&gt; "Problem statement" -&gt; "Urgent request with
+flattery/threat". A normal call might not have such a scripted
+progression. Our semantic extraction would label each segment (greeting,
+verification, request, etc.), and the conversation graph would show an
+abnormal transition from a casual chat to a critical demand. If our
+rules know this pattern (perhaps from past examples), the system flags
+it. For example, <em>"caller suddenly transitioned from calm to urgent
+while requesting a policy exception"</em> could be a rule derived from
+sequence analysis. - <em>Stress Indicators:</em> Suppose the caller's voice
+analysis shows <strong>elevated stress or anger whenever security protocols
+are mentioned</strong> (like the agent asking to verify identity causes the
+caller to raise their voice or heart rate if that could be measured).
+The sentiment timeline might show spikes of negative sentiment aligned
+with those moments. This is a red flag -- a genuine user might be
+annoyed at verification but wouldn't typically become aggressive; an
+attacker often does when impeded. The system would note <em>high emotional
+variance correlated with security steps</em> as a risk indicator. -
+<em>Anomalous Metadata:</em> Beyond content, contextual metadata can be
+telling. If the call came in at 3 AM local time from an overseas IP (for
+VoIP) or the phone number isn't one normally associated with the
+customer's account, those could be captured in the data model. Perhaps
+the account's profile says typical call time is daytime and this is
+highly out of pattern. Or the caller claims to be in one city but the
+telephony data suggests otherwise. Our pipeline can ingest such metadata
+at Load time (if available) and attach it to the graph (e.g. a node for
+"CallOrigin" with attributes). Any anomaly here (especially in
+combination with suspicious dialog) increases the score.</p>
+<p>After all these analyses, the open-source system arrives at a
+<strong>ThreatLikelihood score</strong> for the call, along with an explanation of
+why. Thanks to the structured approach, this explanation can be very
+specific: e.g. <em>"Alert: 95% likely social engineering. Detected persona:
+Impersonating Executive. Evidence: Caller insisted on urgent action
+(ResetPassword) with high anger (sentiment -0.85) after failing
+verification twice; call origin UK London, but user account holder is in
+USA; sequence matched known fraud pattern #3."</em> This kind of rich
+explanation is what a graph-based and type-safe pipeline can provide.
+It's <strong>transparent and auditable</strong>, unlike a monolithic "AI black box"
+solution. Every piece of that explanation links to an artifact in our
+system (transcript, sentiment value, graph pattern, metadata record).
+The security team can drill down to confirm each fact (because the data
+is in the Cache/graph) -- building trust in the system's verdict. In
+fact, the intermediate outputs themselves can be used for auditor
+training or improving processes (maybe the company discovers certain
+verification steps often cause false alarms, and they adjust policy).</p>
+<p>Finally, the open-source pipeline would emit the event just like the
+cloud one -- perhaps writing an entry to the Cache's event store or
+sending a message to a SIEM connector. The major difference is that with
+open components, the organization can <strong>own the solution end-to-end</strong>:
+data stays on their servers, models can be customized, and the logic can
+be adapted to their unique needs or expanded (for example, integrating a
+voice biometric check if available, or linking to a database of known
+fraud caller IDs). All core components (Cache Service, MGraph-DB, OSBot
+Type_Safe, etc.) are open-source (Apache 2.0 or similar licenses)
+developed by Dinis Cruz and community, meaning there's no license cost
+and one can contribute improvements. MGraph-DB's design for
+high-performance in-memory operation ensures even complex graph queries
+or large calls can be handled
+efficiently<a href="https://pypi.org/project/mgraph-db/#:~:text=MGraph,suited%20for">[6]</a>.
+The Type_Safe framework makes sure our system's APIs and data are robust
+and error-checked at development time, reducing runtime
+surprises<a href="https://github.com/owasp-sbot/OSBot-Fast-API/blob/f3bc57390c988d6cce2d9bd5e16d9618beb00868/docs/dev/briefs/v0.26.1__developing-fastapi-service-clients.md#L41-L48">[8]</a>.</p>
+<h2 id="conclusion-and-call-to-action">Conclusion and Call to Action</h2>
+<p><strong>Project Voice2SIEM</strong> demonstrates that turning customer support
+conversations into actionable security intelligence is not only possible
+-- it's achievable today with open technology and a bit of integration
+work. By combining voice-to-text, AI-driven analysis, and graph-based
+correlations, we can shine a light on what has traditionally been a
+blind spot in security monitoring (the content of phone calls).
+Importantly, the approach we presented emphasizes <strong>trust, transparency,
+and auditability</strong>. Every decision the system makes is backed by data
+artifacts and clear rules, so security teams can trust the alerts and
+verify why an alert was raised by tracing through the stored
+intermediate
+states<a href="https://github.com/DinisCruz/docs.diniscruz.ai/blob/6e0e278d80d0ea5cdb125f998590a3b2b248021d/docs/2025/05/27/lets__load-extract-transform-save__a-deterministic-and-debuggable-data-pipeline_architecture.md#L12-L16">[13]</a>.
+This is in stark contrast to opaque "AI magic" solutions; here, we're
+effectively opening the black box and making it a glass box.</p>
+<p>We also made a point to ensure the system respects the practical
+constraints of real call centers: it doesn't disrupt the live call flow,
+it works in near real-time, and it produces alerts quickly enough to
+matter. Whether implemented with cloud serverless components or a fully
+open-source stack, the blueprint is modular and flexible. Companies can
+start small -- maybe begin by just transcribing calls and doing
+sentiment analysis as a pilot -- and gradually build up the full
+pipeline as confidence grows. Because each piece is replaceable,
+improvements in AI (say a better speech recognition model or a new NLP
+technique) can be plugged in without redesigning the whole system.</p>
+<p>The authors (Dinis Cruz and the ChatGPT Deep Research team) are
+releasing this as an open blueprint with <strong>no commercial agenda</strong> -- our
+intent is purely to advance the state of the art in security monitoring
+and inspire others to build upon it. All the mentioned open-source tools
+(Cache Service, MGraph-DB, OSBot Type_Safe, etc.) are available in open
+repositories, and we invite readers to explore them, contribute, or
+adapt them to their own projects. We believe this kind of system would
+be incredibly valuable if deployed broadly: imagine a world where every
+help desk call or IT support call is quietly analyzed for potential
+fraud, providing a safety net for human agents who might be socially
+engineered. Many high-profile breaches could have been mitigated or even
+prevented if such technology were in place to catch the tell-tale signs
+of a con artist on the phone.</p>
+<p><strong>Call to Action:</strong> If you find this project intriguing, consider
+contributing to its development or trying it out in your environment.
+You could start by using AWS's AI services to get quick wins on call
+analysis, or if you're more experimentally minded, deploy the
+open-source components and run some recorded calls through it to see
+what insights surface. Share your findings, build custom persona
+profiles that fit your industry, and help refine the detection logic.
+Since this is an open effort, improvements by one can benefit many.
+Ultimately, securing the "human layer" of support interactions is a
+shared challenge -- let's collaboratively turn the tide against
+voice-based social engineering. <strong>Voice2SIEM can be a community-driven
+shield</strong>, and we welcome you to join us in building it. Together, we can
+make customer support channels safer through transparency, open tech,
+and a healthy dose of innovation.</p>
+<p><a href="https://www.tsys.com/insights/2024/10/22/new-voice-fraud-cloning-techniques-expose-a-vulnerability-of-call-centers#:~:text=Call%20center%20fraud%20is%20when,into%20giving%20them%20customer%20information">[1]</a>
+New voice fraud cloning techniques expose a vulnerability of call
+centers | TSYS</p>
+<p><a href="https://www.tsys.com/insights/2024/10/22/new-voice-fraud-cloning-techniques-expose-a-vulnerability-of-call-centers">https://www.tsys.com/insights/2024/10/22/new-voice-fraud-cloning-techniques-expose-a-vulnerability-of-call-centers</a></p>
+<p><a href="https://aws.amazon.com/transcribe/call-analytics/#:~:text=With%20Amazon%20Transcribe%20Call%20Analytics%2C,the%20issue%20was%20addressed%2C%20and">[2]</a>
+<a href="https://aws.amazon.com/transcribe/call-analytics/#:~:text=customer%20and%20agent%20sentiment%2C%20call,names%2C%20addresses%2C%20and%20credit%20card">[4]</a>
+Amazon Transcribe Call Analytics | Transcripts &amp; Insights | AWS</p>
+<p><a href="https://aws.amazon.com/transcribe/call-analytics/">https://aws.amazon.com/transcribe/call-analytics/</a></p>
+<p><a href="https://github.com/aws-samples/amazon-transcribe-live-call-analytics#:~:text=Amazon%20machine%20learning%20services%20like,You%20figure%20that">[3]</a>
+GitHub - aws-samples/amazon-transcribe-live-call-analytics: Amazon
+Transcribe Live Call Analytics (LCA) Sample Solution</p>
+<p><a href="https://github.com/aws-samples/amazon-transcribe-live-call-analytics">https://github.com/aws-samples/amazon-transcribe-live-call-analytics</a></p>
+<p><a href="https://github.com/DinisCruz/docs.diniscruz.ai/blob/6e0e278d80d0ea5cdb125f998590a3b2b248021d/docs/2025/05/27/lets__load-extract-transform-save__a-deterministic-and-debuggable-data-pipeline_architecture.md#L8-L16">[5]</a>
+<a href="https://github.com/DinisCruz/docs.diniscruz.ai/blob/6e0e278d80d0ea5cdb125f998590a3b2b248021d/docs/2025/05/27/lets__load-extract-transform-save__a-deterministic-and-debuggable-data-pipeline_architecture.md#L18-L26">[9]</a>
+<a href="https://github.com/DinisCruz/docs.diniscruz.ai/blob/6e0e278d80d0ea5cdb125f998590a3b2b248021d/docs/2025/05/27/lets__load-extract-transform-save__a-deterministic-and-debuggable-data-pipeline_architecture.md#L32-L35">[10]</a>
+<a href="https://github.com/DinisCruz/docs.diniscruz.ai/blob/6e0e278d80d0ea5cdb125f998590a3b2b248021d/docs/2025/05/27/lets__load-extract-transform-save__a-deterministic-and-debuggable-data-pipeline_architecture.md#L40-L45">[11]</a>
+<a href="https://github.com/DinisCruz/docs.diniscruz.ai/blob/6e0e278d80d0ea5cdb125f998590a3b2b248021d/docs/2025/05/27/lets__load-extract-transform-save__a-deterministic-and-debuggable-data-pipeline_architecture.md#L26-L34">[12]</a>
+<a href="https://github.com/DinisCruz/docs.diniscruz.ai/blob/6e0e278d80d0ea5cdb125f998590a3b2b248021d/docs/2025/05/27/lets__load-extract-transform-save__a-deterministic-and-debuggable-data-pipeline_architecture.md#L12-L16">[13]</a>
+lets__load-extract-transform-save__a-deterministic-and-debuggable-data-pipeline_architecture.md</p>
+<p><a href="https://github.com/DinisCruz/docs.diniscruz.ai/blob/6e0e278d80d0ea5cdb125f998590a3b2b248021d/docs/2025/05/27/lets__load-extract-transform-save__a-deterministic-and-debuggable-data-pipeline_architecture.md">https://github.com/DinisCruz/docs.diniscruz.ai/blob/6e0e278d80d0ea5cdb125f998590a3b2b248021d/docs/2025/05/27/lets__load-extract-transform-save__a-deterministic-and-debuggable-data-pipeline_architecture.md</a></p>
+<p><a href="https://pypi.org/project/mgraph-db/#:~:text=MGraph,suited%20for">[6]</a>
+<a href="https://pypi.org/project/mgraph-db/#:~:text=">[7]</a> mgraph-db · PyPI</p>
+<p><a href="https://pypi.org/project/mgraph-db/">https://pypi.org/project/mgraph-db/</a></p>
+<p><a href="https://github.com/owasp-sbot/OSBot-Fast-API/blob/f3bc57390c988d6cce2d9bd5e16d9618beb00868/docs/dev/briefs/v0.26.1__developing-fastapi-service-clients.md#L41-L48">[8]</a>
+v0.26.1__developing-fastapi-service-clients.md</p>
+<p><a href="https://github.com/owasp-sbot/OSBot-Fast-API/blob/f3bc57390c988d6cce2d9bd5e16d9618beb00868/docs/dev/briefs/v0.26.1__developing-fastapi-service-clients.md">https://github.com/owasp-sbot/OSBot-Fast-API/blob/f3bc57390c988d6cce2d9bd5e16d9618beb00868/docs/dev/briefs/v0.26.1__developing-fastapi-service-clients.md</a></p>
+</article>
+<p class="small dim licence-note">Released under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. First published on docs.diniscruz.ai; <a href="project-voice2siem-turning-customer-support-audio-into-real-time-security-events.md">this page as markdown</a>.</p>
+<div class="pagenav"><a href="../../../2025/09/01/next-generation-api-security-platform-semantic-graphs-genai-testing-ephemeral-environments-2025.html">← Next-Generation API Security Platform: Semantic Graphs, GenAI Testing &amp; Ephemeral Environments for 2025</a><a href="../../../2025/10/02/time-as-a-calibrator-of-credibility-and-trust-in-information-systems.html">Time as a Calibrator of Credibility and Trust in Information Systems →</a></div>
+</main>
+
+<footer class="site"><div class="cols">
+  <div>
+    <div class="brandline">diniscruz<span>.ai</span></div>
+    <p>The personal site of Dinis Cruz: essays and research on AI, cyber security, semantic knowledge graphs and the future of news, and the companies and open-source projects they feed into. All writing CC BY 4.0.</p>
+    <p class="netline"><a href="https://sgit.ai"><b>↗ sgit.ai</b></a> — encrypted git for humans and AI agents · <a href="https://open-source.sgit.ai">↗ open-source.sgit.ai</a> — open source as a strategy · <a href="https://sgit.ai/network/index.html">↗ the sgit.ai network</a></p>
+    <p class="verline">site <a href="../../../admin/versions.html">v0.1.0</a> · <a href="../../../admin/index.html">engineering</a> · <a href="../../../2025/10/02/project-voice2siem-turning-customer-support-audio-into-real-time-security-events.md">this page as markdown</a></p>
+  </div>
+  <div>
+    <h4>Writing</h4>
+    <a href="../../../writing/index.html">All writing</a>
+    <a href="../../../research/index.html">Research hub</a>
+    <a href="../../../resources/presentations.html">Talks</a>
+    <a href="../../../feed.xml">RSS feed</a>
+  </div>
+  <div>
+    <h4>Building</h4>
+    <a href="../../../building/index.html#companies">Companies</a>
+    <a href="../../../building/index.html#open-source">Open source</a>
+    <a href="https://sgit.ai">↗ sgit.ai</a>
+    <a href="https://open-source.sgit.ai">↗ open-source.sgit.ai</a>
+  </div>
+  <div>
+    <h4>About</h4>
+    <a href="../../../about/index.html">About Dinis Cruz</a>
+    <a href="https://www.linkedin.com/in/diniscruz">↗ LinkedIn</a>
+    <a href="https://github.com/DinisCruz">↗ GitHub</a>
+    <a href="../../../admin/index.html">How this site is built</a>
+    <a href="../../../admin/versions.html">Release history</a>
+    <a href="../../../llms.txt">llms.txt</a>
+    <a href="../../../llms-full.txt">llms-full.txt</a>
+  </div>
+</div></footer>
+
+</body>
+</html>

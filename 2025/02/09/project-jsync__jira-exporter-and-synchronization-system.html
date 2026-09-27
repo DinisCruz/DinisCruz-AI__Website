@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Project JSync: JIRA Exporter and Synchronization System — Dinis Cruz</title>
+<meta name="description" content="Serverless pipeline that captures JIRA issue changes in real time and stores
+them in S3 and GitHub, exposing a FastAPI interface for querying the data.">
+<meta name="author" content="Dinis Cruz">
+<link rel="canonical" href="https://diniscruz.ai/2025/02/09/project-jsync__jira-exporter-and-synchronization-system.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="diniscruz.ai">
+<meta property="og:url" content="https://diniscruz.ai/2025/02/09/project-jsync__jira-exporter-and-synchronization-system.html">
+<meta property="og:title" content="Project JSync: JIRA Exporter and Synchronization System — Dinis Cruz">
+<meta property="og:description" content="Serverless pipeline that captures JIRA issue changes in real time and stores
+them in S3 and GitHub, exposing a FastAPI interface for querying the data.">
+<meta name="twitter:card" content="summary">
+<meta property="article:published_time" content="2025-02-09">
+<meta property="article:author" content="https://www.linkedin.com/in/diniscruz">
+<meta name="x-generated-from" content="content/2025/02/09/project-jsync__jira-exporter-and-synchronization-system.md">
+<link rel="alternate" type="text/markdown" href="project-jsync__jira-exporter-and-synchronization-system.md" title="This page as markdown">
+<link rel="alternate" type="application/rss+xml" title="Dinis Cruz — writing" href="../../../feed.xml">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../../assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Project JSync: JIRA Exporter and Synchronization System", "name": "Project JSync: JIRA Exporter and Synchronization System", "description": "Serverless pipeline that captures JIRA issue changes in real time and stores\nthem in S3 and GitHub, exposing a FastAPI interface for querying the data.", "datePublished": "2025-02-09", "author": [{"@type": "Person", "@id": "https://diniscruz.ai/about/index.html#person", "name": "Dinis Cruz", "url": "https://diniscruz.ai/about/index.html", "sameAs": ["https://www.linkedin.com/in/diniscruz", "https://github.com/DinisCruz", "https://sgit.ai/about/index.html", "https://open-source.sgit.ai/about/index.html", "https://docs.diniscruz.ai/"]}], "publisher": {"@type": "Person", "@id": "https://diniscruz.ai/about/index.html#person", "name": "Dinis Cruz"}, "url": "https://diniscruz.ai/2025/02/09/project-jsync__jira-exporter-and-synchronization-system.html", "mainEntityOfPage": "https://diniscruz.ai/2025/02/09/project-jsync__jira-exporter-and-synchronization-system.html", "inLanguage": "en", "license": "https://creativecommons.org/licenses/by/4.0/", "wordCount": 6264, "isPartOf": {"@type": "WebSite", "name": "diniscruz.ai", "url": "https://diniscruz.ai/"}, "contributor": [{"@type": "Thing", "name": "ChatGPT Deep Research"}], "keywords": "serverless, JIRA, data-synchronization, AWS, devops"}</script>
+</head>
+<body>
+
+<nav class="site"><div class="row">
+  <a class="brand" href="../../../index.html">diniscruz<span>.ai</span></a>
+  <a class="parent" href="https://sgit.ai" title="sgit.ai — encrypted git for humans and AI agents, the project Dinis Cruz is building now">↗ building <b>sgit.ai</b></a>
+  <a class="ver" href="../../../admin/versions.html" title="Site release history">v0.1.0</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">Menu</button>
+  <div class="nav-items">
+    <div class="ni ni-has">
+      <a class="nl here" href="../../../writing/index.html">Writing<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../writing/index.html">All writing, newest first</a>
+      <a class="sl" href="../../../research/research-document.html">Research document catalogue</a>
+      <a class="sl" href="../../../resources/presentations.html">Talks &amp; presentations</a>
+      <a class="sl" href="../../../feed.xml">RSS feed</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl" href="../../../research/index.html">Research<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../research/index.html">Research hub</a>
+      <a class="sl" href="../../../research/cyber-security.html">Cyber-security &amp; threat modeling</a>
+      <a class="sl" href="../../../research/development-and-genai.html">AI &amp; development</a>
+      <a class="sl" href="../../../research/graphs.html">Knowledge graphs</a>
+      <a class="sl" href="../../../research/the-future-of-news.html">The future of news</a>
+      <a class="sl" href="../../../research/europe-and-learning.html">Europe &amp; learning</a>
+      <a class="sl" href="../../../research/projects.html">Projects &amp; innovation lab</a>
+      <a class="sl" href="../../../research/organizational-transformation.html">Organisational transformation</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl" href="../../../building/index.html">Building<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../building/index.html#companies">Companies</a>
+      <a class="sl" href="../../../building/index.html#open-source">Open source</a>
+      <a class="sl" href="../../../building/index.html#network">The sgit.ai network</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl" href="../../../about/index.html">About<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../about/index.html">About Dinis Cruz</a>
+      <a class="sl" href="../../../admin/index.html">How this site is built</a>
+      <a class="sl" href="../../../admin/migration.html">Moving from docs.diniscruz.ai</a>
+      <a class="sl" href="../../../admin/versions.html">Release history</a>
+      </div>
+    </div>
+  </div>
+  <a class="gh" href="https://github.com/DinisCruz/DinisCruz-AI__Website">★ GitHub</a>
+  <script src="../../../assets/nav.js" defer></script>
+</div></nav>
+
+<main class="doc essay">
+<div class="crumb"><a href="../../../index.html">diniscruz.ai</a> / <a href="../../../writing/index.html">writing</a> / <a href="../../../research/projects.html">projects and innovation lab</a></div>
+<h1>Project JSync: JIRA Exporter and Synchronization System</h1>
+<p class="docline">By <b>Dinis Cruz and ChatGPT Deep Research</b> · <time datetime="2025-02-09">9 February 2025</time> · 27 min read</p>
+<p class="dbtns"><a class="dbtn dbtn-pdf" href="https://files.diniscruz.ai/github/pdf/2025/02/09/project-jsync__jira-exporter-and-synchronization-system.pdf">PDF</a> <a class="dbtn dbtn-linkedin" href="https://www.linkedin.com/posts/diniscruz_project-plan-jira-export-to-s3-and-git-activity-7294766710589456385-9XBZ">LinkedIn post</a></p>
+<p class="tags"><span class="tagpill">serverless</span><span class="tagpill">JIRA</span><span class="tagpill">data-synchronization</span><span class="tagpill">AWS</span><span class="tagpill">devops</span></p>
+<details class="toc"><summary>Contents · 6 sections</summary><ol><li><a href="#project-scope">Project Scope</a></li><li><a href="#architecture-technology-stack">Architecture &amp; Technology Stack</a></li><li><a href="#implementation-approach">Implementation Approach</a></li><li><a href="#api-documentation-design">API Documentation &amp; Design</a></li><li><a href="#financial-analysis">Financial Analysis</a></li><li><a href="#deployment">Deployment</a></li></ol></details>
+<article class="prose">
+<h2 id="project-scope">Project Scope</h2>
+<p>This project JSync will implement a <strong>serverless JIRA change capture and sync system</strong> for internal use. </p>
+<p>The goal is to <strong>capture all changes in JIRA issues</strong> (creations, updates, transitions, etc.) in real-time and store them in two places:</p>
+<ul>
+<li><strong>Amazon S3</strong> – as JSON snapshots for backup and easy retrieval.</li>
+<li><strong>GitHub</strong> – as version-controlled records (so we have full history and audit via Git commits).</li>
+</ul>
+<p>Key requirements include processing each JIRA update <strong>within seconds</strong> of the event (near real-time syncing). The system will be <strong>API-driven</strong>: we will build a RESTful API (using Python’s FastAPI framework) to allow querying the stored JIRA data and managing the sync process. </p>
+<p>This API will be documented with <strong>OpenAPI/Swagger</strong>, making it easy for developers to understand and interact with (interactive docs for internal users). Importantly, the entire solution should run with <strong>no persistent servers</strong> – leveraging AWS managed services (Lambda, S3, etc.) for a fully serverless, auto-scaling architecture. This ensures minimal ops overhead and that we only pay for usage.</p>
+<p>In summary, the project’s scope covers: capturing JIRA issue changes in real-time, transforming and storing those records in S3 and a GitHub repository, exposing an API for access, and doing so with high performance and thorough documentation. </p>
+<p>All code will be in Python, and extensive automated tests (targeting <strong>100% coverage</strong>) will be written to ensure reliability.</p>
+<h2 id="architecture-technology-stack">Architecture &amp; Technology Stack</h2>
+<p>The system will use a <strong>serverless event-driven architecture</strong> on AWS. The key AWS components and technologies include:</p>
+<ul>
+<li>
+<p><strong>AWS Lambda</strong>: Lambda functions form the core compute layer. One Lambda will be triggered by JIRA webhooks (via an HTTP endpoint) to process incoming data. This function will parse JIRA’s webhook payload (XML from JIRA, which will be converted to JSON) and then handle persistence (writing to S3, and updating GitHub). We will use <strong>Lambda Container Image</strong> support for the portion that interacts with GitHub, so that we can include a Git client inside the Lambda environment. (Normally, one cannot install arbitrary binaries in Lambda’s standard environment (<a href="https://stackoverflow.com/questions/48381918/how-do-i-install-git-using-aws-lambda#:~:text=As%20far%20as%20I%20understand,deployed%20in%20a%20zip%20package">How do I install Git using AWS Lambda? - Stack Overflow</a>), but containerizing the function allows us to have Git installed and any other dependencies needed.) All Lambda functions will be written in Python (using FastAPI for the API endpoint logic).</p>
+</li>
+<li>
+<p><strong>Amazon S3</strong>: S3 will serve as the storage for JSON data representing JIRA issues and their changes. Each JIRA issue change event will result in a JSON file being saved to an S3 bucket (for example, in a key structure like <code>issues/&lt;PROJECT&gt;/&lt;ISSUE_KEY&gt;/&lt;TIMESTAMP&gt;.json</code>). We may also choose to keep a single JSON per issue (the latest state) and enable versioning on the bucket so that all historical versions are retained automatically. Storing data in S3 provides durable, cost-effective storage that can be easily accessed by other tools or via the API. S3 will be configured with server-side encryption and access controls to ensure the data is secure.</p>
+</li>
+<li>
+<p><strong>GitHub Repository</strong>: The system will integrate with GitHub to store a second copy of the data. The Lambda function (running in a container with Git) will clone or pull the GitHub repo (which contains JSON files for each issue), commit the new changes (e.g. add or update the JSON for the issue that changed), and push back to GitHub. This provides a version-controlled history of all changes. We will likely organize the repository in a similar fashion to S3 (one file per issue, or per event) so that diffs show the evolution of each issue. The GitHub integration will use a personal access token (or GitHub App credentials) stored in AWS Secrets Manager (see below). Each commit can trigger a GitHub Action as part of CI/CD (for example, to run further checks or to open a pull request if we want manual review for some changes, though for this use-case an auto-commit to a version-control branch is fine).</p>
+</li>
+<li>
+<p><strong>Amazon CloudFront</strong>: CloudFront will be used as a CDN in front of our API and possibly the S3 bucket, to accelerate access and provide a cached layer. We will configure CloudFront with a custom domain (via Route 53) to serve the FastAPI endpoints and the static JSON content. CloudFront can cache GET responses from the API (improving performance for frequently accessed data) and also directly serve the static files from S3 (if we choose to expose them, for example for browsing snapshots). This will also help with global performance if our internal teams are geographically distributed, ensuring low latency access. CloudFront will be configured with appropriate cache behaviors (e.g. dynamic API responses might have short TTL or no caching, whereas static documentation or rarely-changing content can be cached longer). CloudFront will also be used to connect requests to Lambda functions via AWS Function URL capabilities.</p>
+</li>
+<li>
+<p><strong>Amazon Route 53</strong>: Route 53 will manage the DNS for the service’s endpoints. We will create a domain or subdomain (for example, <code>jira-sync.internal.company.com</code>) and use Route 53 to route traffic to the CloudFront distribution. This gives a friendly, stable URL for internal users and for configuring the JIRA webhooks. It also allows us to manage SSL certificates (through AWS Certificate Manager) for that domain, so that the API is served securely over HTTPS. Route 53 costs are minimal ($0.50/month per hosted zone and small charges per DNS query) and it integrates well with CloudFront.</p>
+</li>
+<li>
+<p><strong>AWS IAM</strong>: Identity and Access Management will be used to enforce least-privilege access for all components. We will create specific IAM roles for the Lambda functions: for example, the webhook-processing Lambda will have permission to put objects to the S3 bucket, pull from ECR (for container image), write logs to CloudWatch, and read the GitHub token from Secrets Manager. Another IAM role may be used for the FastAPI Lambda if it has different permissions (like only read access to S3). No broad wildcard permissions will be used – everything will be scoped to just what's needed (e.g. specific bucket ARN, specific secret ARN). IAM will also manage any user access if needed (though likely the API will not require AWS IAM auth since it’s internal, but we might use IAM roles for services that call the API).</p>
+</li>
+<li>
+<p><strong>Amazon CloudWatch</strong>: CloudWatch will capture logs and metrics from Lambda and CloudFront. Every invocation of the Lambda (for webhook or API calls) will generate logs (including any errors or debugging info) to CloudWatch Logs. We will set log retention policies to a reasonable period (for example, 30 days) to manage costs. CloudWatch will also be used to create custom metrics/alarms: for instance, we can monitor the Lambda invocation failures or duration, and set up an alarm if errors suddenly spike (to alert the team). CloudWatch dashboards can be created to visualize the number of JIRA events processed, processing time, etc. All of this helps in monitoring the health and performance of the system.</p>
+</li>
+<li>
+<p><strong>AWS Secrets Manager</strong>: Secrets Manager will safely store sensitive configuration, notably the <strong>GitHub credentials</strong> (like a Personal Access Token or an SSH key for the repo) and possibly any JIRA credentials (if in the future we need to call the JIRA API, e.g. for a full sync). These secrets will be encrypted and only accessible by the Lambda functions (via IAM policy). The Lambda at runtime will retrieve the secret (Secrets Manager charges $0.05 per 10,000 API calls for secret retrieval, which is negligible (<a href="https://aws.amazon.com/blogs/security/how-to-rotate-a-wordpress-mysql-database-secret-using-aws-secrets-manager-in-amazon-eks/#:~:text=secret,Secrets%20Manager%20pricing%20service%20details">How to rotate a WordPress MySQL database secret using AWS Secrets Manager in Amazon EKS | AWS Security Blog</a>)). The cost of storing secrets is $0.40 per secret per month (<a href="https://aws.amazon.com/blogs/security/how-to-rotate-a-wordpress-mysql-database-secret-using-aws-secrets-manager-in-amazon-eks/#:~:text=secret,Secrets%20Manager%20pricing%20service%20details">How to rotate a WordPress MySQL database secret using AWS Secrets Manager in Amazon EKS | AWS Security Blog</a>) – for example, two secrets would be ~$0.80/month. Using Secrets Manager eliminates hard-coding sensitive info and allows easy rotation of credentials without code changes.</p>
+</li>
+<li>
+<p><strong>AWS Elastic Container Registry (ECR)</strong>: (Implied in the use of Lambda containers) We will use ECR to store the Docker container images for our Lambda functions. Each time we update the Lambda code (especially for the one including Git and possibly the FastAPI app), a Docker image will be built and pushed to a private ECR repository. AWS Lambda will pull the image from ECR when provisioning instances of the function. ECR is a fully managed Docker registry and works seamlessly with Lambda’s container support. We will use appropriate base images (Amazon Linux 2 base for Lambda with Python) and install Git and our Python code into that image. IAM roles and permissions for Lambda to access the ECR repo will be configured. (ECR cost is low – $0.10 per GB-month of storage and data transfer out, which in our case is trivial since the image might be a few hundred MBs and seldom pulled).</p>
+</li>
+</ul>
+<p>All these services together form a cohesive, serverless architecture. The design ensures <strong>scalability</strong> (Lambdas scale automatically to handle bursts of events), <strong>durability</strong> (S3 and GitHub provide persistent storage of data), and <strong>security</strong> (using IAM, and Secrets Manager for creds). There are no always-on servers to maintain – everything runs on-demand. The architecture is summarized as follows:</p>
+<ol>
+<li><strong>Webhook Ingestion</strong> – JIRA triggers an HTTP POST to our API whenever an issue changes.</li>
+<li><strong>Lambda Processing</strong> – The webhook invocation triggers the Lambda function which runs our Python code (FastAPI logic for the endpoint) to parse and handle the data.</li>
+<li><strong>Data Storage</strong> – The Lambda writes the JSON to S3 and commits it to GitHub (through the Git-enabled container).</li>
+<li><strong>API Access</strong> – Another Lambda (running FastAPI) provides GET/POST endpoints for internal users to fetch issue data or trigger sync operations, delivered via CloudFront and Route 53 for low latency.</li>
+<li><strong>Monitoring &amp; Logging</strong> – CloudWatch captures all logs/metrics, and the team can review these or get alerted on anomalies.</li>
+</ol>
+<p>This stack uses managed services to meet the requirements with minimal infrastructure management, aligning well with the company’s internal use and rapid development goals.</p>
+<h2 id="implementation-approach">Implementation Approach</h2>
+<p>We will implement the system in Python, following an event-driven pipeline for JIRA events and a modular design for the API. The development will be test-driven (to achieve 100% test coverage) and use continuous integration. Below is the step-by-step workflow and components of the implementation:</p>
+<ol>
+<li>
+<p><strong>JIRA Webhook Configuration:</strong> We will configure JIRA to send webhooks for relevant events. For example, whenever an issue is created or updated (including status changes, comments, etc.), JIRA will send an HTTP POST to our API’s endpoint (e.g. <code>https://jira-sync.internal.company.com/webhook</code>). This webhook includes details of the issue in XML format (as JIRA might send XML by default). We will ensure the webhook includes all necessary fields (JIRA allows selecting events or specifying the data format, if possible). The webhook will be set to fire <em>synchronously</em> so we get the data in near real-time.</p>
+</li>
+<li>
+<p><strong>Webhook Ingestion Lambda (FastAPI):</strong> The incoming webhook hits CloudFront, which invokes the <strong>Webhook Handler Lambda</strong>. This Lambda runs a FastAPI application to handle the <code>/webhook</code> route. FastAPI will parse the request and pass the XML payload to our handler code. The Lambda will immediately transform the <strong>XML into JSON</strong> – using an XML parser library to convert the structure into a JSON dict. We’ll define a schema for the JSON (possibly matching JIRA’s REST API JSON format for issues, for consistency). This transformation is fast and ensures subsequent steps deal with JSON (which is easier to work with in Python and store). The FastAPI route will quickly return a 200 OK response to JIRA (acknowledging receipt), so JIRA isn’t kept waiting too long. Most processing can happen asynchronously after acknowledging, if needed.</p>
+</li>
+<li>
+<p><strong>Data Processing &amp; Storage:</strong> After converting to JSON, the Lambda function will proceed to store and commit the data:
+   - <strong>Store to S3:</strong> The Lambda uses the AWS SDK (boto3) to put the JSON object into the S3 bucket. The object key could be the JIRA issue key (e.g. <code>PROJECT-123.json</code>) for the latest state, and we might also add a time-based key for the specific event (if keeping a log of changes). For example, we could have <code>PROJECT-123/2025-02-09T19-00-00Z.json</code> for an event timestamped now. This ensures <strong>all changes are captured</strong> in S3 (either via versioning or separate files). The S3 write is straightforward and should succeed within milliseconds. (We will handle errors – e.g. if the put fails, the Lambda will log an error and possibly retry or send to a DLQ for manual intervention, to not lose data.)
+   - <strong>Update GitHub Repo:</strong> Next, the Lambda will update the Git repository. Using the Git binary in the container, the Lambda will:</p>
+<ol>
+<li>Clone the repository (or fetch latest changes) into temporary storage (Lambda has /tmp space).</li>
+<li>Update or create the JSON file corresponding to the issue. For example, put the JSON into <code>data/PROJECT-123.json</code> in the repo.</li>
+<li>Commit the change with a message like “Update PROJECT-123 (JIRA webhook event at 2025-02-09T19:00:00Z)”.</li>
+<li>Push the commit to GitHub (using the token from Secrets Manager for authentication). We might push directly to the main branch since this is an automated system, or optionally open a pull request if manual review is desired (likely not needed for internal data sync).</li>
+<li>If the push fails due to a race condition (e.g. another concurrent Lambda invocation pushed a change to the repo first), our code will catch the error, perform a <code>git pull</code> to reconcile, then retry the commit. This ensures that even if multiple issue changes come in at once, all will eventually be committed (some may require a couple of retries). We will serialize access as much as possible – e.g., we might use issue key as a scope for locking (two changes to the same issue in rapid succession could be combined or handled sequentially to avoid conflicts).
+ Using GitHub as a storage provides a full history of changes (via commit history) and an extra backup. It also allows developers to use familiar tools (git diff, blame, etc.) to inspect how an issue changed over time.</li>
+</ol>
+</li>
+<li>
+<p><strong>Continuous Integration &amp; Testing:</strong> All code for the Lambdas (and infrastructure definitions) will live in a GitHub repository (separate from the data repo). We will set up <strong>GitHub Actions</strong> as a CI/CD pipeline. Every time we push changes to the code repository (or open a PR), the pipeline will run:
+   - <strong>Automated Tests:</strong> The test suite (written with unittest/pytest) will run, covering 100% of code paths. We will create unit tests for XML-&gt;JSON transformation (with sample webhook payloads), tests for the Git commit function (perhaps using a dummy repo or mocking Git calls), and tests for the FastAPI endpoints (using FastAPI’s test client to simulate requests). Achieving <em>100% test coverage</em> means every function and edge case is tested – this is a project requirement to ensure reliability for this internal tool.
+   - <strong>Build and Deployment:</strong> If tests pass on the main branch, the pipeline will proceed to build the deployment artifacts. Specifically, we’ll build the Docker images for the Lambdas. One image will contain the webhook/Git handling code (with Git installed), and another image for the API endpoints (FastAPI code). These images are built using a Dockerfile (starting from an AWS Lambda Python base image and adding our code). After build, the pipeline will push these images to AWS ECR. Then, using AWS CLI or CloudFormation scripts, it will update the AWS Lambda functions to use the new image versions. We might use AWS SAM or CDK to define the infrastructure as code – in that case, the GitHub Actions can run <code>sam deploy</code> or <code>cdk deploy</code> to update the stack (which includes the Lambda functions, config, etc.). This CI/CD process means any code change is automatically tested and deployed with minimal human intervention, ensuring <strong>continuous delivery</strong> of improvements.</p>
+</li>
+<li>
+<p><strong>FastAPI API Endpoints:</strong> In parallel to webhook processing, we will implement additional FastAPI endpoints to allow internal users to retrieve and manage the synchronized data. This FastAPI application can be deployed on Lambda (behind Cloud Front) just like the webhook, possibly even the same FastAPI app could include the webhook route and other routes. For clarity, we might separate concerns (one Lambda specifically triggered by CloudFront for webhooks, and another for user API calls), or combine them if performance is not an issue. Key API endpoints planned:
+   - <code>GET /issues/{issueKey}</code> – Retrieves the latest JSON snapshot of the specified issue from S3 (or optionally from the GitHub repo). This allows an internal tool or user to quickly fetch the current state of an issue without hitting JIRA directly.
+   - <code>GET /projects/{projectKey}/issues</code> – Lists issues (or issue keys) for a given project that have been recorded. This can be achieved by listing objects in S3 with that prefix or maintaining an index. It provides a way to discover what data is available.
+   - <code>GET /issues/{issueKey}/history</code> – (Optional) Returns a list of changes or links to past snapshots for that issue. This could pull commit history from GitHub or versions from S3 (if bucket versioning or multiple files are used). This shows the timeline of changes for an issue.
+   - <code>POST /sync</code> – Triggers a manual sync job. This endpoint would be protected (perhaps only allow if a special token is provided) and, when called, would initiate a process to reconcile data with JIRA. For example, it could trigger a Lambda (or Step Function workflow) that calls JIRA REST API to fetch all issues and ensures the S3 and GitHub data matches (useful if we suspect a missed webhook or need a full backfill). This is a <strong>Phase II</strong> feature as initially we rely on webhooks, but having a manual full-sync option is good for completeness.
+   - <code>GET /docs</code> and <code>GET /openapi.json</code> – These are provided by FastAPI automatically. The <strong>Swagger UI</strong> at <code>/docs</code> will allow users to explore the API and test calls, and the OpenAPI spec can be downloaded from <code>/openapi.json</code> for integration with other tools. We will customize the OpenAPI metadata (title, description, version) to clearly describe this internal API.
+   - (Optional) <strong>Admin endpoints</strong>: If needed, we could add endpoints to manage configuration, e.g., <code>POST /webhooks</code> to programmatically register new webhooks in JIRA (if JIRA’s API allows that), or endpoints to view system health (like <code>/health</code> returning status of connections to S3, GitHub, etc.). Initially, these might not be necessary or can be handled via AWS monitoring, but they are considered for future enhancement.</p>
+</li>
+</ol>
+<p>The API will use <strong>JSON</strong> payloads and responses throughout. Authentication can be handled by FastAPI (for instance, using a custom authorizer or API keys for internal clients), or since it’s internal, we might simply restrict it at the network level (only accessible from the corporate network or VPN). We will start with basic security (at least an API key or token in requests) and plan to integrate with the company SSO or IAM in Phase II.</p>
+<ol start="6">
+<li>
+<p><strong>Performance and Concurrency:</strong> We will optimize the Lambda functions to handle the load. Each JIRA event is processed independently; AWS Lambda can scale out horizontally, so multiple events can be processed in parallel if needed. The processing itself (XML to JSON, S3 put, Git commit) is lightweight, typically completing in under a second or two. We’ll allocate sufficient memory to the Lambda – note that Lambda CPU is tied to memory, so giving, say, 512MB or 1GB might significantly speed up the Git operations. We aim for end-to-end latency of only a few seconds from JIRA event to data saved. If certain operations (like Git) prove to be a bottleneck under high concurrency, we might introduce a queue (AWS SQS) to buffer and serialize them, but our initial design attempts a direct approach for simplicity. We will also use CloudWatch to monitor execution time; if we see it creeping up or any timeouts, we will refactor accordingly (e.g., move heavy work to an async background step). The system should be able to handle bursts (Lambda has a high concurrency limit by default, e.g., 1000 concurrent executions, which is plenty for our use case).</p>
+</li>
+<li>
+<p><strong>Error Handling &amp; Logging:</strong> Throughout the implementation, careful error handling will be in place. If the webhook Lambda fails processing for some reason (e.g., unable to reach GitHub or S3), it can catch the exception and either retry or send the event to a Dead Letter Queue (AWS Lambda DLQ/SQS) for later reprocessing. We will log all failures with details to CloudWatch. Additionally, we can use AWS CloudWatch Alarms to notify the team if repeated errors occur (for example, if 5 webhook processing failures occur in a row, send an alert to email/Slack). This ensures the team can respond quickly to any issues (like a credential expiring or an outage in one of the dependencies).</p>
+</li>
+</ol>
+<p>Overall, the implementation approach emphasizes <strong>automation</strong> and <strong>speed</strong>: automated triggers via webhooks, automated testing and deployment via CI/CD, and automated recovery from errors where possible. By structuring the code with FastAPI, we also get a clear organization of routes and background tasks, making the system easier to extend later.</p>
+<h2 id="api-documentation-design">API Documentation &amp; Design</h2>
+<p>We will design a clear and well-documented REST API as part of this system, primarily for internal developers/teams who want to query the JIRA data or trigger certain actions. Using <strong>FastAPI</strong> as the framework gives us automatic documentation generation. Key aspects of the API design:</p>
+<ul>
+<li>
+<p><strong>Base URL &amp; Versioning:</strong> The API will be served at a base URL (for example, <code>https://jira-sync.internal.company.com/api/v1</code>). We include a version in the path (<code>v1</code>) to allow future changes without breaking clients. The Route 53 DNS and CloudFront will ensure this domain is accessible internally. Under the hood, CloudFront will route requests to the FastAPI Lambda.</p>
+</li>
+<li>
+<p><strong>OpenAPI Schema:</strong> FastAPI will generate an OpenAPI schema documenting all endpoints, their request/response models, and any error responses. We will customize the schema with proper descriptions. The documentation will be accessible via <strong>Swagger UI</strong> and <strong>ReDoc</strong> (FastAPI provides <code>/docs</code> and <code>/redoc</code> by default). This interactive doc is crucial for internal users to understand how to use the API. Since this is internal, we can expose the docs openly (or protect with a simple auth if needed).</p>
+</li>
+<li>
+<p><strong>Endpoints and Models:</strong> We will define Pydantic models in FastAPI for the data we return, matching the JIRA issue structure (e.g., fields like key, summary, status, etc.). Some core endpoints:</p>
+</li>
+<li><code>GET /api/v1/issues/{issueKey}</code> – Returns the latest issue data in JSON. On success: HTTP 200 with a JSON body containing all fields of the issue (as captured). If the issue is not found in our data store, return 404. We’ll document the JSON structure in the OpenAPI schema (which will reflect our Pydantic model).</li>
+<li><code>GET /api/v1/projects/{projectKey}/issues</code> – Returns a list of issue keys (or brief info) for all issues in that project that we have stored. Could support query params for filtering. Useful for enumerating data.</li>
+<li><code>GET /api/v1/issues/{issueKey}/history</code> – Returns a list of timestamped changes for that issue. This could be an array of objects each containing a timestamp and either the full snapshot or a diff of fields changed. If implementing fully might be complex, we may initially leave this endpoint for Phase II, but design the API with this in mind.</li>
+<li><code>POST /api/v1/sync</code> – Kicks off a full sync as described earlier. The request could allow specifying a project or all projects. The response would likely be 202 Accepted with a task ID (if we run an async job) or 200 if it’s quick. This is an administrative endpoint and will be secured (maybe require a special token or admin privileges).</li>
+<li>
+<p><code>GET /api/v1/health</code> – A simple health-check endpoint that returns status (could check connectivity to S3, GitHub, etc.). This helps in monitoring and can be used by an uptime check.</p>
+</li>
+<li>
+<p><strong>Security &amp; Auth:</strong> Initially, since this is for internal use, we may rely on network security (only accessible within our VPN or corporate network). However, if needed, we can issue an API key that must be included in requests (FastAPI can check a header for a key). In Phase II, we might integrate with our internal SSO (e.g., using OAuth tokens or JWTs) to authenticate users calling the API, especially if we open it up to more users. All endpoints will require HTTPS (which is ensured by CloudFront with our TLS certificate).</p>
+</li>
+<li>
+<p><strong>Rate Limiting and Quotas:</strong> Given the internal nature and presumably moderate use, we might not need strict rate limiting. But CloudFront can enforce a throttle (e.g., 100 requests per second) to prevent abuse or bugs from spamming the system. We will document any such limits in the API docs.</p>
+</li>
+<li>
+<p><strong>Response Formats:</strong> All responses will be in JSON format. Errors will follow a consistent structure (FastAPI by default might return validation errors in a structured way). We’ll document possible HTTP status codes for each endpoint (e.g., 200 for success, 404 for not found, 500 for server error, etc.).</p>
+</li>
+<li>
+<p><strong>Example Usage:</strong> The documentation will include example requests and responses. For instance, the Swagger UI will allow users to try out <code>GET /issues/{issueKey}</code> and see a sample response. We will ensure that our API is intuitive – using plural nouns for collections (<code>issues</code>) and singular for single resources, etc., consistent with REST guidelines.</p>
+</li>
+<li>
+<p><strong>Testing the API:</strong> As part of the project, we will also write integration tests for the API endpoints. We can use the FastAPI provided test client to simulate calls in our CI pipeline to ensure the endpoints behave as expected.</p>
+</li>
+</ul>
+<p>By using <strong>FastAPI</strong>, we leverage a modern, high-performance framework that natively supports asynchronous I/O (useful if we ever need to call external APIs within requests) and integrates well with Pydantic for data validation. The OpenAPI documentation generated will be crucial for adoption of this internal tool, reducing the need for separate documentation writing. We will host the documentation (Swagger UI) such that any internal developer can easily access it via the web browser (with appropriate access control).</p>
+<p>Overall, the API design is <strong>RESTful, intuitive, and documented</strong>. It provides not just a data dump, but a convenient way to query and monitor JIRA data via familiar HTTP calls, which can be used in scripts, other internal applications, or data analysis pipelines.</p>
+<h2 id="financial-analysis">Financial Analysis</h2>
+<p>One of the advantages of a serverless architecture is that costs scale with usage and are minimal for low to moderate workloads. We have analyzed the expected AWS costs for this system to ensure it remains cost-effective for internal use. Below is a breakdown of the primary cost components:</p>
+<ul>
+<li>
+<p><strong>AWS Lambda</strong>: Lambda charges based on the number of invocations and the duration (GB-seconds) used. The AWS Lambda free tier provides <em>1 million free requests per month</em> and <em>400,000 GB-seconds of compute time per month</em> (this free tier is continuous, not just 12 months) (<a href="https://dashbird.io/blog/aws-lambda-pricing-model-explained/#:~:text=Yes%2C%20to%20an%20extent,term%2C%20but%20is%20available%20indefinitely">AWS Lambda Price Explained (With Examples) | Dashbird</a>). Beyond that, the cost is $0.20 per 1 million requests and ~$0.00001667 per GB-second of execution (<a href="https://aws.amazon.com/s3/pricing/#:~:text=The%20Lambda%20compute%20cost%20is,of%20memory%20allocated%20to%20it">Amazon S3 Pricing - Cloud Object Storage - AWS</a>). In our scenario, each JIRA event triggers one Lambda execution. Even in a busy month with, say, 100,000 issue updates, we’d be far below the free 1 million requests. The processing time per event might be around 100-200ms with 512MB memory (0.1-0.2 * 0.5 GB-s = 0.05-0.1 GB-s per exec). So 100k events would use ~5,000-10,000 GB-s, also within the free tier. In summary, <strong>Lambda costs are effectively $0</strong> at our scale, or at most a few cents if we go beyond free tier. Even if we had a million events, the cost is about $0.20 for requests + maybe ~$0.17 for compute – roughly <strong>$0.37</strong> for a million events, which is extremely low (<a href="https://aws.amazon.com/s3/pricing/#:~:text=The%20Lambda%20request%20price%20is,20%20per%201%20million%20requests">Amazon S3 Pricing - Cloud Object Storage - AWS</a>). We will monitor concurrency and if we need to raise limits (AWS default concurrency limit is 1,000, which is free to increase if needed).</p>
+</li>
+<li>
+<p><strong>Amazon S3</strong>: S3 costs include storage and requests. <strong>Storage</strong>: S3 Standard storage is about <strong>$0.023 per GB-month</strong> for the first 50 TB (<a href="https://www.cloudzero.com/blog/s3-pricing/#:~:text=The%20No%20BS%20Guide%20To,TB%20tier%20starts%20at">The No BS Guide To Understanding S3 Storage Costs - CloudZero</a>). Our data consists of JSON text, which is quite small per issue. For example, if we track 10,000 issues with an average of 5KB each in JSON, that’s ~50 MB of data. Even including historical versions, let’s say 10 versions each, that’s 500 MB. At $0.023/GB, 0.5 GB costs around <strong>$0.0115 per month</strong> – basically a penny. Even scaling up to hundreds of thousands of issues, the storage cost would be just a few dollars per month. <strong>Requests</strong>: We will have PUT (or POST) requests for each webhook event writing to S3, and GET requests when the API or processes read from S3. S3 pricing per 1,000 requests is roughly $0.005 per 1,000 for PUT/LIST and $0.0004 per 1,000 for GET (<a href="https://aws.amazon.com/s3/pricing/#:~:text=match%20at%20L937%20S3%20GET,0004%20per%201%2C000%20requests">Amazon S3 Pricing - Cloud Object Storage - AWS</a>). So, 100k events -&gt; 100k PUTs = 100 * $0.005 = $0.50. GET requests by the API might also be on the order of thousands, incurring only pennies. Additionally, new AWS customers get 5 GB storage, 20k GET, and 2k PUT requests free per month (<a href="https://aws.amazon.com/s3/pricing/#:~:text=As%20part%20of%20the%20AWS,Data%20Transfer%20Out%20each%20month">Amazon S3 Pricing - Cloud Object Storage - AWS</a>). In our case, after development, this likely won’t matter much, but it’s nice to note that small usage is often covered by free tier. Overall, <strong>S3 cost will be very low</strong>, likely under $1/month in practice, unless we scale to millions of issues.</p>
+</li>
+<li>
+<p><strong>Amazon CloudFront</strong>: CloudFront costs for serving our API and content include data transfer out and request fees. Data transfer out from CloudFront to end-users (our internal users) is $0.085 per GB for the first 10 TB per month in North America/Europe regions (<a href="https://blog.blazingcdn.com/en-us/understanding-cloudfront-request-and-data-transfer-costs#:~:text=,month%3A%20Pricing%20negotiable%20with%20AWS">Understanding CloudFront Request and Data Transfer Costs</a>). Our use case will have tiny data payloads (JSON responses, docs, etc.), maybe a few MBs per day at most, which is far less than even 1 GB per month. So data transfer via CloudFront will cost only a few cents (if not effectively $0). CloudFront also has a free allocation of 1 TB for new sign-ups for a year, which we won’t exceed initially. <strong>Request fees</strong>: $0.01 per 10,000 HTTPS requests (<a href="https://blog.blazingcdn.com/en-us/understanding-cloudfront-request-and-data-transfer-costs#:~:text=Request%20costs%20are%20divided%20between,AWS%20charges%20per%20million%20requests">Understanding CloudFront Request and Data Transfer Costs</a>) (about $1 per million). If we serve 100k requests in a month, that’s 10 cents. So CloudFront might add cents to a dollar per month range. We budget perhaps <strong>&lt;$1/month</strong> for CloudFront under typical usage. The benefit it gives (caching, performance) is well worth this negligible cost.</p>
+</li>
+<li>
+<p><strong>Amazon Route 53</strong>: Route 53 hosted zone costs $0.50 per month for the domain (since we’ll likely use one hosted zone for our internal domain). DNS query costs are $0.40 per million queries for the first billion (<a href="https://aws.amazon.com/route53/pricing/#:~:text=Hosted%20Zones%20and%20Records,hosted%20zones%20%C2%B7%20DNS">Amazon Route 53 pricing - Amazon Web Services</a>). Internal services will do some DNS lookups, but this is typically extremely low (and often cached in clients). So Route 53 costs will be about <strong>$0.50/month</strong> fixed, with maybe a few cents for queries (if any significant number of lookups happen). If we create additional subdomains or records, those are free up to 10k records per zone (we’ll have only a handful).</p>
+</li>
+<li>
+<p><strong>AWS Secrets Manager</strong>: As noted, Secrets Manager charges $0.40 per secret per month (<a href="https://aws.amazon.com/blogs/security/how-to-rotate-a-wordpress-mysql-database-secret-using-aws-secrets-manager-in-amazon-eks/#:~:text=secret,Secrets%20Manager%20pricing%20service%20details">How to rotate a WordPress MySQL database secret using AWS Secrets Manager in Amazon EKS | AWS Security Blog</a>). We anticipate storing possibly 2-3 secrets (GitHub token, maybe JIRA API token, maybe a general config secret) – so roughly <strong>$0.80 to $1.20 per month</strong>. API calls to retrieve secrets (during Lambda init) are $0.05 per 10,000 calls (<a href="https://aws.amazon.com/blogs/security/how-to-rotate-a-wordpress-mysql-database-secret-using-aws-secrets-manager-in-amazon-eks/#:~:text=secret,Secrets%20Manager%20pricing%20service%20details">How to rotate a WordPress MySQL database secret using AWS Secrets Manager in Amazon EKS | AWS Security Blog</a>); our Lambdas will fetch secrets likely once per cold start. Cold starts might be a few per day, so practically $0 in API call charges.</p>
+</li>
+<li>
+<p><strong>CloudWatch Logs and Monitoring</strong>: CloudWatch Logs costs $0.50 per GB ingested and $0.03 per GB archived per month. Our logs will be mainly text logs from Lambdas. We will keep logging concise (not dumping large payloads unnecessarily). Suppose each event logs 1KB of data and we have 100k events = 100k KB = ~0.1 GB of logs per month, that’s $0.05. Even with verbose logging, it will be well under <strong>$1/month</strong>. Metrics (default ones) are free, and even custom metrics are cheap ($0.30 per metric/month) if we add any. We might set up a few CloudWatch Alarms ($0.10/alarm/month), maybe 2-3 alarms, so that’s &lt;$1. So CloudWatch total might be on the order of <strong>$1-2/month</strong> at most, likely less.</p>
+</li>
+<li>
+<p><strong>GitHub Costs</strong>: Using GitHub itself does not incur AWS charges, but we consider if there are any costs on GitHub’s side:</p>
+</li>
+<li>The GitHub repository where JSON is stored will grow in size as we accumulate history. However, text JSON compresses well in git and even a large history is likely only tens of MBs. This is well within GitHub’s repo size limits (and no cost unless we are storing huge files or using LFS).</li>
+<li>GitHub Actions CI/CD minutes – If using a public repo, Actions are free; for private, we get a certain amount of minutes free (e.g., 2,000 Linux minutes per month on a typical plan). Our CI runs (tests + build) might take ~5-10 minutes per deploy. If we deploy say 20 times a month, that’s 200 minutes, within free limits. If on GitHub Enterprise Cloud, we might have an allotment or it’s a corporate account – anyway, CI cost is not likely an issue. We will monitor usage.</li>
+<li>
+<p>There is no direct cost per API call or push to GitHub. So integration is free aside from the development effort.</p>
+</li>
+<li>
+<p><strong>Other AWS Services</strong>: IAM has no direct cost. ECR has minimal cost (first 500MB storage is free, and our images likely under that; data transfer within same region for Lambda pulling image is free). If we use Step Functions for the <code>/sync</code> full sync in future, that would cost a bit ($0.025 per 1,000 state transitions), but that’s Phase II perhaps.</p>
+</li>
+</ul>
+<p>In summary, under expected usage, the <strong>monthly AWS cost</strong> of this system can be on the order of <strong>a few dollars or less</strong>. Most of the serverless services (Lambda, S3, CloudFront) will likely fall in the free tier or only marginally above it for our scale.</p>
+<p>For the value it provides (real-time backups and an accessible API for all JIRA changes), this cost is quite reasonable. Additionally, the cost scales with usage: even if our JIRA usage doubles, the costs would only double in proportion (still small). We will also set up AWS Cost Alerts to monitor if costs unexpectedly jump (e.g., due to a bug causing a flood of Lambda invocations or a misconfiguration). This financial plan ensures the project stays <strong>within budget</strong> and demonstrates high cost efficiency thanks to the serverless design (<a href="https://dashbird.io/blog/aws-lambda-pricing-model-explained/#:~:text=Yes%2C%20to%20an%20extent,term%2C%20but%20is%20available%20indefinitely">AWS Lambda Price Explained (With Examples) | Dashbird</a>) (<a href="https://aws.amazon.com/s3/pricing/#:~:text=The%20Lambda%20compute%20cost%20is,of%20memory%20allocated%20to%20it">Amazon S3 Pricing - Cloud Object Storage - AWS</a>).</p>
+<h2 id="deployment">Deployment</h2>
+<p><strong>Deployment Process:</strong> We will use an automated deployment pipeline to release this system into AWS. Our approach is to integrate deployment with the GitHub Actions CI workflow:
+- For infrastructure, we will define everything as code (using AWS SAM or AWS CDK). This includes Lambda functions, S3 bucket, IAM roles, etc. These definitions live in the repository.
+- When changes are pushed to the main branch (after passing tests), the GitHub Actions workflow will package and deploy the new code. For example, using AWS SAM: <code>sam build</code> to package code and Docker images, <code>sam deploy --no-confirm-changeset</code> to apply changes. Or with CDK: <code>cdk synth</code> and <code>cdk deploy</code>. We will configure GitHub Actions with AWS credentials (stored securely in GitHub secrets) that have permission to deploy the stack (likely an IAM user or role with CloudFormation deploy rights).
+- The deployment will cover updating Lambda code (pointing to the new Docker image digest in ECR or new function code) and any infrastructure changes. Because it’s serverless, deployments are quick and have minimal downtime. Lambda updates are atomic (new version deployed and then traffic switched).
+- We will maintain separate environments if needed: e.g., a “dev” stage and a “prod” stage. This could be separate AWS stacks or even separate AWS accounts. The CI pipeline can deploy to a dev environment on each commit and require a manual approval to deploy to prod. This ensures we can test changes in a staging area with minimal risk.
+- <strong>DNS and CDN Deployment:</strong> We will use Infrastructure as Code to also set up Route 53 records and CloudFront distribution. For example, a CloudFormation template can create the CloudFront distribution with the proper domain name and attach it to Route 53. One consideration: provisioning an SSL certificate via AWS Certificate Manager for our domain (e.g., <code>*.internal.company.com</code>) – we need to do that and ensure CloudFront use it. This will be part of the initial setup. Subsequent deployments will reference the existing certificate.</p>
+<p>In conclusion, the deployment strategy ensures that launching and updating the system is <strong>automated and safe</strong>, using CI/CD best practices. Once deployed, we will document operational runbooks (e.g., how to redeploy if something goes wrong, how to rotate the GitHub token with minimal downtime, etc.) so the system can be maintained by the team with confidence.</p>
+<p>This project plan provides a comprehensive approach to delivering a serverless JIRA exporter &amp; sync system that meets the requirements. It leverages AWS services to minimize upkeep and maximize scalability, integrates with development workflows (GitHub) for efficiency, and lays out a clear path for implementation, testing, and future growth. With this plan, the team can proceed to implementation knowing the objectives, architecture, and steps to success. The result will be a reliable internal service that keeps a near-real-time backup of JIRA data and makes it accessible and auditable to our internal stakeholders, all while keeping costs and maintenance burden very low.</p>
+</article>
+<p class="small dim licence-note">Released under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. First published on docs.diniscruz.ai; <a href="project-jsync__jira-exporter-and-synchronization-system.md">this page as markdown</a>.</p>
+<div class="pagenav"><a href="../../../2025/02/05/the-future-of-news-building-trust-through-fact-provenance.html">← The Future of News: Building Trust Through Fact Provenance</a><a href="../../../2025/02/10/second-stories__from-three-mile-island-to-cybersecurity.html">Second Stories: From Three Mile Island to Cybersecurity →</a></div>
+</main>
+
+<footer class="site"><div class="cols">
+  <div>
+    <div class="brandline">diniscruz<span>.ai</span></div>
+    <p>The personal site of Dinis Cruz: essays and research on AI, cyber security, semantic knowledge graphs and the future of news, and the companies and open-source projects they feed into. All writing CC BY 4.0.</p>
+    <p class="netline"><a href="https://sgit.ai"><b>↗ sgit.ai</b></a> — encrypted git for humans and AI agents · <a href="https://open-source.sgit.ai">↗ open-source.sgit.ai</a> — open source as a strategy · <a href="https://sgit.ai/network/index.html">↗ the sgit.ai network</a></p>
+    <p class="verline">site <a href="../../../admin/versions.html">v0.1.0</a> · <a href="../../../admin/index.html">engineering</a> · <a href="../../../2025/02/09/project-jsync__jira-exporter-and-synchronization-system.md">this page as markdown</a></p>
+  </div>
+  <div>
+    <h4>Writing</h4>
+    <a href="../../../writing/index.html">All writing</a>
+    <a href="../../../research/index.html">Research hub</a>
+    <a href="../../../resources/presentations.html">Talks</a>
+    <a href="../../../feed.xml">RSS feed</a>
+  </div>
+  <div>
+    <h4>Building</h4>
+    <a href="../../../building/index.html#companies">Companies</a>
+    <a href="../../../building/index.html#open-source">Open source</a>
+    <a href="https://sgit.ai">↗ sgit.ai</a>
+    <a href="https://open-source.sgit.ai">↗ open-source.sgit.ai</a>
+  </div>
+  <div>
+    <h4>About</h4>
+    <a href="../../../about/index.html">About Dinis Cruz</a>
+    <a href="https://www.linkedin.com/in/diniscruz">↗ LinkedIn</a>
+    <a href="https://github.com/DinisCruz">↗ GitHub</a>
+    <a href="../../../admin/index.html">How this site is built</a>
+    <a href="../../../admin/versions.html">Release history</a>
+    <a href="../../../llms.txt">llms.txt</a>
+    <a href="../../../llms-full.txt">llms-full.txt</a>
+  </div>
+</div></footer>
+
+</body>
+</html>

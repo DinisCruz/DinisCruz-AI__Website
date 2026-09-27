@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How diniscruz.ai is built</title>
+<meta name="description" content="How diniscruz.ai is built and released: hand-written HTML plus pages generated from the markdown migrated from docs.diniscruz.ai, a markdown twin at every URL, llms.txt, and a validate-then-deploy pipeline to GitHub Pages.">
+<meta name="author" content="Dinis Cruz">
+<link rel="canonical" href="https://diniscruz.ai/admin/index.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="diniscruz.ai">
+<meta property="og:url" content="https://diniscruz.ai/admin/index.html">
+<meta property="og:title" content="How diniscruz.ai is built">
+<meta property="og:description" content="How diniscruz.ai is built and released: hand-written HTML plus pages generated from the markdown migrated from docs.diniscruz.ai, a markdown twin at every URL, llms.txt, and a validate-then-deploy pipeline to GitHub Pages.">
+<link rel="alternate" type="text/markdown" href="index.md" title="This page as markdown">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<nav class="site"><div class="row">
+  <a class="brand" href="../index.html">diniscruz<span>.ai</span></a>
+  <a class="parent" href="https://sgit.ai" title="sgit.ai — encrypted git for humans and AI agents, the project Dinis Cruz is building now">↗ building <b>sgit.ai</b></a>
+  <a class="ver" href="../admin/versions.html" title="Site release history">v0.1.0</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">Menu</button>
+  <div class="nav-items">
+    <div class="ni ni-has">
+      <a class="nl" href="../writing/index.html">Writing<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../writing/index.html">All writing, newest first</a>
+      <a class="sl" href="../research/research-document.html">Research document catalogue</a>
+      <a class="sl" href="../resources/presentations.html">Talks &amp; presentations</a>
+      <a class="sl" href="../feed.xml">RSS feed</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl" href="../research/index.html">Research<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../research/index.html">Research hub</a>
+      <a class="sl" href="../research/cyber-security.html">Cyber-security &amp; threat modeling</a>
+      <a class="sl" href="../research/development-and-genai.html">AI &amp; development</a>
+      <a class="sl" href="../research/graphs.html">Knowledge graphs</a>
+      <a class="sl" href="../research/the-future-of-news.html">The future of news</a>
+      <a class="sl" href="../research/europe-and-learning.html">Europe &amp; learning</a>
+      <a class="sl" href="../research/projects.html">Projects &amp; innovation lab</a>
+      <a class="sl" href="../research/organizational-transformation.html">Organisational transformation</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl" href="../building/index.html">Building<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../building/index.html#companies">Companies</a>
+      <a class="sl" href="../building/index.html#open-source">Open source</a>
+      <a class="sl" href="../building/index.html#network">The sgit.ai network</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl here" href="../about/index.html">About<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../about/index.html">About Dinis Cruz</a>
+      <a class="sl here" href="../admin/index.html">How this site is built</a>
+      <a class="sl" href="../admin/migration.html">Moving from docs.diniscruz.ai</a>
+      <a class="sl" href="../admin/versions.html">Release history</a>
+      </div>
+    </div>
+  </div>
+  <a class="gh" href="https://github.com/DinisCruz/DinisCruz-AI__Website">★ GitHub</a>
+  <script src="../assets/nav.js" defer></script>
+</div></nav>
+
+<main class="doc">
+<div class="crumb"><a href="../index.html">diniscruz.ai</a> / engineering</div>
+<h1>How this site is built</h1>
+<p class="lead">This is a static site on GitHub Pages, built the same way as <a href="https://sgit.ai">sgit.ai</a> and <a href="https://open-source.sgit.ai">open-source.sgit.ai</a>, and sharing their design language. There is no framework and no JavaScript bundle. Every page works without scripts, and every page has a markdown twin.</p>
+
+<h2 id="two-kinds">Two kinds of page</h2>
+<div class="tablewrap"><table>
+  <thead><tr><th>Kind</th><th>Source of truth</th><th>What the build does</th></tr></thead>
+  <tbody>
+    <tr><td><b>Hand-written</b><br>home, about, building, admin</td><td>The <code>.html</code> file itself, edited by hand</td><td>Rewrites the nav and footer from <code>admin/build/site_config.py</code>, fills the <code>&lt;!-- build:* --&gt;</code> blocks (such as the latest-writing cards), and derives the <code>.md</code> twin from the HTML</td></tr>
+    <tr><td><b>Generated</b><br>essays, research hubs, talks</td><td>The markdown under <code>content/</code>, migrated from docs.diniscruz.ai with its front matter intact</td><td>Renders each file to HTML <b>at the same path it had on docs.diniscruz.ai</b>, expands the old MkDocs macros (PDF, LinkedIn, video and slide embeds), and writes the cleaned markdown as its twin</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="surfaces">The indexing surfaces</h2>
+<ul>
+  <li><b><a href="../sitemap.xml">sitemap.xml</a></b> and <b><a href="../robots.txt">robots.txt</a></b>. Every indexable page, with the publication date as <code>lastmod</code> for essays.</li>
+  <li><b><a href="../feed.xml">feed.xml</a></b>, the RSS feed of the writing. It is also published as <code>feed_rss_created.xml</code> and <code>feed_rss_updated.xml</code>, the names the old MkDocs site used.</li>
+  <li><b>Structured data.</b> A <code>Person</code> record on the home and about pages, <code>BlogPosting</code> on every essay (author, date, licence, word count), and canonical and Open Graph tags everywhere.</li>
+  <li><b><a href="../llms.txt">llms.txt</a></b>, which is self-sufficient: who I am and every page with its description. <b><a href="../llms-full.txt">llms-full.txt</a></b> holds every page in one file, for agents that cannot follow links.</li>
+</ul>
+
+<h2 id="release">Release process</h2>
+<ol>
+  <li>Bump <code>admin/build/version.txt</code> and add a row to <a href="versions.html">the release history</a>.</li>
+  <li><code>pip install -r admin/build/requirements.txt</code> (python-markdown and PyYAML, once).</li>
+  <li><code>python3 admin/build/build.py</code> regenerates every derived file.</li>
+  <li><code>node admin/build/validate.js</code> checks the version, internal links, canonicals, twins and licence lines.</li>
+  <li><code>git commit -am "site vX.Y.Z: ..." &amp;&amp; git push origin dev</code></li>
+</ol>
+<p>Every push runs <code>.github/workflows/deploy-pages.yml</code>. It rebuilds the site and fails if anything committed is stale, then validates, then deploys to GitHub Pages. Pull requests run the checks only.</p>
+
+<h2 id="adding">Adding an essay</h2>
+<p>Drop a markdown file at <code>content/YYYY/MM/DD/slug.md</code> with the same front matter the old site used (<code>title</code>, <code>authors</code>, <code>date</code>, and optionally <code>description</code>, <code>tags</code>, <code>pdf_file</code>, <code>linkedin</code> and <code>back_link</code>), then run the build. It appears in the writing index, the feed, the sitemap, llms.txt and, if it is among the newest, on the home page.</p>
+
+<div class="pagenav"><a href="../about/index.html">← About</a><a href="migration.html">Moving from docs.diniscruz.ai →</a></div>
+</main>
+
+<footer class="site"><div class="cols">
+  <div>
+    <div class="brandline">diniscruz<span>.ai</span></div>
+    <p>The personal site of Dinis Cruz: essays and research on AI, cyber security, semantic knowledge graphs and the future of news, and the companies and open-source projects they feed into. All writing CC BY 4.0.</p>
+    <p class="netline"><a href="https://sgit.ai"><b>↗ sgit.ai</b></a> — encrypted git for humans and AI agents · <a href="https://open-source.sgit.ai">↗ open-source.sgit.ai</a> — open source as a strategy · <a href="https://sgit.ai/network/index.html">↗ the sgit.ai network</a></p>
+    <p class="verline">site <a href="../admin/versions.html">v0.1.0</a> · <a href="../admin/index.html">engineering</a> · <a href="../admin/index.md">this page as markdown</a></p>
+  </div>
+  <div>
+    <h4>Writing</h4>
+    <a href="../writing/index.html">All writing</a>
+    <a href="../research/index.html">Research hub</a>
+    <a href="../resources/presentations.html">Talks</a>
+    <a href="../feed.xml">RSS feed</a>
+  </div>
+  <div>
+    <h4>Building</h4>
+    <a href="../building/index.html#companies">Companies</a>
+    <a href="../building/index.html#open-source">Open source</a>
+    <a href="https://sgit.ai">↗ sgit.ai</a>
+    <a href="https://open-source.sgit.ai">↗ open-source.sgit.ai</a>
+  </div>
+  <div>
+    <h4>About</h4>
+    <a href="../about/index.html">About Dinis Cruz</a>
+    <a href="https://www.linkedin.com/in/diniscruz">↗ LinkedIn</a>
+    <a href="https://github.com/DinisCruz">↗ GitHub</a>
+    <a href="../admin/index.html">How this site is built</a>
+    <a href="../admin/versions.html">Release history</a>
+    <a href="../llms.txt">llms.txt</a>
+    <a href="../llms-full.txt">llms-full.txt</a>
+  </div>
+</div></footer>
+
+</body>
+</html>

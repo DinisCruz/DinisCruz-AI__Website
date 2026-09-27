@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Dinis Cruz — writing</title>
+  <link>https://diniscruz.ai/</link>
+  <atom:link href="https://diniscruz.ai/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>Essays and research by Dinis Cruz on AI, cyber security, semantic knowledge graphs and the future of news.</description>
+  <language>en</language>
+  <lastBuildDate>Thu, 02 Oct 2025 09:00:00 +0000</lastBuildDate>
+  <item>
+    <title>GenLegalAdvise Project Plan</title>
+    <link>https://diniscruz.ai/2025/10/03/genlegaladvise-project-plan.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/10/03/genlegaladvise-project-plan.html</guid>
+    <pubDate>Thu, 02 Oct 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Small businesses, freelancers, and independent consultants regularly encounter legal documents -- consulting agreements, NDAs, service terms, EULAs, data sharing policies -- that are lengthy, dense…</description>
+  </item>
+  <item>
+    <title>Time as a Calibrator of Credibility and Trust in Information Systems</title>
+    <link>https://diniscruz.ai/2025/10/02/time-as-a-calibrator-of-credibility-and-trust-in-information-systems.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/10/02/time-as-a-calibrator-of-credibility-and-trust-in-information-systems.html</guid>
+    <pubDate>Thu, 02 Oct 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>In an era of information overload and rampant misinformation, time emerges as a critical factor in determining what information we trust. Traditional approaches to credibility tend to evaluate a…</description>
+  </item>
+  <item>
+    <title>Project Voice2SIEM: Turning Customer Support Audio Into Real-Time Security Events</title>
+    <link>https://diniscruz.ai/2025/10/02/project-voice2siem-turning-customer-support-audio-into-real-time-security-events.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/10/02/project-voice2siem-turning-customer-support-audio-into-real-time-security-events.html</guid>
+    <pubDate>Thu, 02 Oct 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Phone-based social engineering and vishing (voice phishing) attacks are on the rise, targeting customer support and help desk agents. Attackers impersonate customers or executives to manipulate…</description>
+  </item>
+  <item>
+    <title>Next-Generation API Security Platform: Semantic Graphs, GenAI Testing &amp; Ephemeral Environments for 2025</title>
+    <link>https://diniscruz.ai/2025/09/01/next-generation-api-security-platform-semantic-graphs-genai-testing-ephemeral-environments-2025.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/09/01/next-generation-api-security-platform-semantic-graphs-genai-testing-ephemeral-environments-2025.html</guid>
+    <pubDate>Mon, 01 Sep 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Modern API security requires going beyond traditional scanning -- it must blend into the API testing lifecycle and leverage cutting-edge AI to map and probe complex behaviors. This white paper…</description>
+  </item>
+  <item>
+    <title>Dinis Cruz&#x27;s Research on API Security (2009-2025)</title>
+    <link>https://diniscruz.ai/2025/09/01/dinis-cruz-research-on-api-security-2009-2025.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/09/01/dinis-cruz-research-on-api-security-2009-2025.html</guid>
+    <pubDate>Mon, 01 Sep 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>API security has been a persistent theme in Dinis Cruz&#x27;s work, spanning early insights in 2009--2010 through to innovative ideas in 2025. His contributions center on how to test and analyze web…</description>
+  </item>
+  <item>
+    <title>LLM Workflows/Stateflow Service - Technical Brief</title>
+    <link>https://diniscruz.ai/2025/08/23/llm-workflows-stateflow-service-technical-brief.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/08/23/llm-workflows-stateflow-service-technical-brief.html</guid>
+    <pubDate>Sat, 23 Aug 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>The LLM Workflows/Stateflow Service is a proposed stateless web service for executing AI-driven workflows with well-defined, deterministic steps. It acts as a state machine for orchestrating Large…</description>
+  </item>
+  <item>
+    <title>Personas Service - Technical LLM Brief</title>
+    <link>https://diniscruz.ai/2025/08/23/personas-service-technical-llm-brief.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/08/23/personas-service-technical-llm-brief.html</guid>
+    <pubDate>Fri, 22 Aug 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>The Personas Service (to be deployed at personas.prod.mgraph.ai) is a stateless microservice that leverages Large Language Models (LLMs) to translate and tailor content for specific target personas.…</description>
+  </item>
+  <item>
+    <title>Surrogate Dependencies: Simulating Backends for Offline-First Development</title>
+    <link>https://diniscruz.ai/2025/08/22/surrogate-dependencies-simulating-backends-for-offline-first-development.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/08/22/surrogate-dependencies-simulating-backends-for-offline-first-development.html</guid>
+    <pubDate>Fri, 22 Aug 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Modern software development often relies on remote APIs and services, yet developers frequently need to work in environments where those backends are unavailable or unstable. Surrogate dependencies…</description>
+  </item>
+  <item>
+    <title>Iterative Flow Development (IFD) Methodology: JavaScript Web Application Implementation</title>
+    <link>https://diniscruz.ai/2025/08/22/iterative-flow-development-ifd-methodology__javascript-web-application-implementation.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/08/22/iterative-flow-development-ifd-methodology__javascript-web-application-implementation.html</guid>
+    <pubDate>Fri, 22 Aug 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Generative AI (GenAI) is rapidly transforming software development, enabling new coding paradigms where human developers collaborate with Large Language Models (LLMs) as intelligent assistants.</description>
+  </item>
+  <item>
+    <title>Project VulnAI: AI-Powered Vulnerability Risk Management Platform</title>
+    <link>https://diniscruz.ai/2025/07/27/project-vulnai-ai-powered-vulnerability-risk-management-platform.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/07/27/project-vulnai-ai-powered-vulnerability-risk-management-platform.html</guid>
+    <pubDate>Sun, 27 Jul 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Organizations continue to struggle with a deluge of security vulnerabilities and alerts, but traditional vulnerability management approaches have failed to translate these findings into effective…</description>
+  </item>
+  <item>
+    <title>Semantic Knowledge Graphs, G³, and Sustainable AI: Aligning Innovations with ESG Objectives</title>
+    <link>https://diniscruz.ai/2025/07/06/semantic-knowledge-graphs-g3-and-sustainable-ai-aligning-innovations-with-esg-objectives.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/07/06/semantic-knowledge-graphs-g3-and-sustainable-ai-aligning-innovations-with-esg-objectives.html</guid>
+    <pubDate>Sun, 06 Jul 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>In an era when organizations are increasingly accountable for the environmental, social, and governance (ESG) impacts of their technology, innovative approaches in data and AI engineering are…</description>
+  </item>
+  <item>
+    <title>Graph‑Based Cloud IAM in the GenAI Agentic World</title>
+    <link>https://diniscruz.ai/2025/07/06/graph-based-cloud-iam-in-the-genai-agentic-world.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/07/06/graph-based-cloud-iam-in-the-genai-agentic-world.html</guid>
+    <pubDate>Sun, 06 Jul 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>The rapid rise of generative AI agents – autonomous software powered by large language models (LLMs) – is redefining how applications interact with cloud services. These AI agents can dynamically…</description>
+  </item>
+  <item>
+    <title>From Large Language Models to Small Models and Code: The Evolution of AI Solutions</title>
+    <link>https://diniscruz.ai/2025/07/06/from-large-language-models-to-small-models-and-code-the-evolution-of-ai-solutions.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/07/06/from-large-language-models-to-small-models-and-code-the-evolution-of-ai-solutions.html</guid>
+    <pubDate>Sun, 06 Jul 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Large Language Models (LLMs) like GPT-3 and GPT-4 have revolutionized what machines can do with human language. These massive models (with hundreds of billions of parameters) stunned the world by…</description>
+  </item>
+  <item>
+    <title>Finding the “Good Enough” Threshold: Optimizing Risk, Creativity, and Product Decisions</title>
+    <link>https://diniscruz.ai/2025/07/06/finding-the-good-enough-threshold-optimizing-risk-creativity-and-product-decisions.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/07/06/finding-the-good-enough-threshold-optimizing-risk-creativity-and-product-decisions.html</guid>
+    <pubDate>Sun, 06 Jul 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Every decision in business, creativity, or engineering comes with a trade-off between striving for perfection and delivering “good enough” at the right time. There is an optimal point at which…</description>
+  </item>
+  <item>
+    <title>Usage-Based Billable Entities: Aligning SaaS Pricing with Customer Usage</title>
+    <link>https://diniscruz.ai/2025/07/04/usage-based-billable-entities-aligning-saas-pricing-with-customer-usage.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/07/04/usage-based-billable-entities-aligning-saas-pricing-with-customer-usage.html</guid>
+    <pubDate>Fri, 04 Jul 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Software-as-a-Service (SaaS) companies have traditionally relied on fixed subscription plans – charging customers a monthly or annual fee for access to a product. However, this model often misaligns…</description>
+  </item>
+  <item>
+    <title>The Joy of Programming in the Age of AI-Assisted Development</title>
+    <link>https://diniscruz.ai/2025/07/04/the-joy-of-programming-in-the-age-of-ai-assisted-development.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/07/04/the-joy-of-programming-in-the-age-of-ai-assisted-development.html</guid>
+    <pubDate>Fri, 04 Jul 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>In the software engineering community, the term “flow state” or being “in the zone” describes a peak experience of focus and creativity that makes programming deeply rewarding. A coder in this state…</description>
+  </item>
+  <item>
+    <title>From Free Scraping to Fair Compensation: Cloudflare’s GenAI Crawler Charges and the Future of News Monetization</title>
+    <link>https://diniscruz.ai/2025/07/04/from-free-scraping-to-fair-compensation-cloudflares-genai-crawler-charges-and-the-future-of-news-monetization.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/07/04/from-free-scraping-to-fair-compensation-cloudflares-genai-crawler-charges-and-the-future-of-news-monetization.html</guid>
+    <pubDate>Fri, 04 Jul 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>The rise of generative AI has upended the traditional relationship between content creators and aggregators. AI web crawlers now scrape vast amounts of text, news, and images to train large language…</description>
+  </item>
+  <item>
+    <title>FAQ - Evolving Semantic Graphs and Ontologies with LLMs and MGraph-DB</title>
+    <link>https://diniscruz.ai/2025/07/04/faq-evolving-semantic-graphs-and-ontologies-with-llms-and-mgraph-db.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/07/04/faq-evolving-semantic-graphs-and-ontologies-with-llms-and-mgraph-db.html</guid>
+    <pubDate>Fri, 04 Jul 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>This FAQ-style white paper addresses key technical questions about Dinis Cruz’s approach to building and evolving semantic knowledge graphs using Large Language Models (LLMs) and the MGraph-DB…</description>
+  </item>
+  <item>
+    <title>LLM-Driven GDPR Compliance Q&amp;A Graph – Technical Brief</title>
+    <link>https://diniscruz.ai/2025/07/03/llm-driven-gdpr-compliance-q-and-a-graph-technical-brief.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/07/03/llm-driven-gdpr-compliance-q-and-a-graph-technical-brief.html</guid>
+    <pubDate>Thu, 03 Jul 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>This project aims to build an interactive chatbot UI that guides a user through a series of questions about their organization’s GDPR practices, dynamically builds a knowledge graph from the answers…</description>
+  </item>
+  <item>
+    <title>Using Memory_FS to Build a File-Based Representation of the GDPR Standard</title>
+    <link>https://diniscruz.ai/2025/07/02/using-memory_fs-to-build-a-file-based-representation-of-the-gdpr-standard.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/07/02/using-memory_fs-to-build-a-file-based-representation-of-the-gdpr-standard.html</guid>
+    <pubDate>Wed, 02 Jul 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>This white paper presents a method for converting the General Data Protection Regulation (GDPR) text into a structured, file-based representation using the MemoryFS framework. Targeted at technical…</description>
+  </item>
+  <item>
+    <title>Ephemeral GenAI SIEM: A Serverless, Graph-Driven Approach to Security Event Management</title>
+    <link>https://diniscruz.ai/2025/07/02/ephemeral-genai-siem-a-serverless-graph-driven-approach-to-security-event-management.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/07/02/ephemeral-genai-siem-a-serverless-graph-driven-approach-to-security-event-management.html</guid>
+    <pubDate>Wed, 02 Jul 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Security Information and Event Management (SIEM) tools have long been central to enterprise defense, but traditional SIEMs struggle with scale, context, and cost. They often ingest massive volumes of…</description>
+  </item>
+  <item>
+    <title>Using Ephemeral Neo4j Instances for a Cybersecurity Risk Graph Scenario</title>
+    <link>https://diniscruz.ai/2025/06/25/using-ephemeral-neo4j-instances-for-a-cybersecurity-risk-graph-scenario.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/25/using-ephemeral-neo4j-instances-for-a-cybersecurity-risk-graph-scenario.html</guid>
+    <pubDate>Wed, 25 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Graph thinkers – those who naturally conceptualize information as networks of nodes and relationships – can greatly benefit from on-demand graph analytics. Recently, we demonstrated how a Large…</description>
+  </item>
+  <item>
+    <title>Ephemeral Neo4j Instances for On-Demand Graph Analytics</title>
+    <link>https://diniscruz.ai/2025/06/25/ephemeral-neo4j-instances-for-on-demand-graph-analytics.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/25/ephemeral-neo4j-instances-for-on-demand-graph-analytics.html</guid>
+    <pubDate>Wed, 25 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Organizations are increasingly seeking ways to perform complex graph data transformations and analytics without the overhead of maintaining long-running database servers. Neo4j – a leading graph…</description>
+  </item>
+  <item>
+    <title>Data Tests for Neo4j: Bringing Automated Testing to Graph Databases</title>
+    <link>https://diniscruz.ai/2025/06/25/data-tests-for-neo4j-bringing-automated-testing-to-graph-databases.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/25/data-tests-for-neo4j-bringing-automated-testing-to-graph-databases.html</guid>
+    <pubDate>Wed, 25 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Neo4j’s flexible, schema-optional nature is a double-edged sword: it empowers rapid graph modeling but can lead to hidden data inconsistencies as the graph evolves. Data tests for Neo4j apply the…</description>
+  </item>
+  <item>
+    <title>Project Plan: High Street GenAI Learning Hub</title>
+    <link>https://diniscruz.ai/2025/06/22/project-plan-high-street-genai-learning-hub.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/22/project-plan-high-street-genai-learning-hub.html</guid>
+    <pubDate>Sun, 22 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>In many communities, there is a need for a &quot;third space&quot; – a place outside of home and work where people can gather, learn, and collaborate in a non-commercial, inclusive environment. As author Zadie…</description>
+  </item>
+  <item>
+    <title>FIST Meets the Semantic Knowledge Graph: Aligning Fast, Inexpensive, Simple, Tiny with Dinis Cruz&#x27;s G³ Approach</title>
+    <link>https://diniscruz.ai/2025/06/22/fist-meets-the-semantic-knowledge-graph-aligning-fast-inexpensive-simple-tiny-with-dinis-cruzs-g3-approach.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/22/fist-meets-the-semantic-knowledge-graph-aligning-fast-inexpensive-simple-tiny-with-dinis-cruzs-g3-approach.html</guid>
+    <pubDate>Sun, 22 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Modern engineering projects thrive on agility, thrift, and simplicity. These values are encapsulated in the FIST framework – Fast, Inexpensive, Simple, Tiny – originally coined in the defense…</description>
+  </item>
+  <item>
+    <title>Using LLMs as Ephemeral Graph Databases: Empowering the Graph Thinkers in the Age of Generative AI</title>
+    <link>https://diniscruz.ai/2025/06/19/using-llms-as-ephemeral-graph-databases--empowering-the-graph-thinkers-in-the-age-of-generative-ai.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/19/using-llms-as-ephemeral-graph-databases--empowering-the-graph-thinkers-in-the-age-of-generative-ai.html</guid>
+    <pubDate>Thu, 19 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Graph thinkers – those who naturally conceptualize information as networks of nodes and relationships – are poised to benefit immensely from advances in generative AI. Traditional graph databases…</description>
+  </item>
+  <item>
+    <title>Empowering Workshops with Custom GPTs for GenAI Training</title>
+    <link>https://diniscruz.ai/2025/06/19/empowering-workshops-with-custom-gpts-for-genai-training.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/19/empowering-workshops-with-custom-gpts-for-genai-training.html</guid>
+    <pubDate>Thu, 19 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>GenAI (Generative AI) has rapidly emerged as a transformative technology, yet many executives and professionals struggle to find practical entry points for its adoption. Often, the barrier is not…</description>
+  </item>
+  <item>
+    <title>No Code Development (NCD): A Paradigm Shift Beyond &#x27;Vibe Coding&#x27;</title>
+    <link>https://diniscruz.ai/2025/06/18/no-code-development--ndc--a-paradigm-shift-beyond-vibe-coding.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/18/no-code-development--ndc--a-paradigm-shift-beyond-vibe-coding.html</guid>
+    <pubDate>Wed, 18 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>In recent years, advances in generative AI – especially large language models (LLMs) like GPT-4, Codex, and others – have ushered in a new style of software creation. Instead of writing syntax…</description>
+  </item>
+  <item>
+    <title>Empowering the Graph Thinkers in the Age of Generative AI</title>
+    <link>https://diniscruz.ai/2025/06/18/empowering-the-graph-thinkers-in-the-age-of-generative-ai.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/18/empowering-the-graph-thinkers-in-the-age-of-generative-ai.html</guid>
+    <pubDate>Wed, 18 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>In a world increasingly defined by complex interconnections, a unique set of individuals thrives on seeing relationships and patterns everywhere – the &quot;graph thinkers.&quot; These are people who…</description>
+  </item>
+  <item>
+    <title>Comparing the EU FED Cloud vs. an Open-Source Federated Cloud Proposal</title>
+    <link>https://diniscruz.ai/2025/06/18/comparing-the-eu-fed-cloud-vs-an-open-source-federated-cloud-proposal.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/18/comparing-the-eu-fed-cloud-vs-an-open-source-federated-cloud-proposal.html</guid>
+    <pubDate>Wed, 18 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>The EU FED Cloud is a European initiative to build a federated, sovereign cloud ecosystem with built-in compliance and security. It&#x27;s not a single public cloud provider, but a framework of multiple…</description>
+  </item>
+  <item>
+    <title>Bridging Niklas Luhmann&#x27;s Ideas with Semantic Knowledge Graphs and G³</title>
+    <link>https://diniscruz.ai/2025/06/18/bridging-niklas-luhmanns-ideas-with-semantic-knowledge-graphs-and-g3.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/18/bridging-niklas-luhmanns-ideas-with-semantic-knowledge-graphs-and-g3.html</guid>
+    <pubDate>Wed, 18 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Niklas Luhmann (1927–1998) was a renowned German sociologist and systems theorist, famous not only for his influential theory of social systems but also for his extraordinarily productive writing…</description>
+  </item>
+  <item>
+    <title>Workshop Plan: User-Driven Semantic Persona Graphs Powered by GenAI</title>
+    <link>https://diniscruz.ai/2025/06/16/workshop-plan-user-driven-semantic-persona-graphs-powered-by-genai.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/16/workshop-plan-user-driven-semantic-persona-graphs-powered-by-genai.html</guid>
+    <pubDate>Mon, 16 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>This workshop will demonstrate how to use Generative AI (GenAI) to build a personalized semantic knowledge graph for a user and then generate tailored outputs for different stakeholder personas. We…</description>
+  </item>
+  <item>
+    <title>The Hidden Cost of Ephemeral Testing and the Case for Automation</title>
+    <link>https://diniscruz.ai/2025/06/15/the-hidden-cost-of-ephemeral-testing-and-the-case-for-automation.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/15/the-hidden-cost-of-ephemeral-testing-and-the-case-for-automation.html</guid>
+    <pubDate>Sun, 15 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>The key insight is that lack of visible tests doesn&#x27;t mean testing isn&#x27;t happening – it means testing is happening inefficiently. Developers practicing Ephemeral Test-Driven Development (ETDD)…</description>
+  </item>
+  <item>
+    <title>Personal Content Rights: Protecting Individuals in the Age of Deepfakes and AI Cloning</title>
+    <link>https://diniscruz.ai/2025/06/15/personal-content-rights-protecting-individuals-in-the-age-of-deepfakes-and-ai-cloning.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/15/personal-content-rights-protecting-individuals-in-the-age-of-deepfakes-and-ai-cloning.html</guid>
+    <pubDate>Sun, 15 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>The rise of generative AI has enabled anyone to clone voices, faces, and writing styles with startling realism. From fabricated videos of leaders to AI-generated voice scams, this technology is being…</description>
+  </item>
+  <item>
+    <title>User-Driven Semantic Persona Graphs Powered by GenAI</title>
+    <link>https://diniscruz.ai/2025/06/14/user-driven-semantic-persona-graphs-powered-by-genai.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/14/user-driven-semantic-persona-graphs-powered-by-genai.html</guid>
+    <pubDate>Sat, 14 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Modern organizations increasingly rely on knowledge graphs to model complex relationships between business entities, risks, and controls. However, building these graphs traditionally requires…</description>
+  </item>
+  <item>
+    <title>Technical Briefing: Web Content Filtering Project</title>
+    <link>https://diniscruz.ai/2025/06/13/technical-briefing-web-content-filtering-project.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/13/technical-briefing-web-content-filtering-project.html</guid>
+    <pubDate>Fri, 13 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>This technical briefing outlines the architecture and design of the Web Content Filtering Project, which aims to give users fine-grained control over the content they see as they browse the web. The…</description>
+  </item>
+  <item>
+    <title>Follow-Up Technical Vision: Optimizations, Deployment, and Security</title>
+    <link>https://diniscruz.ai/2025/06/13/follow-up-technical-vision-optimizations-deployment-and-security.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/13/follow-up-technical-vision-optimizations-deployment-and-security.html</guid>
+    <pubDate>Fri, 13 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>In our initial briefing, we outlined a web content filtering platform that acts as a proxy to intercept web pages and filter out disallowed content before rendering to users. The goal of such a…</description>
+  </item>
+  <item>
+    <title>Security Implications of the Model Context Protocol (MCP) and the Need for Robust Infrastructure</title>
+    <link>https://diniscruz.ai/2025/06/10/security-implications-of-the-model-context-protocol-mcp-and-the-need-for-robust-infrastructure.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/10/security-implications-of-the-model-context-protocol-mcp-and-the-need-for-robust-infrastructure.html</guid>
+    <pubDate>Tue, 10 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>The Model Context Protocol (MCP) has emerged as a powerful open standard that enables Large Language Models (LLMs) to interface with external tools and data sources in a uniform way. By acting as a…</description>
+  </item>
+  <item>
+    <title>Explorers, Villagers, and Town Planners: Understanding the Generative AI Divide</title>
+    <link>https://diniscruz.ai/2025/06/10/explorers-villagers-and-town-planners-understanding-the-generative-ai-divide.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/10/explorers-villagers-and-town-planners-understanding-the-generative-ai-divide.html</guid>
+    <pubDate>Tue, 10 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>In the generative AI (GenAI) community of mid-2025, a puzzling divide has emerged. On one side stand the enthusiastic explorers – pioneers who see GenAI as a technology that can be used everywhere…</description>
+  </item>
+  <item>
+    <title>Supercharging AppSec Threat Modeling Services with GenAI and Semantic Graphs</title>
+    <link>https://diniscruz.ai/2025/06/09/supercharging-appsec-threat-modeling-services-with-genai-and-semantic-graphs.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/09/supercharging-appsec-threat-modeling-services-with-genai-and-semantic-graphs.html</guid>
+    <pubDate>Mon, 09 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Application security (AppSec) consulting is on the cusp of a transformation driven by Generative AI (GenAI) and semantic knowledge graphs. By integrating these technologies, AppSec services companies…</description>
+  </item>
+  <item>
+    <title>Using Presentations Instead of CVs in Hiring</title>
+    <link>https://diniscruz.ai/2025/06/08/using-presentations-instead-of-cvs-in-hiring.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/08/using-presentations-instead-of-cvs-in-hiring.html</guid>
+    <pubDate>Sun, 08 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Conventional resumes or CVs often provide a flat, one-dimensional snapshot of a candidate. They are typically static lists of past job titles, dates, and bullet-point skills – which can be misleading…</description>
+  </item>
+  <item>
+    <title>Personalized Briefing: Semantic Knowledge Graphs – Intersection of Dinis Cruz &amp; Kerstin Clessienne&#x27;s Work</title>
+    <link>https://diniscruz.ai/2025/06/08/personalized-briefing-semantic-knowledge-graphs-dinis-cruz-kerstin-clessienne.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/08/personalized-briefing-semantic-knowledge-graphs-dinis-cruz-kerstin-clessienne.html</guid>
+    <pubDate>Sun, 08 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Kerstin Clessienne is an internationally experienced advisor in applied marketing technology and organizational strategy, who explicitly brands herself as a “Marketing Business Graph and Business AI…</description>
+  </item>
+  <item>
+    <title>History and Analysis of OWASP In-Person Summits</title>
+    <link>https://diniscruz.ai/2025/06/07/history-and-analysis-of-owasp-in-person-summits.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/07/history-and-analysis-of-owasp-in-person-summits.html</guid>
+    <pubDate>Sat, 07 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>The OWASP in-person summits are intensive, collaborative gatherings of the Open Web Application Security Project’s community. These summits (distinct from regular OWASP conferences) bring together…</description>
+  </item>
+  <item>
+    <title>GenAI Legacy Code Refactoring – Business Plan</title>
+    <link>https://diniscruz.ai/2025/06/07/genai-legacy-code-refactoring-business-plan.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/07/genai-legacy-code-refactoring-business-plan.html</guid>
+    <pubDate>Sat, 07 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>GenAI Legacy Code Refactoring is a SaaS company dedicated to modernizing and refactoring legacy software codebases using generative AI (GenAI), human expertise, and automated workflows. Our platform…</description>
+  </item>
+  <item>
+    <title>Personalised Briefing for Dan Raywood on the Future of News</title>
+    <link>https://diniscruz.ai/2025/06/06/personalised-briefing-for-dan-raywood-on-the-future-of-news.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/06/personalised-briefing-for-dan-raywood-on-the-future-of-news.html</guid>
+    <pubDate>Fri, 06 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>This executive briefing is a synthesis of hundreds of pages of research by Dinis Cruz (primarily from The Future of News and the Monetisation of Trust report and related documents on…</description>
+  </item>
+  <item>
+    <title>Proposal: Strategic AWS Partnership with Dinis Cruz’s GenAI and Graph Innovations</title>
+    <link>https://diniscruz.ai/2025/06/03/proposal-strategic-aws-partnership-with-dinis-cruz-genai-and-graph-innovations.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/03/proposal-strategic-aws-partnership-with-dinis-cruz-genai-and-graph-innovations.html</guid>
+    <pubDate>Tue, 03 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Dinis Cruz is a seasoned cybersecurity technologist and researcher who has spent over six years building advanced solutions on Amazon Web Services (AWS). He has a proven track record of leveraging…</description>
+  </item>
+  <item>
+    <title>Proposal for Neo4j Collaboration with Dinis Cruz</title>
+    <link>https://diniscruz.ai/2025/06/03/proposal-for-neo4j-collaboration-with-dinis-cruz.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/03/proposal-for-neo4j-collaboration-with-dinis-cruz.html</guid>
+    <pubDate>Tue, 03 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Dinis Cruz is a seasoned cybersecurity expert and innovator with a long-standing relationship with Neo4j, marked by years of advocacy for graph technologies. He brings over two decades of experience…</description>
+  </item>
+  <item>
+    <title>Jira as a Graph Database – Proposal for Atlassian Executives</title>
+    <link>https://diniscruz.ai/2025/06/03/jira-as-a-graph-database–proposal-for-atlassian-executives.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/03/jira-as-a-graph-database–proposal-for-atlassian-executives.html</guid>
+    <pubDate>Tue, 03 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Dinis Cruz is a seasoned technology leader and Atlassian expert with over a decade of experience pushing Jira beyond traditional use cases. He has pioneered research and practical implementations of…</description>
+  </item>
+  <item>
+    <title>Linking Threat Models with Semantic Business Graphs</title>
+    <link>https://diniscruz.ai/2025/06/02/linking-threat-models-with-semantic-business-graphs.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/06/02/linking-threat-models-with-semantic-business-graphs.html</guid>
+    <pubDate>Mon, 02 Jun 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Threat modeling is traditionally a technical exercise: security architects enumerate assets, diagram data flows, identify threats/vulnerabilities, and recommend mitigations. Often, the output is a…</description>
+  </item>
+  <item>
+    <title>Using Threat Modeling and Semantic Graphs to Secure the Digital Supply Chain</title>
+    <link>https://diniscruz.ai/2025/05/30/using-threat-modeling-and-semantic-graphs-to-secure-the-digital-supply-chain.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/05/30/using-threat-modeling-and-semantic-graphs-to-secure-the-digital-supply-chain.html</guid>
+    <pubDate>Fri, 30 May 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Modern organizations rely on complex digital supply chains comprising not only their own systems, but countless third-party components and service providers. Each link in this chain – from…</description>
+  </item>
+  <item>
+    <title>Scaling Supply Chain Security using Threat Modeling Semantic Knowledge Graphs and Maps</title>
+    <link>https://diniscruz.ai/2025/05/30/scaling-supply-chain-security-using-threat-modeling-semantic-knowledge-graphs-and-maps.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/05/30/scaling-supply-chain-security-using-threat-modeling-semantic-knowledge-graphs-and-maps.html</guid>
+    <pubDate>Fri, 30 May 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>In today’s interconnected software ecosystem, digital supply chain security has become a critical challenge. Modern applications rely on countless third-party components and services, yet buyers and…</description>
+  </item>
+  <item>
+    <title>Graphs of Graphs of Graphs (G3) in Threat Modeling</title>
+    <link>https://diniscruz.ai/2025/05/30/graphs-of-graphs-of-graphs-g3-in-threat-modeling.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/05/30/graphs-of-graphs-of-graphs-g3-in-threat-modeling.html</guid>
+    <pubDate>Fri, 30 May 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Modern cybersecurity architectures are highly complex, with myriad components, third-party services, and evolving threat landscapes. Traditional threat modeling approaches – often static diagrams or…</description>
+  </item>
+  <item>
+    <title>Threat Models as Mandatory Disclosures: A Vision for Security Transparency</title>
+    <link>https://diniscruz.ai/2025/05/29/threat-models-as-mandatory-disclosures__a-vision-for-security-transparency.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/05/29/threat-models-as-mandatory-disclosures__a-vision-for-security-transparency.html</guid>
+    <pubDate>Thu, 29 May 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author><category>threat-modeling</category><category>transparency</category><category>disclosure</category>
+    <description>Argues that publishing threat models improves security transparency.</description>
+  </item>
+  <item>
+    <title>Semantic Knowledge Graphs for LLM-Driven Source Code Analysis</title>
+    <link>https://diniscruz.ai/2025/05/29/semantic-knowledge-graphs-for-llm-driven-source-code-analysis.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/05/29/semantic-knowledge-graphs-for-llm-driven-source-code-analysis.html</guid>
+    <pubDate>Thu, 29 May 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author><category>knowledge-graphs</category><category>source-code</category><category>llm</category><category>analysis</category>
+    <description>Using knowledge graphs and large language models for analyzing source code.</description>
+  </item>
+  <item>
+    <title>Advancing Threat Modeling with Semantic Knowledge Graphs</title>
+    <link>https://diniscruz.ai/2025/05/29/advancing-threat-modeling-with-semantic-knowledge-graphs.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/05/29/advancing-threat-modeling-with-semantic-knowledge-graphs.html</guid>
+    <pubDate>Thu, 29 May 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author><category>threat-modeling</category><category>knowledge-graphs</category><category>cybersecurity</category>
+    <description>Shows how semantic knowledge graphs enhance threat modeling practices.</description>
+  </item>
+  <item>
+    <title>LETS (Load, Extract, Transform, Save): A Deterministic and Debuggable Data Pipeline Architecture</title>
+    <link>https://diniscruz.ai/2025/05/27/lets__load-extract-transform-save__a-deterministic-and-debuggable-data-pipeline_architecture.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/05/27/lets__load-extract-transform-save__a-deterministic-and-debuggable-data-pipeline_architecture.html</guid>
+    <pubDate>Tue, 27 May 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author><category>data-pipeline</category><category>architecture</category><category>deterministic</category><category>debugging</category>
+    <description>Outline of a deterministic, debuggable data pipeline architecture.</description>
+  </item>
+  <item>
+    <title>Technical Debrief: Evolution from Electron‑Based to Python‑Native Web Content Capture App</title>
+    <link>https://diniscruz.ai/2025/05/22/technical-debrief__evolution-from-electron-based-to-python-native-web-content-capture-app.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/05/22/technical-debrief__evolution-from-electron-based-to-python-native-web-content-capture-app.html</guid>
+    <pubDate>Thu, 22 May 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author><category>technical-debrief</category><category>python</category><category>electron</category><category>web-content</category>
+    <description>Lessons learned migrating a web capture tool from Electron to Python.</description>
+  </item>
+  <item>
+    <title>Project: Electron-Based Web Content Capture App (with Playwright &amp; Python)</title>
+    <link>https://diniscruz.ai/2025/05/21/project__electron-based-web-content-capture-app-with-playwright-and-python.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/05/21/project__electron-based-web-content-capture-app-with-playwright-and-python.html</guid>
+    <pubDate>Wed, 21 May 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author>
+    <description>Following the failed attempt to implement the Project: Web Content Capture Extension with Pyodide and Serverless Backend this version creates a desktop app</description>
+  </item>
+  <item>
+    <title>Security Debrief: OpenAI’s ChatGPT Connector GitHub App</title>
+    <link>https://diniscruz.ai/2025/05/18/security-debrief__openai_chatgpt_connector_gitHub_app.html</link>
+    <guid isPermaLink="true">https://diniscruz.ai/2025/05/18/security-debrief__openai_chatgpt_connector_gitHub_app.html</guid>
+    <pubDate>Sun, 18 May 2025 09:00:00 +0000</pubDate>
+    <author>noreply@diniscruz.ai (Dinis Cruz)</author><category>security</category><category>github</category><category>chatgpt</category><category>connector</category>
+    <description>Analyzes security implications of the ChatGPT Connector GitHub app.</description>
+  </item>
+</channel>
+</rss>

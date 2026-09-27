@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Using LLMs as Ephemeral Graph Databases: Empowering the Graph Thinkers in the Age of Generative AI — Dinis Cruz</title>
+<meta name="description" content="Graph thinkers – those who naturally conceptualize information as networks of nodes and relationships – are poised to benefit immensely from advances in generative AI. Traditional graph databases…">
+<meta name="author" content="Dinis Cruz">
+<link rel="canonical" href="https://diniscruz.ai/2025/06/19/using-llms-as-ephemeral-graph-databases--empowering-the-graph-thinkers-in-the-age-of-generative-ai.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="diniscruz.ai">
+<meta property="og:url" content="https://diniscruz.ai/2025/06/19/using-llms-as-ephemeral-graph-databases--empowering-the-graph-thinkers-in-the-age-of-generative-ai.html">
+<meta property="og:title" content="Using LLMs as Ephemeral Graph Databases: Empowering the Graph Thinkers in the Age of Generative AI — Dinis Cruz">
+<meta property="og:description" content="Graph thinkers – those who naturally conceptualize information as networks of nodes and relationships – are poised to benefit immensely from advances in generative AI. Traditional graph databases…">
+<meta name="twitter:card" content="summary">
+<meta property="article:published_time" content="2025-06-19">
+<meta property="article:author" content="https://www.linkedin.com/in/diniscruz">
+<meta name="x-generated-from" content="content/2025/06/19/using-llms-as-ephemeral-graph-databases--empowering-the-graph-thinkers-in-the-age-of-generative-ai.md">
+<link rel="alternate" type="text/markdown" href="using-llms-as-ephemeral-graph-databases--empowering-the-graph-thinkers-in-the-age-of-generative-ai.md" title="This page as markdown">
+<link rel="alternate" type="application/rss+xml" title="Dinis Cruz — writing" href="../../../feed.xml">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../../assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Using LLMs as Ephemeral Graph Databases: Empowering the Graph Thinkers in the Age of Generative AI", "name": "Using LLMs as Ephemeral Graph Databases: Empowering the Graph Thinkers in the Age of Generative AI", "description": "Graph thinkers – those who naturally conceptualize information as networks of nodes and relationships – are poised to benefit immensely from advances in generative AI. Traditional graph databases…", "datePublished": "2025-06-19", "author": [{"@type": "Person", "@id": "https://diniscruz.ai/about/index.html#person", "name": "Dinis Cruz", "url": "https://diniscruz.ai/about/index.html", "sameAs": ["https://www.linkedin.com/in/diniscruz", "https://github.com/DinisCruz", "https://sgit.ai/about/index.html", "https://open-source.sgit.ai/about/index.html", "https://docs.diniscruz.ai/"]}], "publisher": {"@type": "Person", "@id": "https://diniscruz.ai/about/index.html#person", "name": "Dinis Cruz"}, "url": "https://diniscruz.ai/2025/06/19/using-llms-as-ephemeral-graph-databases--empowering-the-graph-thinkers-in-the-age-of-generative-ai.html", "mainEntityOfPage": "https://diniscruz.ai/2025/06/19/using-llms-as-ephemeral-graph-databases--empowering-the-graph-thinkers-in-the-age-of-generative-ai.html", "inLanguage": "en", "license": "https://creativecommons.org/licenses/by/4.0/", "wordCount": 6444, "isPartOf": {"@type": "WebSite", "name": "diniscruz.ai", "url": "https://diniscruz.ai/"}, "contributor": [{"@type": "Thing", "name": "ChatGPT Deep Research"}]}</script>
+<script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";mermaid.initialize({startOnLoad:true,theme:"neutral"});</script>
+</head>
+<body>
+
+<nav class="site"><div class="row">
+  <a class="brand" href="../../../index.html">diniscruz<span>.ai</span></a>
+  <a class="parent" href="https://sgit.ai" title="sgit.ai — encrypted git for humans and AI agents, the project Dinis Cruz is building now">↗ building <b>sgit.ai</b></a>
+  <a class="ver" href="../../../admin/versions.html" title="Site release history">v0.1.0</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">Menu</button>
+  <div class="nav-items">
+    <div class="ni ni-has">
+      <a class="nl here" href="../../../writing/index.html">Writing<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../writing/index.html">All writing, newest first</a>
+      <a class="sl" href="../../../research/research-document.html">Research document catalogue</a>
+      <a class="sl" href="../../../resources/presentations.html">Talks &amp; presentations</a>
+      <a class="sl" href="../../../feed.xml">RSS feed</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl" href="../../../research/index.html">Research<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../research/index.html">Research hub</a>
+      <a class="sl" href="../../../research/cyber-security.html">Cyber-security &amp; threat modeling</a>
+      <a class="sl" href="../../../research/development-and-genai.html">AI &amp; development</a>
+      <a class="sl" href="../../../research/graphs.html">Knowledge graphs</a>
+      <a class="sl" href="../../../research/the-future-of-news.html">The future of news</a>
+      <a class="sl" href="../../../research/europe-and-learning.html">Europe &amp; learning</a>
+      <a class="sl" href="../../../research/projects.html">Projects &amp; innovation lab</a>
+      <a class="sl" href="../../../research/organizational-transformation.html">Organisational transformation</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl" href="../../../building/index.html">Building<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../building/index.html#companies">Companies</a>
+      <a class="sl" href="../../../building/index.html#open-source">Open source</a>
+      <a class="sl" href="../../../building/index.html#network">The sgit.ai network</a>
+      </div>
+    </div>
+    <div class="ni ni-has">
+      <a class="nl" href="../../../about/index.html">About<span class="caret">&#9662;</span></a>
+      <div class="sub">
+      <a class="sl" href="../../../about/index.html">About Dinis Cruz</a>
+      <a class="sl" href="../../../admin/index.html">How this site is built</a>
+      <a class="sl" href="../../../admin/migration.html">Moving from docs.diniscruz.ai</a>
+      <a class="sl" href="../../../admin/versions.html">Release history</a>
+      </div>
+    </div>
+  </div>
+  <a class="gh" href="https://github.com/DinisCruz/DinisCruz-AI__Website">★ GitHub</a>
+  <script src="../../../assets/nav.js" defer></script>
+</div></nav>
+
+<main class="doc essay">
+<div class="crumb"><a href="../../../index.html">diniscruz.ai</a> / <a href="../../../writing/index.html">writing</a> / <a href="../../../research/graphs.html">knowledge graphs</a></div>
+<h1>Using LLMs as Ephemeral Graph Databases: Empowering the Graph Thinkers in the Age of Generative AI</h1>
+<p class="docline">By <b>Dinis Cruz and ChatGPT Deep Research</b> · <time datetime="2025-06-19">19 June 2025</time> · 28 min read</p>
+<p class="dbtns"><a class="dbtn dbtn-pdf" href="https://files.diniscruz.ai/github/pdf/2025/06/19/using-llms-as-ephemeral-graph-databases--empowering-the-graph-thinkers-in-the-age-of-generative-ai.pdf">PDF</a> <a class="dbtn dbtn-linkedin" href="https://www.linkedin.com/posts/diniscruz_using-llms-as-ephemeral-graph-databases-activity-7341424915931131904-xo_W">LinkedIn post</a></p>
+<details class="toc"><summary>Contents · 5 sections</summary><ol><li><a href="#introduction">Introduction</a></li><li><a href="#llms-as-ephemeral-graph-databases-the-concept">LLMs as Ephemeral Graph Databases: The Concept</a></li><li><a href="#step-by-step-tutorial-building-a-risk-management-graph-with-an-llm">Step-by-Step Tutorial: Building a Risk Management Graph with an LLM</a></li><li><a href="#benefits-of-the-llm-as-graph-approach">Benefits of the LLM-as-Graph Approach</a></li><li><a href="#conclusion">Conclusion</a></li></ol></details>
+<article class="prose">
+<h2 id="introduction">Introduction</h2>
+<p>Graph thinkers – those who naturally conceptualize information as networks of nodes and relationships – are poised to benefit immensely from advances in generative AI. Traditional graph databases represent data as nodes and edges (with edges denoting relationships between nodes), enabling rich semantic queries. However, using a graph database typically requires technical setup, data modeling, and query languages like Cypher or SPARQL. What if graph thinkers with <strong>no coding skills</strong> could leverage AI to build and explore graphs on the fly, using natural language alone? This paper introduces the concept of using <strong>Large Language Models (LLMs) as ephemeral graph databases</strong> – harnessing an LLM’s ability to understand and manipulate structured information in a conversational context, without a persistent database.</p>
+<p>In an <em>ephemeral graph database</em>, the knowledge graph is created dynamically and exists only for the duration of an AI session, serving as a temporary reasoning structure. The graph is <strong>fresh and transient</strong>, constructed at query-time to suit the user’s context. This is in contrast to persistent knowledge graphs that are pre-built and stored long-term. Recent research and tools show the power of dynamic knowledge graphs in AI reasoning. For example, the <em>Knowledge Graph of Thoughts (KGoT)</em> architecture dynamically builds a task-specific knowledge graph to help an AI agent solve complex problems more effectively. Our approach similarly creates a graph on-the-fly, but with a twist: <strong>the LLM itself acts as the graph engine</strong>, interpreting user instructions to create nodes, edges, and even perform queries or visualizations, all in natural language.</p>
+<p>This white paper, co-authored by Dinis Cruz and ChatGPT, demonstrates <em>step-by-step</em> how an LLM can be used as a graph database in a practical scenario. We will walk through a real-world example in a <strong>tutorial style</strong> – modeling a cybersecurity risk management scenario – to showcase how a non-programmer “graph thinker” can create and query an ephemeral graph using only an LLM. Along the way, we discuss the principles, benefits, and limitations of this approach, and how it empowers users to reason about complex relationships without traditional database tools.</p>
+<h2 id="llms-as-ephemeral-graph-databases-the-concept">LLMs as Ephemeral Graph Databases: The Concept</h2>
+<p><strong>What does it mean to use an LLM as a graph database?</strong> In essence, we are asking the LLM to play the role of a database that <em>natively understands nodes and edges</em>. The LLM takes in natural language instructions (prompts) that describe data (entities and their connections) and returns structured representations or answers, effectively simulating the behavior of a graph database. The term <strong>“ephemeral”</strong> highlights that the graph only persists within the LLM’s conversational context – there is no external storage of the data structure. If the session ends or the context is cleared, the “database” resets. However, within a single continuous session, the LLM’s memory (its context window) serves as the storage for nodes and relationships that have been described.</p>
+<p>Traditional databases have well-defined operations (often summarized as <em>ACID</em> properties – Atomicity, Consistency, Isolation, Durability) to reliably store and retrieve data. In our LLM-driven approach, we won’t get full ACID guarantees, but we will mimic the basic <strong>CRUD</strong> operations of a database in conversation: we can <strong>Create</strong> nodes and edges, <strong>Read</strong> (retrieve or query) data from the graph, <strong>Update</strong> (transform) parts of the graph, and even <strong>Delete</strong> nodes or relationships if needed – all via prompting the LLM. We treat the LLM as a <strong>black box graph engine</strong>: we feed it inputs (graph data or queries in natural language) and receive outputs (new graph information, query results, or visualizations). There is no specialized graph query language required; the “query language” is plain English augmented with a structured style that we define through instructions.</p>
+<p>Several key principles underlie using LLMs in this way:</p>
+<ul>
+<li><strong>Natural Language Interface</strong>: The user interacts with the graph through plain language instructions, which the LLM interprets. This lowers the barrier to entry, as no programming or query syntax is needed.</li>
+<li><strong>On-the-Fly Schema</strong>: The graph’s schema (the types of nodes/edges) can be defined incrementally and flexibly in the conversation. The LLM can handle <em>implicit ontology</em> by understanding context. For example, if the user says “create a node called <strong>User</strong> (type: Persona)”, the LLM doesn’t need a pre-defined “Persona” type in a schema – it can infer it on the fly.</li>
+<li><strong>Contextual Memory</strong>: As the conversation progresses and more graph data is added, the LLM “remembers” earlier instructions (up to its context limit). This means within one session, it can refer back to previously created nodes and edges. In effect, the LLM’s context acts as an in-memory graph store.</li>
+<li><strong>Transient Persistence</strong>: Between user and AI turns, the state of the graph is maintained in the LLM’s hidden state. There is <em>no persistence outside the chat</em>. If needed, the user could periodically dump the graph state to a file via the LLM (for example, asking the LLM to output all nodes and edges in a list, which the user saves), but the workflow assumes ephemeral use unless explicitly saved.</li>
+<li><strong>Transformation and Reasoning</strong>: Unlike a regular graph database which would require external tools for analysis or visualization, an LLM can directly generate new insights or formats from the graph. For example, it can create a summary of the graph, answer questions in natural language by traversing the relationships, or even produce a visualization (like generating code for a graph diagram). This leverage of the LLM’s generative and reasoning capabilities makes it a “smart” graph engine, not just a data store.</li>
+</ul>
+<p>In the following sections, we put these principles into practice. We will build an example graph step by step, demonstrating how a user can instruct the LLM to populate and query the graph. Our example will focus on a <strong>cybersecurity risk scenario</strong>. This scenario is chosen for its richness: it involves technical entities (systems, vulnerabilities), human entities (users, owners), policies/controls, and cascading impacts – an ideal playground for graph thinking. As we progress from simple to more complex graph operations, we encourage you to imagine how similar techniques could apply to other domains (such as project planning, knowledge management, or storytelling) where relationships between entities are key.</p>
+<p>Before diving in, it's worth noting that this approach aligns with a broader trend of <em>dynamic knowledge graph reasoning</em>. Others in the AI community have explored building <strong>temporary graphs for on-demand reasoning</strong>. For instance, one approach constructs a new knowledge graph at query time, using it as a thinking tool to derive answers, and then discards it – calling this <em>“ephemeral reasoning”</em>. Our use of an LLM as an ephemeral graph database taps into the same idea: instead of retrieving facts from a static knowledge base, we are <strong>building a relevant knowledge graph on the fly</strong> with the help of the LLM, and using it to reason about a problem in a transparent, structured way.</p>
+<p>With the concept established, let’s move on to the hands-on example. In a workshop setting, you could follow these steps interactively with an LLM (such as ChatGPT or similar) to recreate the experience.</p>
+<h2 id="step-by-step-tutorial-building-a-risk-management-graph-with-an-llm">Step-by-Step Tutorial: Building a Risk Management Graph with an LLM</h2>
+<p><em>Scenario:</em> You are a risk manager in a cybersecurity context, and you want to model the relationships between a potential risk, its causes, its impacts, and the stakeholders involved. You will use an LLM to construct a graph representing this information, <em>as if</em> the LLM were a graph database you can query. We will start simple and gradually build a complex graph.</p>
+<p>For clarity, we will show example user prompts (in <strong>bold</strong>) and the kind of LLM responses (in <em>italic</em>) one might get when following this process. Think of this as an interactive lab.</p>
+<h3 id="step-1-initializing-the-graph-engine">Step 1: Initializing the Graph Engine</h3>
+<p>First, we need to instruct the LLM to behave like a graph database. This typically involves a prompt that sets the context. For example:</p>
+<p><strong>User:</strong> </p>
+<pre><code>You are a graph database that I can interact with using natural language. 
+
+I will give you commands to create nodes and edges representing a knowledge graph. 
+
+You will maintain a list of all nodes and edges. 
+
+Only respond with the updated state or confirmation. Let’s start with an empty graph.
+</code></pre>
+<p>By giving a prompt like the above, we prime the LLM to take on the role. The LLM might respond with a confirmation that the graph is initialized:</p>
+<p><strong>LLM:</strong> </p>
+<p><em>"Graph initialized. No nodes or edges currently exist."</em></p>
+<p>Now we have a “blank slate” graph in the conversation. We can begin adding data to it.</p>
+<h3 id="step-2-creating-nodes-entities">Step 2: Creating Nodes (Entities)</h3>
+<p>We will add our first piece of information: a cybersecurity risk statement. Suppose the risk we want to model is: <strong>“User accounts can be compromised.”</strong> This will be one of our primary nodes (let's call it a Risk node). We notice this statement has a couple of meaningful parts: the concept of <em>User</em> (a type of actor) and <em>Account Compromise</em> (an event or outcome). It would be useful to have those as separate nodes so we can link them and add further detail later.</p>
+<p>Let's create three nodes:</p>
+<ol>
+<li>The risk itself (as a text or issue node).</li>
+<li>A node for the actor <strong>User</strong> (type: Persona).</li>
+<li>A node for <strong>Account Compromise</strong> (type: Event or Outcome).</li>
+</ol>
+<p>We instruct the LLM accordingly:</p>
+<p><strong>User:</strong> </p>
+<pre><code>Create a node for the risk 'User accounts can be compromised'. 
+Also create a node 'User' (type Persona) and a node 'Account Compromise' (type Event)
+</code></pre>
+<p>If the LLM follows correctly, it will acknowledge these nodes. For instance:</p>
+<p><strong>LLM:</strong> </p>
+<pre><code>Nodes created: 
+  (1) User accounts can be compromised  [Risk]
+  (2) User  [Persona]
+  (3) Account Compromise  [Event]
+</code></pre>
+<p>Now, if we ask the LLM to list all nodes, it should show those three:</p>
+<p><strong>User:</strong> <em>"List all current nodes."</em></p>
+<p><strong>LLM:</strong>: </p>
+<pre><code>  1. User accounts can be compromised; 
+  2. User; 
+  3. Account Compromise
+</code></pre>
+<p>At this stage, we have nodes but no relationships yet. It’s like having isolated points. The power of a graph comes from linking these nodes.</p>
+<h3 id="step-3-establishing-basic-relationships">Step 3: Establishing Basic Relationships</h3>
+<p>We will now create edges (links) between the nodes to reflect their relationships. From the risk statement, <em>“User accounts can be compromised”</em>, we can infer:</p>
+<ul>
+<li>The risk <em>impacts</em> a <strong>User</strong> (if accounts are compromised, users are affected).</li>
+<li>The risk is essentially about an <strong>Account Compromise</strong> event (that’s the negative outcome we fear).</li>
+</ul>
+<p>So, we add two edges:</p>
+<ul>
+<li><strong>Risk</strong> → <strong>User</strong> with relationship <strong>“impacts”</strong>.</li>
+<li><strong>Risk</strong> → <strong>Account Compromise</strong> with relationship <strong>“involves”</strong> (or we might say <strong>“is about”</strong>, but we choose a verb phrase that makes sense in context).</li>
+</ul>
+<p>We prompt the LLM to add these edges:</p>
+<p><strong>User:</strong></p>
+<pre><code>Create an edge from 'User accounts can be compromised' to 'User' labeled 'impacts'. 
+
+Also create an edge from 'User accounts can be compromised' to 
+'Account Compromise' labeled 'involves'.
+</code></pre>
+<p>The LLM should update its internal representation and confirm:</p>
+<p><strong>LLM:</strong> </p>
+<pre><code>&quot;Edges created: 
+  'User accounts can be compromised' --(impacts)--&gt; 'User'; 
+  'User accounts can be compromised' --(involves)--&gt; 'Account Compromise'
+</code></pre>
+<p>Now our tiny graph has three nodes and two edges. We can ask for a summary:</p>
+<p><strong>User:</strong> <em>"Show me all nodes and their connections."</em>
+<strong>LLM:</strong></p>
+<pre><code>User accounts can be compromised (Risk)
+  – impacts → User (Persona)
+  – involves → Account Compromise (Event)
+
+User – (no further connections)
+Account Compromise – (no further connections)*&quot;
+</code></pre>
+<p><em>(The above is a textual representation; an LLM could also output this in a structured form or even a quick ASCII diagram.)</em></p>
+<p>Already, by treating the LLM as a graph engine, we’ve structured a basic risk statement into a graph format. In a conventional graph database, we would have to define these entities and relationships with database commands or code. Here it’s done conversationally.</p>
+<h3 id="step-4-expanding-the-graph-adding-impacts-and-consequences">Step 4: Expanding the Graph – Adding Impacts and Consequences</h3>
+<p>Next, we enrich the graph by thinking through <strong>impacts</strong> of an account compromise. In risk management, a single technical risk often has multiple layers of consequences:</p>
+<ul>
+<li>If user accounts are compromised, one likely impact is that <strong>sensitive data could be exposed</strong>.</li>
+<li>Exposure of sensitive data (especially customer or personal data) often <strong>breaks compliance</strong> obligations (e.g., violating GDPR regulations).</li>
+<li>Both the data breach and compliance failure can lead to <strong>financial impact</strong> (fines, customer loss, etc.).</li>
+</ul>
+<p>Let’s add nodes for each of these impacts:</p>
+<ul>
+<li><strong>Sensitive Data Exposed</strong> (type: Impact)</li>
+<li><strong>GDPR Non-Compliance</strong> (type: Compliance Impact) – we can label it as "Breaks GDPR Compliance".</li>
+<li><strong>Financial Loss</strong> (type: Impact) – for specificity, we might say "Financial Impact – estimated  $500K" as the node name.</li>
+</ul>
+<p>Now, we link these to reflect causality:</p>
+<ul>
+<li><strong>Account Compromise</strong> → <strong>Sensitive Data Exposed</strong> (relationship: “leads to” or “results in”).</li>
+<li><strong>Sensitive Data Exposed</strong> → <strong>Breaks GDPR Compliance</strong> (relationship: “causes” or “aggravates” compliance issue).</li>
+<li><strong>Sensitive Data Exposed</strong> → <strong>Financial Impact (~ $500K)</strong> (relationship: “results in” financial cost).</li>
+<li><strong>Breaks GDPR Compliance</strong> → <strong>Financial Impact (~ $500K)</strong> (relationship: “results in” as well, since regulatory fines contribute to financial loss).</li>
+<li>Finally, we might link <strong>Financial Impact (~ $500K)</strong> up to a broader business risk node like <strong>“Impact on Company Performance”</strong> or <strong>“Strategic Risk”</strong> at the executive level. This highlights that a technical risk can escalate to a business-level risk.</li>
+</ul>
+<p>We provide these instructions to the LLM:</p>
+<p><strong>User:</strong> </p>
+<pre><code>Add nodes:
+    'Sensitive Data Exposed' (Impact). 
+    'Breaks GDPR Compliance' (Compliance Impact). 
+    'Financial Impact (~~ $500K)'. 
+    'Company Performance Risk'. 
+
+Now link them: 
+
+    'Account Compromise'           --(leads to      )--&gt; 'Sensitive Data Exposed'; 
+    'Sensitive Data Exposed'       --(causes        )--&gt; 'Breaks GDPR Compliance'; 
+    'Sensitive Data Exposed'       --(results in    )--&gt; 'Financial Impact (~~ $500K)'; 
+    'Breaks GDPR Compliance'       --(results in    )--&gt; 'Financial Impact (~~ $500K)';
+     'Financial Impact (~~ $500K)' --(contributes to)--&gt; 'Company Performance Risk'.&quot;
+</code></pre>
+<p>This is a lot to add in one go, and a good LLM will handle it stepwise. The LLM might respond with confirmation or a summary of new nodes/edges:</p>
+<p><strong>LLM:</strong> </p>
+<pre><code>Nodes created: 
+  Sensitive Data Exposed; 
+  Breaks GDPR Compliance; 
+  Financial Impact (~ $500K); Company Performance Risk.
+
+Edges created:
+
+* Account Compromise         --(leads to      )--&gt; Sensitive Data Exposed
+* Sensitive Data Exposed     --(causes        )--&gt; Breaks GDPR Compliance
+* Sensitive Data Exposed     --(results in    )--&gt; Financial Impact (~ $500K)
+* Breaks GDPR Compliance     --(results in    )--&gt; Financial Impact (~ $500K)
+* Financial Impact (~ $500K) --(contributes to)--&gt; Company Performance Risk
+</code></pre>
+<p>Now our graph has grown significantly. Let’s interpret what we have constructed. Starting from the original risk node, one can traverse a chain of reasoning:</p>
+<ul>
+<li>“<strong>User accounts can be compromised</strong>” (Risk) <strong>involves</strong> → <strong>Account Compromise</strong> (the event).</li>
+<li><strong>Account Compromise</strong> <strong>leads to</strong> → <strong>Sensitive Data Exposed</strong> (a direct impact).</li>
+<li><strong>Sensitive Data Exposed</strong> <strong>causes</strong> → <strong>Breaks GDPR Compliance</strong> (a secondary impact, regulatory).</li>
+<li><strong>Sensitive Data Exposed</strong> also <strong>results in</strong> → <strong>Financial Impact (~ $500K)</strong> (a quantifiable business impact).</li>
+<li><strong>Breaks GDPR Compliance</strong> also <strong>results in</strong> → <strong>Financial Impact (~ $500K)</strong> (since fines or legal costs are financial).</li>
+<li><strong>Financial Impact (~ $500K)</strong> <strong>contributes to</strong> → <strong>Company Performance Risk</strong> (a top-level risk that matters to the board, e.g., hitting revenue or reputation).</li>
+</ul>
+<p>Through this graph, a <em>graph thinker</em> can see a clear lineage from a technical risk at the IT level all the way to the strategic risk at the business level. This is powerful for explaining <strong>why cybersecurity issues matter</strong> in business terms. In a typical risk register (often just a spreadsheet), these relationships are not so explicit. But our graph, created with minimal effort via the LLM, makes the dependency chain transparent.</p>
+<p>We can ask the LLM to visualize or summarize this subgraph. One simple way is to request an ASCII-art tree or outline:</p>
+<p><strong>User:</strong> <em>"Show the risk 'User accounts can be compromised' and all downstream impacts as a hierarchy."</em></p>
+<p><strong>LLM:</strong> </p>
+<pre><code>User accounts can be compromised:
+
+  → Account Compromise (event)
+      → Sensitive Data Exposed (impact)
+          → Breaks GDPR Compliance (compliance impact)
+          → Financial Impact (~ $500K) (business impact)
+              → Company Performance Risk (strategic risk)
+</code></pre>
+<p><em>(In the above, indentation shows layers of consequence. Both “Breaks GDPR Compliance” and “Financial Impact” are shown under “Sensitive Data Exposed” as parallel results. “Financial Impact” then leads to “Company Performance Risk.”)</em></p>
+<p>At this point, we have primarily built out the <strong>impact side</strong> of the risk graph (what happens if the risk materializes). Next, we will build out the <strong>cause and prevention side</strong> – what could lead to the risk and what controls exist or fail.</p>
+<h3 id="step-5-incorporating-causes-and-preventive-controls">Step 5: Incorporating Causes and Preventive Controls</h3>
+<p>Understanding why a risk might materialize is as important as knowing its impact. For “User accounts can be compromised,” consider the typical causes:</p>
+<ol>
+<li><strong>Credentials are compromised</strong> – e.g., a user's password was leaked or guessed.</li>
+<li><strong>No Multi-Factor Authentication (MFA)</strong> – without a second factor, a leaked password is sufficient for an attacker to gain access.</li>
+<li><strong>Security Monitoring Failure</strong> – the compromise wasn’t quickly detected by security systems (like a Security Information and Event Management system, SIEM), allowing the attacker to persist.</li>
+</ol>
+<p>These can be modeled as contributing factor nodes. We will create:</p>
+<ul>
+<li><strong>Credentials Leaked</strong> (Cause)</li>
+<li><strong>MFA Not Enabled</strong> (Cause)</li>
+<li><strong>Threat Not Detected</strong> (Cause – representing monitoring failure)</li>
+</ul>
+<p>We then link these to the core event <strong>Account Compromise</strong> as prerequisites or contributing factors. We might use a relationship like <strong>“allows”</strong> or <strong>“contributes to”</strong>:</p>
+<ul>
+<li><strong>Credentials Leaked</strong> <strong>contributes to</strong> → <strong>Account Compromise</strong>.</li>
+<li><strong>MFA Not Enabled</strong> <strong>allows</strong> → <strong>Account Compromise</strong>.</li>
+<li><strong>Threat Not Detected</strong> <strong>aggravates</strong> → <strong>Account Compromise</strong> (meaning if detection fails, the compromise fully unfolds).</li>
+</ul>
+<p>In reality, <em>all three</em> cause factors might need to happen (in combination) for a full breach scenario. We won’t delve into logic gates (AND/OR) here, but the graph implicitly shows that if any of these causes are mitigated, the risk is reduced.</p>
+<p>Let’s add these causes via the LLM:</p>
+<p><strong>User:</strong> </p>
+<pre><code>Add causes: 
+create nodes 'Credentials Leaked' (Cause), 
+             'No MFA Enabled' (Cause),
+             'Threat Not Detected' (Cause). 
+
+Link each to 'Account Compromise':
+
+    'Credentials Leaked'  --(contributes to)--&gt; 'Account Compromise'; 
+    'No MFA Enabled'      --(allows        )--&gt; 'Account Compromise'; 
+    'Threat Not Detected' --(aggravates    )--&gt; 'Account Compromise'
+</code></pre>
+<p>After confirming nodes and edges, our graph now also has the upstream side of the risk:</p>
+<ul>
+<li><strong>Credentials Leaked</strong> → (contributes to) → <strong>Account Compromise</strong></li>
+<li><strong>No MFA Enabled</strong> → (allows) → <strong>Account Compromise</strong></li>
+<li><strong>Threat Not Detected</strong> → (aggravates) → <strong>Account Compromise</strong></li>
+</ul>
+<p>Now think of <strong>controls</strong> or <strong>policies</strong> that correspond to each cause:</p>
+<ul>
+<li>To prevent <strong>credentials leaking</strong>, we enforce a <strong>Password Policy</strong> (e.g., strong passwords, periodic rotation) and general user security training.</li>
+<li>To avoid lack of MFA, we have a <strong>Multi-Factor Authentication Policy</strong> requiring MFA on all accounts.</li>
+<li>To mitigate undetected breaches, we have a <strong>Security Monitoring Policy</strong> or <strong>Incident Response Procedure</strong> (ensuring the SIEM and team respond to suspicious logins).</li>
+</ul>
+<p>We will add control nodes and link them as mitigating factors for each cause:</p>
+<ul>
+<li>Node <strong>Password Policy</strong> (or “Password Complexity Requirement”) – link <strong>Password Policy</strong> <strong>mitigates</strong> → <strong>Credentials Leaked</strong>.</li>
+<li>Node <strong>MFA Policy</strong> – link <strong>MFA Policy</strong> <strong>mitigates</strong> → <strong>No MFA Enabled</strong> (essentially, having a policy would prevent that cause).</li>
+<li>Node <strong>Monitoring/IR Procedure</strong> – link <strong>Monitoring Procedure</strong> <strong>mitigates</strong> → <strong>Threat Not Detected</strong>.</li>
+</ul>
+<p>Furthermore, these policies often come from standards or frameworks. For instance, an organization might be adhering to <strong>ISO 27001</strong> or <strong>NIST</strong> standards, which have specific controls for passwords and MFA. We can represent a snippet of a standards hierarchy:</p>
+<ul>
+<li>Node <strong>ISO 27001 Standard</strong>.</li>
+<li>Under it, node <strong>ISO Control 5.3.1 (Password Management)</strong> (as an example) – link <strong>ISO 27001 Standard</strong> <strong>has control</strong> → <strong>Password Policy</strong>.</li>
+<li>Node <strong>ISO Control 5.3.2 (MFA Requirement)</strong> – link <strong>ISO 27001 Standard</strong> <strong>has control</strong> → <strong>MFA Policy</strong>.</li>
+<li>Similarly, link an appropriate control for monitoring if exists.</li>
+</ul>
+<p>We might also add a high-level risk <strong>“Non-compliance with security standards”</strong>, which occurs if we fail to implement required controls. This could tie back into our compliance risk node or directly to <strong>Company Performance Risk</strong> (since failing audits has business impact too).</p>
+<p>For brevity, let’s illustrate adding one standard and a couple of controls:</p>
+<p><strong>User:</strong> </p>
+<pre><code>Create nodes:
+    'Password Policy' (Control), 
+    'MFA Policy' (Control), 
+    'Security Monitoring Procedure' (Control). 
+
+Link nodes:
+    'Password Policy'               --(mitigates)--&gt; 'Credentials Leaked'; 
+    'MFA Policy'                    --(mitigates)--&gt; 'No MFA Enabled'; 
+    'Security Monitoring Procedure' --(mitigates)--&gt; 'Threat Not Detected'. 
+
+Now create node 'ISO 27001 Standard' and link it: 
+    'ISO 27001 Standard' --(includes control)--&gt; 'Password Policy'; 
+    'ISO 27001 Standard' --(includes control)--&gt; 'MFA Policy'; 
+    'ISO 27001 Standard' --(includes control)--&gt; 'Security Monitoring Procedure'
+</code></pre>
+<p>The LLM updates the graph accordingly. We won’t list every edge textually here, but conceptually, we’ve created a <strong>cause-and-control subgraph</strong> that mirrors the defense side of risk management. If we look at the whole picture now, <strong>Account Compromise</strong> sits in the middle:</p>
+<ul>
+<li>On its left (upstream) are causes (password leaked, no MFA, no detection) and their mitigations (policies).</li>
+<li>On its right (downstream) are impacts (data exposed, compliance broken, financial loss, etc.).</li>
+<li>At the very top, we have the broad standards or top risks that connect to our elements (like ISO standard, company-level risks).</li>
+<li>At the very bottom, we still have the human aspect to add – which we will do next.</li>
+</ul>
+<p>This graph is now quite complex, but the LLM can handle it as long as it’s within its context memory. We may at this point ask for a summary or diagram to ensure everything is captured. For example, we could ask for a <em>mermaid</em> diagram (a popular text-based graph description that can be rendered visually):</p>
+<p><strong>User:</strong> <em>"Provide a mermaid diagram code for the entire graph."</em></p>
+<p><strong>LLM:</strong></p>
+<p><em>"Here is the mermaid code:"</em></p>
+<pre><code>graph TD
+    R[&quot;User accounts can be compromised&quot;] --&gt; U[&quot;User&quot;]
+    R --&gt; E[&quot;Account Compromise&quot;]
+    E --&gt; I1[&quot;Sensitive Data Exposed&quot;]
+    I1 --&gt; C1[&quot;Breaks GDPR Compliance&quot;]
+    I1 --&gt; B[&quot;Financial Impact (~ $500K)&quot;]
+    C1 --&gt; B
+    B --&gt; TR[&quot;Company Performance Risk&quot;]
+
+    L[&quot;Credentials Leaked&quot;] -- contributes --&gt; E
+    M[&quot;No MFA Enabled&quot;] -- allows --&gt; E
+    D[&quot;Threat Not Detected&quot;] -- aggravates --&gt; E
+
+    P[&quot;Password Policy&quot;] -- mitigates --&gt; L
+    F[&quot;MFA Policy&quot;] -- mitigates --&gt; M
+    X[&quot;Monitoring Procedure&quot;] -- mitigates --&gt; D
+
+    S[&quot;ISO 27001 Standard&quot;] --&gt; P
+    S --&gt; F
+    S --&gt; X
+
+</code></pre>
+<p><em>"Which looks like this"</em></p>
+<pre class="mermaid">graph TD
+    R[&quot;User accounts can be compromised&quot;] --&gt; U[&quot;User&quot;]
+    R --&gt; E[&quot;Account Compromise&quot;]
+    E --&gt; I1[&quot;Sensitive Data Exposed&quot;]
+    I1 --&gt; C1[&quot;Breaks GDPR Compliance&quot;]
+    I1 --&gt; B[&quot;Financial Impact (~ $500K)&quot;]
+    C1 --&gt; B
+    B --&gt; TR[&quot;Company Performance Risk&quot;]
+
+    L[&quot;Credentials Leaked&quot;] -- contributes --&gt; E
+    M[&quot;No MFA Enabled&quot;] -- allows --&gt; E
+    D[&quot;Threat Not Detected&quot;] -- aggravates --&gt; E
+
+    P[&quot;Password Policy&quot;] -- mitigates --&gt; L
+    F[&quot;MFA Policy&quot;] -- mitigates --&gt; M
+    X[&quot;Monitoring Procedure&quot;] -- mitigates --&gt; D
+
+    S[&quot;ISO 27001 Standard&quot;] --&gt; P
+    S --&gt; F
+    S --&gt; X
+
+</pre>
+<p><em>(The above is an example of mermaid syntax that the LLM might produce. If rendered, it would show a full graph with nodes and directed edges as described.)</em></p>
+<p>Such a diagram code can be copy-pasted into a mermaid renderer to visualize the graph. In a live workshop, one could actually have the LLM render this to an image if the environment allows, but the text itself is a clear specification of the graph.</p>
+<h3 id="step-6-adding-assets-and-stakeholders">Step 6: Adding Assets and Stakeholders</h3>
+<p>Thus far, our graph covers the abstract risk and controls. Now we ground it in the <strong>real world context</strong>: which systems and people are involved?</p>
+<p>Imagine our organization has two systems relevant to this risk:</p>
+<ul>
+<li>An <strong>HR System</strong> – containing employee data (personnel records).</li>
+<li>A <strong>Marketing System</strong> – containing customer data for marketing campaigns.</li>
+</ul>
+<p>Both systems have user accounts that could be compromised, but they may have different security postures:</p>
+<ul>
+<li>The HR System has strong password policies and <em>MFA enabled</em> (so it’s well protected against the risk).</li>
+<li>The Marketing System enforces strong passwords but has <em>no MFA</em> (a known gap).</li>
+</ul>
+<p>Also, consider who “owns” these systems:</p>
+<ul>
+<li>The <strong>HR System</strong> is managed by the <strong>HR team</strong>; let's say the <strong>HR Manager</strong> is directly responsible.</li>
+<li>The <strong>Marketing System</strong> is managed by the <strong>Marketing team</strong>, with the <strong>Marketing Manager</strong> responsible.</li>
+<li>Those managers report to executives: e.g., the HR Manager to the <strong>Chief People Officer (CPO)</strong>, and the Marketing Manager to the <strong>Chief Marketing Officer (CMO)</strong>.</li>
+<li>Ultimately, the CPO and CMO are accountable for risks in their areas, and they in turn report to the CEO or the board.</li>
+</ul>
+<p>We will add:</p>
+<ul>
+<li>Node <strong>HR System</strong> (Asset)</li>
+<li>Node <strong>Marketing System</strong> (Asset)</li>
+<li>Node <strong>HR Manager</strong> (Role)</li>
+<li>Node <strong>Marketing Manager</strong> (Role)</li>
+<li>Node <strong>Chief People Officer</strong> (Role)</li>
+<li>Node <strong>Chief Marketing Officer</strong> (Role)</li>
+<li>Perhaps nodes for specific individuals (e.g., “Alice – HR Manager”, “Bob – Marketing Manager”, etc.), but we can keep it role-level for now.</li>
+</ul>
+<p>Now link assets to the controls they implement or lack:</p>
+<ul>
+<li><strong>HR System</strong> <strong>implements</strong> → <strong>Password Policy</strong>  </li>
+<li><strong>HR System</strong> <strong>implements</strong> → <strong>MFA Policy</strong>  </li>
+<li><strong>Marketing System</strong> <strong>implements</strong> → <strong>Password Policy</strong>  </li>
+<li><strong>Marketing System</strong> – <strong>MFA Policy</strong> (here we have a gap, so perhaps <strong>Marketing System</strong> <strong>lacks</strong> → <strong>MFA Policy</strong> or we simply omit that edge to imply non-compliance).</li>
+</ul>
+<p>Also link assets to the risk event if applicable:</p>
+<ul>
+<li>Both <strong>HR System</strong> and <strong>Marketing System</strong> could be targets of the <strong>Account Compromise</strong> risk. We might indicate this with an edge like <strong>"at risk of"</strong>:</li>
+<li><strong>HR System</strong> <strong>at risk of</strong> → <strong>Account Compromise</strong>  </li>
+<li><strong>Marketing System</strong> <strong>at risk of</strong> → <strong>Account Compromise</strong><br />
+  However, since <em>Account Compromise</em> was more generic, we might interpret these as instances: e.g., “HR account compromise” vs “Marketing account compromise”. To keep it simple, we’ll just note that the risk applies to both.</li>
+</ul>
+<p>Next, link roles to assets:</p>
+<ul>
+<li><strong>HR Manager</strong> <strong>owns</strong> → <strong>HR System</strong>  </li>
+<li><strong>Marketing Manager</strong> <strong>owns</strong> → <strong>Marketing System</strong>  </li>
+</ul>
+<p>Link senior roles:</p>
+<ul>
+<li><strong>HR Manager</strong> <strong>reports to</strong> → <strong>Chief People Officer</strong>  </li>
+<li><strong>Marketing Manager</strong> <strong>reports to</strong> → <strong>Chief Marketing Officer</strong>  </li>
+</ul>
+<p>We won’t go further up to CEO for now.</p>
+<p>We instruct the LLM to add these:</p>
+<p><strong>User:</strong> </p>
+<pre><code>Add asset nodes 'HR System' and 'Marketing System'. 
+
+Add role nodes 'HR Manager', 'Marketing Manager', 'Chief People Officer', 'Chief Marketing Officer'. 
+
+Link assets to controls and risk: 
+    'HR System'         --(implements)--&gt; 'Password Policy'; 
+    'HR System'         --(implements)--&gt; 'MFA Policy'; 
+    'Marketing System'  --(implements)--&gt; 'Password Policy';  
+        (Note: Marketing System lacks MFA). 
+
+Link assets to risk: 
+    'HR System'        --(at risk of)--&gt; 'Account Compromise'; 
+    'Marketing System' --(at risk of)--&gt; 'Account Compromise'. 
+
+Link ownership: 
+
+    'HR Manager'        --(owns)--&gt; 'HR System'; 
+    'Marketing Manager' --(owns)--&gt; 'Marketing System'. 
+
+Link reporting: 
+    'HR Manager'        --(reports to)--&gt; 'Chief People Officer'; 
+    'Marketing Manager' --(reports to)--&gt; 'Chief Marketing Officer'.&quot;
+</code></pre>
+<p>The LLM adds these nodes and edges. Now our graph connects technology to people:</p>
+<ul>
+<li>It’s evident that the <strong>Marketing System</strong> is in a riskier state (no MFA, thus the edge for MFA is missing or could be explicitly flagged as a negative relationship). </li>
+<li>The <strong>Chief Marketing Officer</strong> ultimately has a system under them that is non-compliant with MFA policy, which could be a talking point in risk discussions.</li>
+</ul>
+<p>This sets the stage for a scenario where an incident occurs. We have all the pieces: the risk, causes, controls, assets, and stakeholders. We can now simulate an incident and see how the graph helps us respond.</p>
+<h3 id="step-7-simulating-an-incident-and-querying-the-graph">Step 7: Simulating an Incident and Querying the Graph</h3>
+<p><strong>The Incident:</strong> Let’s say a breach monitoring service alerts us that a large dump of usernames and passwords from our company has appeared on the internet. This is a <strong>credential leak event</strong>. We identify that among the leaked credentials, there are accounts belonging to users of both the HR System and the Marketing System. For example, five accounts from each system were found in the leak (10 accounts total).</p>
+<p>We will add an <strong>Incident node</strong> to the graph:</p>
+<ul>
+<li>Node <strong>Credential Leak June 2025</strong> (Incident)</li>
+</ul>
+<p>Link it to the assets it affects:</p>
+<ul>
+<li><strong>Credential Leak June 2025</strong> <strong>affects</strong> → <strong>HR System</strong> (with detail “5 accounts compromised” perhaps as a property)</li>
+<li><strong>Credential Leak June 2025</strong> <strong>affects</strong> → <strong>Marketing System</strong> (5 accounts)</li>
+</ul>
+<p>Also link it to the risk or event:</p>
+<ul>
+<li><strong>Credential Leak June 2025</strong> <strong>triggers</strong> → <strong>Account Compromise</strong> (since leaked credentials enable account takeover)</li>
+</ul>
+<p>And possibly link it to a response:</p>
+<ul>
+<li>Node <strong>Incident Response IR-2025-06</strong> (just an ID for tracking) linked to the incident if needed, or we can treat the incident node as the event itself.</li>
+</ul>
+<p>In practice, once this incident is in the graph, we can query the graph to answer critical questions:</p>
+<ul>
+<li><strong>Which system is at highest risk now?</strong> The graph would show that the Marketing System has no MFA, so those leaked credentials can directly lead to compromise. The HR System, having MFA, is safer (unless MFA was somehow bypassed or the leak included MFA tokens which is unlikely in a password dump).</li>
+<li><strong>What are the potential impacts of this incident?</strong> By traversing from the Marketing System node through the “at risk of → Account Compromise” path, and then following the impact chain, we can enumerate: sensitive customer data exposure, GDPR violation,  $500K financial impact, and ultimately a hit to company performance. The HR System side would similarly threaten employee data and maybe internal compliance, but if MFA holds, that risk might not materialize.</li>
+<li><strong>Who needs to be alerted?</strong> We can traverse from the Marketing System node up the “owns” and “reports to” links to see the <strong>Marketing Manager</strong> and <strong>CMO</strong> are the stakeholders. For the HR system, the HR Manager and CPO are stakeholders.</li>
+<li><strong>What actions are required?</strong> The graph shows which controls were missing – e.g., <strong>MFA Policy</strong> was not implemented on Marketing. That indicates one action: implement MFA immediately on that system (though too late to prevent this leak’s fallout, it will help future). The graph also shows that <strong>Password Policy</strong> was in place, but credentials still got leaked (maybe via phishing or reuse). This suggests an action to <strong>reset passwords</strong> for those accounts (since the password policy alone can’t prevent a leak if users fall for phishing).</li>
+<li><strong>Did monitoring fail?</strong> We have a cause node “Threat Not Detected” mitigated by “Monitoring Procedure”. If our SIEM did not detect those accounts being used by an attacker (assuming they did use them before we found the leak), that cause may have come into play. So a question: <em>Did the security monitoring catch any logins for those accounts?</em> If not, it validates that <em>Threat Not Detected</em> occurred. That points to strengthening monitoring.</li>
+<li><strong>What’s the compliance status?</strong> The graph can highlight that we are in violation of the ISO 27001 controls (MFA not applied to one system). So another action: review compliance and report this gap, possibly update risk register for non-compliance.</li>
+</ul>
+<p>Let’s add the incident to the graph via LLM:</p>
+<p><strong>User:</strong> </p>
+<pre><code>&quot;Add incident node 'Credential Leak (June 2025)' and link it: 
+    'Credential Leak (June 2025)' --(affects 5 accounts in)--&gt; 'HR System';
+    'Credential Leak (June 2025)' --(affects 5 accounts in)--&gt; 'Marketing System';
+    'Credential Leak (June 2025)' --(triggers             )--&gt; 'Account Compromise'
+</code></pre>
+<p>After updating, we can interrogate the graph by asking the LLM questions in plain language, since the graph is now embedded in its context. For example:</p>
+<ul>
+<li>
+<p><strong>User:</strong> <em>"Which system is most at risk from the June 2025 credential leak?"</em><br />
+<strong>LLM:</strong> <em>"The Marketing System is most at risk because it does not have MFA enabled. The leaked passwords can directly be used to access it, whereas the HR System requires MFA, adding an extra layer of protection."</em></p>
+</li>
+<li>
+<p><strong>User:</strong> <em>"What data could be exposed if the Marketing System is breached?"</em><br />
+<strong>LLM:</strong> <em>"If the Marketing System is breached, sensitive customer data in that system could be exposed. According to our graph, that would result in sensitive data being exposed, potentially breaking GDPR compliance and leading to an estimated financial impact of  $500K, which in turn could affect company performance."</em> (The LLM is tracing the path: Marketing System → Account Compromise → Sensitive Data Exposed → GDPR Compliance &amp; Financial Impact.)</p>
+</li>
+<li>
+<p><strong>User:</strong> <em>"Who should be notified about this incident?"</em><br />
+<strong>LLM:</strong> <em>"The Marketing Manager (owner of the Marketing System) and the Chief Marketing Officer (to whom the manager reports) should be notified, as they are responsible for the affected system. Similarly, the HR Manager and Chief People Officer should be informed about the HR System accounts, although that system has MFA which mitigates the risk."</em></p>
+</li>
+<li>
+<p><strong>User:</strong> <em>"List the immediate actions to take in response."</em><br />
+<strong>LLM:</strong></p>
+<ol>
+<li><em><strong>Reset passwords</strong> for all affected accounts in both HR and Marketing systems (to invalidate the leaked credentials).</em>  </li>
+<li><em><strong>Enable MFA</strong> on the Marketing System as soon as possible to prevent account compromise using just passwords.</em>  </li>
+<li><em><strong>Investigate access logs</strong> on the Marketing System for any suspicious logins or data access using those accounts (since the threat might not have been detected in real-time).</em>  </li>
+<li><strong>Increase monitoring</strong> for both systems – ensure the security team and SIEM can detect and alert on unusual login activities for those accounts moving forward.*  </li>
+<li><em><strong>Review compliance and controls</strong> – document that Marketing System lacked MFA (non-compliance with policy/ISO standards) and address this gap, update the risk register accordingly."</em></li>
+</ol>
+</li>
+</ul>
+<p>The above Q&amp;A shows how the LLM can use the graph we built to generate useful outputs. It’s effectively performing graph queries under the hood by following the relationships we established, and then articulating the results in a human-friendly manner. This is a major advantage of using an LLM as the graph database: we can get <em>narrative answers</em> and <em>contextual recommendations</em>, not just data dumps.</p>
+<p>Finally, the LLM could even produce a summary report of the whole scenario, combining everything:
+- a description of the risk,
+- which assets are affected,
+- what the causes and impacts are,
+- and what actions are needed. </p>
+<p>Such a report is essentially a traversal of the graph formatted as a report – something a human analyst would normally do manually by looking at various data sources.</p>
+<h2 id="benefits-of-the-llm-as-graph-approach">Benefits of the LLM-as-Graph Approach</h2>
+<p>Using LLMs as ephemeral graph databases offers several compelling benefits for graph thinkers and domain experts:</p>
+<ul>
+<li>
+<p><strong>No-Code Knowledge Structuring:</strong> As demonstrated, one can build a complex knowledge graph without writing a single line of traditional code or database query. The <em>natural language interface</em> allows subject matter experts to directly input their knowledge and see it structured as a graph. This lowers the barrier to working with graphs, inviting more people to utilize graph thinking in their work.</p>
+</li>
+<li>
+<p><strong>Flexibility and Speed:</strong> Since the graph is built on the fly, the schema is flexible. You can introduce new types of nodes or relationships at any point as needed. The turnaround time from idea to graph update is just the time to write a prompt and get a response – usually seconds. This makes brainstorming and iteratively refining a model very fast. In a live workshop, participants could suggest new nodes or relations and see them added in real-time.</p>
+</li>
+<li>
+<p><strong>Integrated Reasoning:</strong> The LLM doesn’t just store the graph; it can reason about it. We saw the model explain impacts and suggest actions by traversing the graph and applying logical reasoning. This is akin to having an analyst always available to analyze the graph's data. Traditional graph databases would require separate analytics or user interpretation, whereas the LLM can directly generate insights from the graph.</p>
+</li>
+<li>
+<p><strong>Automated Visualization:</strong> With an LLM, users can ask for different representations of the graph – lists, hierarchies, or even diagram code (like Mermaid or DOT for GraphViz). This simplifies the process of creating visuals for presentations or reports. In our example, a single prompt yielded a Mermaid diagram of the entire graph structure.</p>
+</li>
+<li>
+<p><strong>Ephemeral = Safe for Experimentation:</strong> The transient nature of the graph in an LLM session can be an advantage during early brainstorming or sensitive discussions. Nothing is permanently stored unless you choose to save it. If you are exploring a problem, you can spin up an ephemeral graph, test some hypotheses, and when done, the data vanishes (unless, of course, you are using an online service where conversation might be logged – one should consider the privacy aspect separately). The concept of <em>ephemeral reasoning</em> suggests that sometimes you only need the structure for the duration of solving a problem, and it can be discarded afterward to start fresh next time.</p>
+</li>
+<li>
+<p><strong>Enhanced Accessibility of Graph Concepts:</strong> Many people struggle with formal graph query languages or even the concept of graphs if they have never used them. By embedding it in conversational AI, we make the power of graph databases accessible in a familiar Q&amp;A or command-response paradigm. The LLM can even teach the user about graph concepts on the fly (“Here are your nodes...”, “That node isn’t linked yet, you might want to connect it to something related.”). It’s like having a graph database that is also a tutor and advisor.</p>
+</li>
+</ul>
+<p>However, it’s important to also understand the <strong>limitations and considerations</strong>:</p>
+<ul>
+<li>
+<p><strong>Context Size Limits:</strong> An LLM has a maximum context length (for example, many models handle a few thousand tokens of history). This means there is a practical limit to how large and detailed an ephemeral graph can get before the model starts forgetting earlier parts or becomes unable to pay attention to all nodes. Our scenario, while intricate, is still reasonably sized. If you attempted to encode a massive enterprise knowledge graph in one go, you might hit these limits. Techniques like summarizing parts of the graph or focusing on subgraphs at a time can help, but it's not the same as a truly persistent unlimited store.</p>
+</li>
+<li>
+<p><strong>Lack of True Persistence:</strong> The ephemeral nature means you have to recreate or save the graph state if you want to reuse it later. There is no built-in persistence across sessions. In practice, one might periodically ask the LLM to output the entire graph in a structured format (JSON, CSV edges list, etc.) and save that externally if they want to reload it later by feeding it back in a prompt. This is a manual step that a real database handles automatically. Our approach trades off persistence for ease of use.</p>
+</li>
+<li>
+<p><strong>Reliability and Accuracy:</strong> While LLMs are powerful, they can sometimes <strong>hallucinate</strong> or make errors, especially if instructions are ambiguous. For instance, the LLM might incorrectly link nodes if the prompt isn’t clear, or it might summarize the graph inaccurately if asked in a vague way. Rigorous verification is needed for critical use cases. In contrast, a true database would only contain exactly what was input. With an LLM, there's a slight risk it might introduce a relationship that wasn’t explicitly mentioned, just because it “thinks” it makes sense. Careful prompting (“only use the data provided”) can mitigate this.</p>
+</li>
+<li>
+<p><strong>No ACID Transactions:</strong> Changes in the graph are not atomic or isolated – they are just messages in a conversation. If something goes wrong (e.g., the LLM misunderstands an instruction), there is no rollback except manually correcting via another prompt. Concurrent use is not applicable since it's a single user session typically. These are not deal-breakers for a single-user brainstorming scenario, but one should know this isn’t a robust multi-user database system with transactional integrity.</p>
+</li>
+<li>
+<p><strong>Performance:</strong> For moderately sized graphs and short queries, an LLM is fast enough. But as the graph grows or queries become complex, each question to the LLM is essentially running a fresh reasoning process. It’s not indexing or caching results the way a database might optimize queries. Complex graph algorithms (like finding the shortest path, centrality measures, etc.) are not the LLM’s forte. It can do simple traversals because it “remembers” links, but it might struggle or be slow to perform, say, a graph diameter computation. This approach is best for conceptual, qualitative reasoning, not high-volume graph analytics.</p>
+</li>
+<li>
+<p><strong>Privacy and Security:</strong> If using a cloud-based LLM (e.g., OpenAI’s ChatGPT), putting sensitive business risk data into it could be a concern. Always consider data confidentiality – either use an on-premise LLM or ensure you don’t include sensitive identifiers. In our example, we kept things generic (no actual names of employees or specific company info).</p>
+</li>
+<li>
+<p><strong>Combining with Real Data:</strong> Our scenario was manually crafted. In a real situation, you might want to pull data from documents or systems (for instance, import a risk register or vulnerability scan results into the graph). LLMs can assist in information extraction (reading text and outputting triples of relationships), but doing that reliably might require careful prompt engineering or fine-tuning. There are hybrid approaches where an LLM can be used alongside a real graph database – for example, to translate natural language into graph queries or to summarize graph data. Our approach here stays “pure LLM” for simplicity, but one could envision tools that save the ephemeral graph to Neo4j or others for persistence, or conversely use an existing graph as input to an LLM.</p>
+</li>
+</ul>
+<p>Despite these challenges, the demonstration shows a tantalizing possibility: <strong>empowering domain experts to directly build and query knowledge graphs through conversation.</strong> By using LLMs in this way, graph thinking can become a more widespread practice, applied in daily decision making, incident response, strategic planning, and beyond.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In the age of generative AI, we are witnessing new ways to interact with and organize knowledge. Using LLMs as ephemeral graph databases is one such innovation – it merges the structured clarity of graph models with the ease and intelligence of conversational AI. This approach effectively turns an LLM into a “graph brain” for the user, capable of not just remembering facts but also drawing connections and reasoning about them in context.</p>
+<p>For <strong>graph thinkers</strong>, this is an empowering development. No longer constrained by needing technical tools or team support to set up a graph database, an individual can <em>think out loud</em> with an LLM and see their mental model take shape as a graph in real time. The white paper’s example walked through a cybersecurity risk scenario, but the template is general. Imagine using it to map out a medical diagnosis (symptoms→conditions→tests→treatments), a legal case (evidence→claims→laws→outcomes), or a novel’s plot and characters. The patterns of nodes and edges are everywhere, and an LLM can help weave them together.</p>
+<p>In our example, <strong>Dinis Cruz</strong> provided the vision of empowering non-coders to harness graph thinking, and this collaboration with <strong>ChatGPT Deep Research</strong> has fleshed out how that vision can be implemented step-by-step. The result is a blueprint for a workshop or a self-guided exercise where anyone can try turning an LLM into their personal graph database for a while. </p>
+<p>Moving forward, we anticipate more synergy between LLMs and graph technologies:</p>
+<ul>
+<li>LLMs assisting in building and verifying knowledge graphs.</li>
+<li>Graphs providing factual grounding to LLMs (to reduce hallucinations).</li>
+<li>New interfaces that might allow visual editing of these AI-generated graphs, bridging the gap between ephemeral and persistent representations.</li>
+</ul>
+<p>The key takeaway is that <strong>structured thinking and natural language need not be at odds</strong>. With the right prompts, an AI can be both a conversational partner and a structured data tool. Ephemeral graph databases via LLMs invite us to explore complex problems with the freedom to create, modify, and reason without upfront investment in software – the only requirement is our curiosity and clarity of thought (expressed in words).</p>
+<p>As generative AI continues to evolve, those who think in graphs have a powerful ally at their disposal. By engaging with LLMs in this manner, we make our thinking visible and malleable. In doing so, we not only communicate with the machine, but also better explain to ourselves the intricate web of cause and effect, risk and reward, action and outcome that defines the problems we tackle. This, ultimately, is the promise of empowering the graph thinkers in the age of generative AI – turning ideas into interconnected knowledge, one prompt at a time.</p>
+<p><strong>Sources:</strong></p>
+<ul>
+<li>Wikipedia – <em>Graph database</em>: definition of graph databases using nodes and edges:contentReference[oaicite:6]{index=6}.  </li>
+<li>GeeksforGeeks – <em>ACID Properties in DBMS</em>: explanation of ACID (Atomicity, Consistency, Isolation, Durability) for reliable transactions:contentReference[oaicite:7]{index=7}.  </li>
+<li>Besta et al., 2025 – <em>Knowledge Graph of Thoughts (KGoT)</em>: research on dynamically constructing knowledge graphs to enhance AI reasoning:contentReference[oaicite:8]{index=8}.  </li>
+<li>Gibson, 2025 – <em>Beyond Memory: Why Graphs Should Think, Not Just Retrieve</em>: discusses ephemeral, query-time graph construction for reasoning:contentReference[oaicite:9]{index=9}.</li>
+</ul>
+</article>
+<p class="small dim licence-note">Released under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. First published on docs.diniscruz.ai; <a href="using-llms-as-ephemeral-graph-databases--empowering-the-graph-thinkers-in-the-age-of-generative-ai.md">this page as markdown</a>.</p>
+<div class="pagenav"><a href="../../../2025/06/19/empowering-workshops-with-custom-gpts-for-genai-training.html">← Empowering Workshops with Custom GPTs for GenAI Training</a><a href="../../../2025/06/22/fist-meets-the-semantic-knowledge-graph-aligning-fast-inexpensive-simple-tiny-with-dinis-cruzs-g3-approach.html">FIST Meets the Semantic Knowledge Graph: Aligning Fast, Inexpensive, Simple, Tiny with Dinis Cruz&#x27;s G³ Approach →</a></div>
+</main>
+
+<footer class="site"><div class="cols">
+  <div>
+    <div class="brandline">diniscruz<span>.ai</span></div>
+    <p>The personal site of Dinis Cruz: essays and research on AI, cyber security, semantic knowledge graphs and the future of news, and the companies and open-source projects they feed into. All writing CC BY 4.0.</p>
+    <p class="netline"><a href="https://sgit.ai"><b>↗ sgit.ai</b></a> — encrypted git for humans and AI agents · <a href="https://open-source.sgit.ai">↗ open-source.sgit.ai</a> — open source as a strategy · <a href="https://sgit.ai/network/index.html">↗ the sgit.ai network</a></p>
+    <p class="verline">site <a href="../../../admin/versions.html">v0.1.0</a> · <a href="../../../admin/index.html">engineering</a> · <a href="../../../2025/06/19/using-llms-as-ephemeral-graph-databases--empowering-the-graph-thinkers-in-the-age-of-generative-ai.md">this page as markdown</a></p>
+  </div>
+  <div>
+    <h4>Writing</h4>
+    <a href="../../../writing/index.html">All writing</a>
+    <a href="../../../research/index.html">Research hub</a>
+    <a href="../../../resources/presentations.html">Talks</a>
+    <a href="../../../feed.xml">RSS feed</a>
+  </div>
+  <div>
+    <h4>Building</h4>
+    <a href="../../../building/index.html#companies">Companies</a>
+    <a href="../../../building/index.html#open-source">Open source</a>
+    <a href="https://sgit.ai">↗ sgit.ai</a>
+    <a href="https://open-source.sgit.ai">↗ open-source.sgit.ai</a>
+  </div>
+  <div>
+    <h4>About</h4>
+    <a href="../../../about/index.html">About Dinis Cruz</a>
+    <a href="https://www.linkedin.com/in/diniscruz">↗ LinkedIn</a>
+    <a href="https://github.com/DinisCruz">↗ GitHub</a>
+    <a href="../../../admin/index.html">How this site is built</a>
+    <a href="../../../admin/versions.html">Release history</a>
+    <a href="../../../llms.txt">llms.txt</a>
+    <a href="../../../llms-full.txt">llms-full.txt</a>
+  </div>
+</div></footer>
+
+</body>
+</html>
