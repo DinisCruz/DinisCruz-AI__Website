@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact Dinis Cruz — an encrypted message, straight into a vault</title>
+<meta name="description" content="Write to Dinis Cruz. The message is encrypted in your browser to the diniscruz.ai agent's public key and dropped into a write-only lane on its private sgit vault. No form builder, nothing stored on this site, and an email fallback.">
+<meta name="author" content="Dinis Cruz">
+<link rel="canonical" href="https://diniscruz.ai/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="diniscruz.ai">
+<meta property="og:url" content="https://diniscruz.ai/contact.html">
+<meta property="og:title" content="Contact Dinis Cruz">
+<meta property="og:description" content="An encrypted message, encrypted in your browser and dropped into a private sgit vault. Nothing is stored on this site.">
+<link rel="alternate" type="text/markdown" href="contact.md" title="This page as markdown">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<nav class="site"></nav>
+
+<main class="doc">
+<div class="crumb"><a href="index.html">diniscruz.ai</a> / contact</div>
+<h1>Write to me</h1>
+<p class="lead">What you type here is encrypted <b>in your own browser</b> to the public key of the agent that runs this site. It is then dropped into a write-only lane on the agent's private, encrypted vault. The vault host sees a size and a time, and nothing else. I read what arrives and answer by email from <code>agent@diniscruz.ai</code>. If you would rather just email, that address works too, and so does <a href="https://www.linkedin.com/in/diniscruz">LinkedIn</a>.</p>
+
+<section id="form">
+<h2>The message</h2>
+<form class="intake" data-intake="contact" novalidate>
+  <div class="f"><label for="c-name">Your name</label><input id="c-name" name="name" type="text" autocomplete="name" required></div>
+  <div class="f"><label for="c-email">Email <span>· so I can answer</span></label><input id="c-email" name="email" type="email" autocomplete="email" required></div>
+  <div class="f wide"><label for="c-org">Organisation <span>· optional</span></label><input id="c-org" name="organisation" type="text" autocomplete="organization"></div>
+  <div class="f wide"><label for="c-msg">The message</label><textarea id="c-msg" name="message" required></textarea></div>
+  <div class="f hp" aria-hidden="true"><label for="c-web">Website</label><input id="c-web" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+  <label class="consent"><input type="checkbox" name="consent"> <span>I am happy for this message to be kept in the diniscruz.ai agent's private vault, and for Dinis Cruz to reply to me by email. I can ask for it to be deleted at any time. My address is not added to any list.</span></label>
+  <div class="actions">
+    <button class="cta1" type="submit">Encrypt and send</button>
+    <a id="intake-mailto" href="mailto:agent@diniscruz.ai" hidden>Send it as an email instead →</a>
+  </div>
+  <p id="intake-status" class="intake-status" aria-live="polite"></p>
+</form>
+<div id="intake-done" class="note" hidden>
+  <b>Sent, encrypted, into the vault.</b>
+  <p>The lane answers <code>{"ok": true}</code> and nothing else, by design: not even I can tell you a file id. I read what arrives and reply to the address you gave, from <code>agent@diniscruz.ai</code>. If nothing comes back, email that address and say when you sent this.</p>
+</div>
+<noscript><p class="note">This form needs JavaScript to encrypt your message. Without it, email <a href="mailto:agent@diniscruz.ai">agent@diniscruz.ai</a>.</p></noscript>
+</section>
+
+<h2 id="how">What happens to it</h2>
+<div class="tablewrap"><table>
+  <tbody>
+    <tr><td><b>1 · In your browser</b></td><td>The page fetches <a href=".well-known/sgit-agents.json">the contact file</a> and checks the key against its published fingerprint. It then encrypts your message with Web Crypto: a fresh AES-256-GCM key, wrapped with RSA-OAEP to the agent's key. It is the same envelope <code>sgit pki decrypt</code> opens.</td></tr>
+    <tr><td><b>2 · On the wire</b></td><td>One POST to the vault host (<code>dev.send.sgraph.ai</code>) with the lane's public token. The host stores the ciphertext and returns <code>ok</code>. It cannot read the message, and neither can anyone else who has the token: a token can write, and learns nothing.</td></tr>
+    <tr><td><b>3 · In the vault</b></td><td>The agent that holds the vault drains the lane, decrypts, and files the message in its comms vault. I read it and reply by ordinary email.</td></tr>
+    <tr><td><b>If it fails</b></td><td>If JavaScript is off, the browser is old or the host is down, the same text is offered as a <code>mailto:</code> link to <code>agent@diniscruz.ai</code>. Nothing is lost and nothing is sent twice.</td></tr>
+  </tbody>
+</table></div>
+<p>The keys, the lanes and how to check them are on <a href="agents/index.html">the agents page</a>. What this site does and does not collect is on <a href="privacy.html#forms">the privacy page</a>. The mechanism is <a href="https://sgit.ai/docs/agent-contact.html">Agent Contact v0.1</a>, the same one <a href="https://riskmandate.ai/contact.html">riskmandate.ai</a> uses.</p>
+</main>
+
+<script>
+// envelope.js — sgit's hybrid envelope (v2), built in the browser with Web Crypto (from riskmandate.ai, as is).
+// Matches sgit_ai/crypto/PKI__Crypto.hybrid_encrypt: a fresh AES-256-GCM key, a 12-byte IV,
+// the key wrapped with RSA-OAEP (SHA-256, MGF1-SHA-256) to the recipient's public key;
+// {v:2, w, i, c} as base64 fields; the .enc text is base64 of that JSON; the lane payload
+// is base64 of the .enc text's bytes (encoded twice, as the API page documents).
+// Unsigned: a person filling in a form holds no key. The drain files such messages as web-form kind.
+(function (root) {
+  'use strict';
+  var te = new TextEncoder();
+  function b64(bytes) { var s = ''; bytes = new Uint8Array(bytes); for (var i = 0; i < bytes.length; i++) s += String.fromCharCode(bytes[i]); return btoa(s); }
+  function pemToDer(pem) { var b = pem.replace(/-----[^-]+-----/g, '').replace(/\s+/g, ''); var bin = atob(b); var out = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i); return out.buffer; }
+  async function fingerprint(pem) { var h = await crypto.subtle.digest('SHA-256', pemToDer(pem)); return 'sha256:' + Array.prototype.map.call(new Uint8Array(h), function (x) { return ('0' + x.toString(16)).slice(-2); }).join('').slice(0, 16); }
+  async function encrypt(recipientPem, plaintext) {
+    var pub = await crypto.subtle.importKey('spki', pemToDer(recipientPem), { name: 'RSA-OAEP', hash: 'SHA-256' }, false, ['encrypt']);
+    var aes = await crypto.subtle.generateKey({ name: 'AES-GCM', length: 256 }, true, ['encrypt']);
+    var raw = await crypto.subtle.exportKey('raw', aes);
+    var iv  = crypto.getRandomValues(new Uint8Array(12));
+    var c   = await crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv, tagLength: 128 }, aes, te.encode(plaintext));
+    var w   = await crypto.subtle.encrypt({ name: 'RSA-OAEP' }, pub, raw);
+    var enc = btoa(JSON.stringify({ v: 2, w: b64(w), i: b64(iv), c: b64(c) }));   // the .enc text
+    return { enc: enc, payload: btoa(enc) };                                         // payload = base64(bytes of .enc)
+  }
+  root.SgEnvelope = { encrypt: encrypt, fingerprint: fingerprint };
+})(typeof window !== 'undefined' ? window : globalThis);
+</script>
+<script>
+// form.js — the contact form (ported from Risk-Mandate's site): what you type is encrypted to the site agent's
+// public key in this browser (the envelope sgit pki decrypt opens), then dropped into the
+// `site` append lane of the agent's comms vault. The vault host sees ciphertext, a size and a
+// time; only the agent that holds the vault can read it. If any step fails, the same text is
+// offered as an ordinary email to agent@diniscruz.ai instead. Nothing is stored here.
+(function () {
+  'use strict';
+  var form = document.querySelector('form[data-intake]');
+  if (!form) return;
+  var kind   = form.getAttribute('data-intake');                   // contact
+  var status = document.getElementById('intake-status');
+  var button = form.querySelector('button[type="submit"]');
+  var say = function (text, cls) { status.textContent = text; status.className = 'intake-status' + (cls ? ' ' + cls : ''); };
+  var field = function (n) { var el = form.elements[n]; return el ? String(el.value || '').trim() : ''; };
+  var checked = function (n) { var el = form.elements[n]; return !!(el && el.checked); };
+
+  function lines() {
+    var out = [];
+    form.querySelectorAll('[name]').forEach(function (el) {
+      if (el.type === 'submit' || el.type === 'checkbox' || el.name === 'website') return;
+      var label = form.querySelector('label[for="' + el.id + '"]');
+      var v = String(el.value || '').trim();
+      if (v) out.push((label ? label.textContent.replace(/\s+/g, ' ').trim() : el.name) + ': ' + v);
+    });
+    return out;
+  }
+
+  function eml(who, email) {
+    var id = 'dc-' + kind + '-' + Date.now() + '-' + Math.random().toString(16).slice(2, 10) + '@diniscruz.ai';
+    var subject = 'Contact: ' + (field('organisation') || who || email);
+    var hdr = [
+      'From: web form <site@diniscruz.ai>',
+      'To: agent <agent@diniscruz.ai>',
+      'Subject: ' + subject.replace(/[\r\n]+/g, ' '),
+      'Date: ' + new Date().toUTCString(),
+      'Message-ID: <' + id + '>',
+      'X-EmailFS-Kind: notification',
+      'X-DC-Form: ' + kind,
+      'X-DC-Reply-To: ' + email.replace(/[\r\n]+/g, ' '),
+      'X-DC-Page: ' + location.pathname,
+      'Content-Type: text/plain; charset=utf-8'
+    ];
+    var body = lines().join('\n') + '\n\nConsent: ' + (checked('consent') ? 'yes, keep it in the comms vault and reply' : 'not ticked') + '\nSent from: ' + location.href + '\n';
+    return hdr.join('\r\n') + '\r\n\r\n' + body.replace(/\r?\n/g, '\r\n');
+  }
+
+  function mailtoFallback(text, why) {
+    var subject = 'Contact' + ' via diniscruz.ai';
+    var a = document.getElementById('intake-mailto');
+    a.href = 'mailto:agent@diniscruz.ai?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text);
+    a.hidden = false;
+    say((why ? why + ' ' : '') + 'The same text is ready as an ordinary email instead: press the link below and send it from your own mail client.', 'warn');
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (field('website')) { say('Sent.', 'ok'); return; }                       // a honeypot: bots fill it, people do not see it
+    var who = field('name'), email = field('email');
+    if (!email || email.indexOf('@') < 1) { say('An email address is needed, so a person can answer you.', 'warn'); form.elements.email.focus(); return; }
+    if (!checked('consent')) { say('Please tick the box: it is your permission for us to keep the message and reply.', 'warn'); return; }
+    var plain = lines().join('\n');
+    button.disabled = true; say('Fetching the key and encrypting…');
+    try {
+      if (!window.crypto || !crypto.subtle || !window.SgEnvelope) throw new Error('This browser cannot encrypt here.');
+      var r = await fetch('/.well-known/sgit-agents.json', { cache: 'no-store' });
+      if (!r.ok) throw new Error('The contact file did not load (' + r.status + ').');
+      var file = await r.json();
+      var ident = file.identities && file.identities.agent;
+      var lane = ident && ident.inbox && ident.inbox.lanes.filter(function (l) { return l.name === 'site'; })[0];
+      if (!ident || !lane || ident.inbox.status !== 'open') throw new Error('The inbox is not open.');
+      var fp = await SgEnvelope.fingerprint(ident.bundle.encrypt);
+      if (fp !== ident.fingerprint || fp !== ident.inbox.encrypt_to) throw new Error('The key in the contact file does not match its fingerprint.');
+      var env = await SgEnvelope.encrypt(ident.bundle.encrypt, eml(who, email));
+      say('Encrypted to ' + fp + '. Sending into the vault…');
+      var w = await fetch(ident.inbox.endpoint + '/api/vault/append/write/' + ident.inbox.vault, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ append_token: lane.append_token, payload: env.payload })
+      });
+      var j = null; try { j = await w.json(); } catch (_) {}
+      if (!w.ok || !j || j.ok !== true) throw new Error('The vault host answered ' + w.status + '.');
+      form.hidden = true;
+      var done = document.getElementById('intake-done'); if (done) done.hidden = false;
+      say('', 'ok');
+    } catch (err) {
+      button.disabled = false;
+      mailtoFallback(plain, String(err && err.message || err));
+    }
+  });
+})();
+</script>
+
+<footer class="site"></footer>
+
+</body>
+</html>

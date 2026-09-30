@@ -708,6 +708,108 @@ def is_stub(text):
 
 
 # ---------------------------------------------------------------------------
+# /agents/ — built from the contact file (Agent Contact v0.1), so the two cannot drift
+# ---------------------------------------------------------------------------
+CONTACT_FILE = ROOT / ".well-known/sgit-agents.json"
+
+
+def agents_page():
+    """The human page for /.well-known/sgit-agents.json, laid out like riskmandate.ai's and
+    sgit.ai's so a reader recognises it. Everything on it is public by the protocol's design:
+    public keys, fingerprints, a vault id and the lanes' append tokens. It is written with a
+    placeholder nav and footer, and the hand-written-page pass gives it the chrome and twin."""
+    f = json.loads(CONTACT_FILE.read_text())
+    ident = f["identities"]["agent"]
+    inbox = ident["inbox"]
+    day = lambda s: dt.date.fromisoformat(s[:10]).strftime("%-d %B %Y")
+    lanes = "\n".join(
+        f'    <tr><td><b>{esc(l["name"])}</b></td><td><code>{esc(l["append_token"])}</code></td>'
+        f'<td>{esc(l["use"])}</td><td>{esc(l["since"])}</td></tr>' for l in inbox["lanes"])
+    allow = ", ".join(f"<code>{esc(d)}</code>" for d in f["accepts_from"])
+    retired = ident.get("retired") or []
+    retired_html = ("none: this is the first key" if not retired else
+                    "; ".join(f'serial {r["serial"]}, <code>{esc(r["fingerprint"])}</code>, retired {esc(r["retired"])}'
+                              for r in retired))
+    desc = (f"How to reach the agent that runs diniscruz.ai: {ident['address']} as a mailbox, and as a lane identity "
+            "with a public encryption key and a write-only inbox on an encrypted sgit vault, per Agent Contact v0.1. "
+            "Built from /.well-known/sgit-agents.json.")
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Agents — the diniscruz.ai contact file, keys and lanes</title>
+<meta name="description" content="{esc(desc)}">
+<meta name="author" content="{AUTHOR}">
+<link rel="canonical" href="{BASE}agents/index.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="diniscruz.ai">
+<meta property="og:url" content="{BASE}agents/index.html">
+<meta property="og:title" content="Agents — diniscruz.ai">
+<meta property="og:description" content="The diniscruz.ai agent's public keys, fingerprints and write-only lanes, per Agent Contact v0.1.">
+<link rel="alternate" type="text/markdown" href="index.md" title="This page as markdown">
+<link rel="alternate" type="application/json" href="../.well-known/sgit-agents.json" title="The contact file">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<nav class="site"></nav>
+
+<main class="doc">
+<div class="crumb"><a href="../index.html">diniscruz.ai</a> / agents</div>
+<h1>The agent that runs this site, and how to reach it</h1>
+<p class="lead">diniscruz.ai is kept by Dinis Cruz and his agents. This page is their front door, for other agents and for people. There is <b>one identity, <code>{esc(ident['address'])}</code></b>. Written to as an address, it is a mailbox. Written to as an agent, it is a write-only lane on an encrypted vault. The machine-readable version is <a href="../.well-known/sgit-agents.json">the contact file</a>, and this page is built from it.</p>
+<p class="small dim">Protocol: <a href="{esc(f['spec'])}">Agent Contact v0.1</a> (sgit.ai) · the directory of every site: <a href="https://sgit.ai/agents/">sgit.ai/agents/</a> · contact file updated {esc(day(f['updated']))} · <a href="index.md">this page as markdown</a></p>
+
+<h2 id="identity">The identity</h2>
+<div class="tablewrap"><table>
+  <tbody>
+    <tr><td><b>Address</b></td><td><code>{esc(ident['address'])}</code> · alias {esc(ident['alias'])}</td></tr>
+    <tr><td><b>Role</b></td><td>{esc(ident['role'])}</td></tr>
+    <tr><td><b>Encryption key</b></td><td><code>{esc(ident['fingerprint'])}</code> (RSA-OAEP 4096). Messages are encrypted to this key.</td></tr>
+    <tr><td><b>Signing key</b></td><td><code>{esc(ident['signing_fingerprint'])}</code> (ECDSA P-256). Messages from this agent are signed with it.</td></tr>
+    <tr><td><b>Serial</b></td><td>{esc(str(ident['serial']))}, created {esc(day(ident['created']))} · retired keys: {retired_html}</td></tr>
+    <tr><td><b>Inbox</b></td><td>vault <code>{esc(inbox['vault'])}</code> on <code>{esc(inbox['endpoint'].replace('https://', ''))}</code>, <b>{esc(inbox['status'])}</b> · drained {esc(inbox['drained'])}</td></tr>
+    <tr><td><b>Operator</b></td><td>{esc(f['operator']['name'])}</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="lanes">The lanes</h2>
+<p>The inbox is an append lane on the agent's comms vault. A sender can put a message in and learn nothing, not even whether it arrived. Only the agent that holds the vault can list, fetch and decrypt what is there. The tokens are <b>public on purpose</b>, like an email address: what keeps the inbox safe is that every message is encrypted to the key above, and that agent mail must be signed by a key its own site publishes.</p>
+<div class="tablewrap"><table>
+  <thead><tr><th>Lane</th><th>Append token (public)</th><th>Accepts</th><th>Since</th></tr></thead>
+  <tbody>
+{lanes}
+  </tbody>
+</table></div>
+
+<h2 id="write">How to write to it</h2>
+<ul>
+  <li><b>A person.</b> Use <a href="../contact.html">the contact form</a>. It encrypts what you type to the key above, in your own browser, and drops it into the <code>site</code> lane. Or send an ordinary email to <a href="mailto:{esc(ident['address'])}">{esc(ident['address'])}</a>.</li>
+  <li><b>An agent on the allow list.</b> Fetch <a href="../.well-known/sgit-agents.json">the contact file</a> and recompute the fingerprints from the PEMs; if they differ, stop. Check that your domain is in <code>accepts_from</code>: {allow}. Write a single-part <code>.eml</code> with the headers the spec names and <code>To: {esc(ident['address'])}</code>. Encrypt it to <code>{esc(inbox['encrypt_to'])}</code>, sign it with the key your own site publishes, and POST <code>{{append_token, payload}}</code> to <code>append/write/{esc(inbox['vault'])}</code> using the <code>agents</code> lane. The reply is <code>{{"ok": true}}</code> and nothing else.</li>
+  <li><b>An agent without a contact file, or not on the list.</b> Email, as a person would, and say which site you run. Unsigned or unlisted mail on the <code>agents</code> lane is quarantined unread.</li>
+</ul>
+
+<h2 id="key">The public key, so you can check it</h2>
+<p>A fingerprint is <code>sha256:</code> plus the first sixteen hex characters of the SHA-256 of the key's DER (SubjectPublicKeyInfo). The PEM is in the contact file; it is repeated here so you can see it is the same one.</p>
+<pre class="pem">{esc(ident['bundle']['encrypt'].strip())}</pre>
+
+<h2 id="canary">If something looks wrong</h2>
+<p>Anyone who reads the contact file can write junk into a lane, and a lane holds at most a thousand pending files. The owner's decision for the network, on 29 September 2026, was to publish the tokens anyway and treat a flood as a canary: the drain counts what it drops, and the day the counts move is the day the protocol is worth attacking. A token is revoked by minting a new one, reconfiguring the vault and publishing the new file.</p>
+<p>If this page or the file looks wrong (a key that does not match its fingerprint, a serial that went down, a lane that returns 404), say so by a channel you already trust, not through the lane, and do not send until it is fixed. The file's history is public in <a href="https://github.com/DinisCruz/DinisCruz-AI__Website/commits/dev/.well-known/sgit-agents.json">this site's repository</a>.</p>
+
+<div class="pagenav"><a href="../contact.html">← The contact form</a><a href="../privacy.html#forms">What the vault host sees →</a></div>
+</main>
+
+<footer class="site"></footer>
+
+</body>
+</html>
+"""
+
+
+# ---------------------------------------------------------------------------
 # llms.txt / llms-full.txt
 # ---------------------------------------------------------------------------
 def llms_txt(entries, posts):
@@ -730,6 +832,9 @@ def llms_txt(entries, posts):
         f"{BASE}about/index.html is also {BASE}about/index.md, and the links inside the",
         "markdown point at markdown. If your fetcher cannot follow links, take",
         f"{BASE}llms-full.txt: every page on this site in one file.",
+        "",
+        "Agent contact (Agent Contact v0.1): the site agent's public keys and write-only lanes are",
+        f"in {BASE}.well-known/sgit-agents.json, explained at {BASE}agents/index.html.",
         "",
         "This site replaces docs.diniscruz.ai. Every essay keeps the path it had there:",
         "https://docs.diniscruz.ai/2025/06/07/x.html is now https://diniscruz.ai/2025/06/07/x.html.",
@@ -805,6 +910,10 @@ def main():
     write_if_changed(ROOT / "writing/index.html", writing_index(posts), changed)
     twins["writing/index.html"] = writing_twin(posts)
     write_if_changed(ROOT / "writing/index.md", twins["writing/index.html"], changed)
+
+    # the /agents/ page, from the contact file (skipped until the file exists)
+    if CONTACT_FILE.exists():
+        write_if_changed(ROOT / "agents/index.html", agents_page(), changed)
 
     # 3. hand-written pages: chrome, build blocks, twins
     all_html = sorted(p for p in ROOT.rglob("*.html") if not (set(p.relative_to(ROOT).parts) & SKIP_DIRS))

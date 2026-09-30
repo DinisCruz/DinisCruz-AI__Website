@@ -369,3 +369,23 @@ aside.related{margin-top:2.6rem;border:1px solid var(--line);background:var(--pa
 aside.related h2{font-size:1.05rem;margin:.8rem 0 .4rem}
 aside.related ul{margin:0;padding-left:1.1rem}
 aside.related li{font-size:.93rem;margin:.25rem 0}
+
+/* ---------- the encrypted contact form ---------- */
+form.intake{display:grid;grid-template-columns:1fr 1fr;gap:.9rem 1rem;margin:1rem 0 .6rem}
+form.intake .f{display:flex;flex-direction:column;gap:.3rem}
+form.intake .f.wide,form.intake .consent,form.intake .actions,form.intake .intake-status{grid-column:1/-1}
+form.intake label{font-size:.85rem;font-weight:600;color:var(--fg)}
+form.intake label span{font-weight:400;color:var(--dim)}
+form.intake input[type=text],form.intake input[type=email],form.intake textarea{font:inherit;font-size:.95rem;padding:.55rem .7rem;border:1px solid var(--line2);border-radius:8px;background:var(--panel);color:var(--fg)}
+form.intake textarea{min-height:10rem;resize:vertical}
+form.intake input:focus,form.intake textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+form.intake .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+form.intake .consent{display:flex;gap:.55rem;align-items:flex-start;font-weight:400;font-size:.88rem;color:var(--dim);line-height:1.5}
+form.intake .consent input{margin-top:.25rem}
+form.intake .actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+form.intake button.cta1{border:0;cursor:pointer;font:inherit;font-weight:600}
+form.intake button:disabled{opacity:.6;cursor:wait}
+.intake-status{font-size:.88rem;color:var(--dim);min-height:1.2em;margin:0}
+.intake-status.warn{color:var(--warm)} .intake-status.ok{color:var(--accent-dk)}
+@media (max-width:600px){form.intake{grid-template-columns:1fr}}
+pre.pem{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:.8rem 1rem;font-size:.72rem;line-height:1.45;white-space:pre-wrap;word-break:break-all;max-height:14rem;overflow:auto}

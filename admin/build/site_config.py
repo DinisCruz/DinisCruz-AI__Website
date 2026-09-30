@@ -52,12 +52,20 @@ NAV = [
         ("Open source", "building/index.html#open-source"),
         ("The sgit.ai network", "building/index.html#network"),
     ], ("building/",)),
+    ("Agents", "agents/index.html", [
+        ("The agent and its lanes", "agents/index.html"),
+        ("The contact file (JSON)", ".well-known/sgit-agents.json"),
+        ("Write to me, encrypted", "contact.html"),
+        ("Agent Contact v0.1 ↗", "https://sgit.ai/docs/agent-contact.html"),
+    ], ("agents/", "contact.html")),
     ("About", "about/index.html", [
         ("About Dinis Cruz", "about/index.html"),
+        ("Contact", "contact.html"),
+        ("Privacy", "privacy.html"),
         ("How this site is built", "admin/index.html"),
         ("Moving from docs.diniscruz.ai", "admin/migration.html"),
         ("Release history", "admin/versions.html"),
-    ], ("about/", "admin/")),
+    ], ("about/", "admin/", "privacy.html")),
 ]
 
 FOOTER = [
@@ -75,6 +83,9 @@ FOOTER = [
     ]),
     ("About", [
         ("About Dinis Cruz", "about/index.html"),
+        ("Contact, encrypted", "contact.html"),
+        ("Agents", "agents/index.html"),
+        ("Privacy", "privacy.html"),
         ("↗ LinkedIn", LINKEDIN),
         ("↗ GitHub", GITHUB),
         ("How this site is built", "admin/index.html"),

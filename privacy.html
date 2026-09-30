@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy — what diniscruz.ai collects, and what it does not</title>
+<meta name="description" content="diniscruz.ai sets no cookies and runs no analytics. The contact form encrypts your message in your browser before it leaves; the vault host sees ciphertext, a size and a time. What each third party on this site can see, said plainly.">
+<meta name="author" content="Dinis Cruz">
+<link rel="canonical" href="https://diniscruz.ai/privacy.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="diniscruz.ai">
+<meta property="og:url" content="https://diniscruz.ai/privacy.html">
+<meta property="og:title" content="Privacy — diniscruz.ai">
+<meta property="og:description" content="No cookies, no analytics, and a contact form that encrypts in your browser. What each third party can see.">
+<link rel="alternate" type="text/markdown" href="privacy.md" title="This page as markdown">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<nav class="site"></nav>
+
+<main class="doc">
+<div class="crumb"><a href="index.html">diniscruz.ai</a> / privacy</div>
+<h1>Privacy</h1>
+<p class="lead">This is a static site. It sets <b>no cookies</b>, runs <b>no analytics</b> and has no accounts. Nothing you do here is recorded by this site. The rest of this page lists what the services it depends on can see.</p>
+
+<h2 id="hosting">Hosting</h2>
+<p>The pages are served by <b>GitHub Pages</b>. Like any web server, GitHub receives your IP address and the pages you request, under <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>. I do not receive those logs.</p>
+
+<h2 id="forms">The contact form</h2>
+<p><a href="contact.html">The contact form</a> is the one place where you send something, and it is built so that nobody in between can read it:</p>
+<ul>
+  <li><b>What leaves your browser is ciphertext.</b> Your name, email, organisation and message are encrypted in the page with Web Crypto. The key is the agent's public key, published in <a href=".well-known/sgit-agents.json">the contact file</a> and checked against its fingerprint before use. Only the private key opens it, and that key never leaves the agent's encrypted vault.</li>
+  <li><b>Where it goes.</b> One request to <code>dev.send.sgraph.ai</code>, the host of the vault. That host sees <b>a size, a time and the connection your browser makes</b> (so, your IP address). It stores the ciphertext in a write-only lane. It cannot read the contents and it does not learn who you are from them.</li>
+  <li><b>What this site keeps.</b> Nothing. The page has no server behind it; the message goes straight from your browser to the vault host.</li>
+  <li><b>Who reads it.</b> The agent that runs this site drains the lane, decrypts the message, and files it in its private comms vault. I read it there and reply to the email address you gave, from <code>agent@diniscruz.ai</code>. The message stays in that vault as the record of our conversation.</li>
+  <li><b>Your consent, and deleting it.</b> The form sends only when you tick the box. Your address is not added to any list. To have a message deleted, ask at <code>agent@diniscruz.ai</code> and it will be deleted from the vault's files. The vault is versioned like git, so an older commit can still hold it until that history is rewritten. Say if you need that too.</li>
+  <li><b>If the encryption cannot run</b> (no JavaScript, an old browser, the host down), the form offers the same text as an ordinary email for your mail client to send. That email is then handled like any other.</li>
+</ul>
+<p>The same mechanism is used by the sites' agents to write to each other. The keys and lanes are on <a href="agents/index.html">the agents page</a>, and the protocol is <a href="https://sgit.ai/docs/agent-contact.html">Agent Contact v0.1</a>.</p>
+
+<h2 id="third-parties">Third-party content on some pages</h2>
+<ul>
+  <li><b>PDFs, audio and slides</b> linked from essays are on <code>files.diniscruz.ai</code>. They load only when you open them, or on the few pages that embed one.</li>
+  <li><b>Embedded videos and podcasts</b> on a few essays come from YouTube (through <code>youtube-nocookie.com</code>) and Spotify. They load in a frame on those pages only, under their own privacy terms.</li>
+  <li><b>Diagrams</b> on a few essays are drawn by the Mermaid library, loaded from <code>cdn.jsdelivr.net</code> on those pages only.</li>
+  <li><b>Outbound links</b> (LinkedIn, GitHub, the sgit.ai network) are ordinary links. Nothing is sent to those sites unless you follow one.</li>
+</ul>
+
+<h2 id="contact">Questions</h2>
+<p>Email <code>agent@diniscruz.ai</code> or use <a href="contact.html">the contact form</a>. This page is part of <a href="https://github.com/DinisCruz/DinisCruz-AI__Website">the site's public repository</a>, so every change to it is on the record.</p>
+
+<div class="pagenav"><a href="contact.html">← Contact</a><a href="agents/index.html">The agents page →</a></div>
+</main>
+
+<footer class="site"></footer>
+
+</body>
+</html>

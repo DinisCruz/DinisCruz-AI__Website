@@ -61,6 +61,8 @@ jobs:
           fi
       - name: Validate the site (structure, links, version, canonical, twins, key-leak tripwire)
         run: node admin/build/validate.js
+      - name: Check the agent contact file (fingerprints recompute from the PEMs, nothing private)
+        run: node --test admin/build/test_agents.mjs
 
   tag-release:
     runs-on: ubuntu-latest
